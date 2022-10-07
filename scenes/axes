@@ -1,0 +1,146 @@
+{ sphere
+	loc 1.0 0.0 0.0
+	color 1.0 0.3 0.3
+	size 0.15
+}
+
+{ sphere
+	loc -1.0 0.0 0.0
+	color 0.3 1.0 1.0
+	size 0.15
+}
+
+{ sphere
+	loc 0.0 1.0 0.0
+	color 0.3 1.0 0.3
+	size 0.15
+}
+
+{ sphere
+	loc 0.0 -1.0 0.0
+	color 1.0 0.3 1.0
+	size 0.15
+}
+{ sphere
+	loc 0.0 0.0 1.0
+	color 0.3 0.3 1.0
+	size 0.15
+}
+
+{ sphere
+	loc 0.0 0.0 -1.0
+	color 1.0 1.0 0.3
+	size 0.15
+}
+
+------- 2--- 
+
+{ sphere
+	loc 2.0 0.0 0.0
+	color 1.0 0.3 0.3
+	size 0.15
+}
+
+{ sphere
+	loc -2.0 0.0 0.0
+	color 0.3 1.0 1.0
+	size 0.15
+}
+
+{ sphere
+	loc 0.0 2.0 0.0
+	color 0.3 1.0 0.3
+	size 0.15
+}
+
+{ sphere
+	loc 0.0 -2.0 0.0
+	color 1.0 0.3 1.0
+	size 0.15
+}
+{ sphere
+	loc 0.0 0.0 2.0
+	color 0.3 0.3 1.0
+	size 0.15
+}
+
+{ sphere
+	loc 0.0 0.0 -2.0
+	color 1.0 1.0 0.3
+	size 0.15
+}
+-----3 
+
+{ sphere
+	loc 3.0 0.0 0.0
+	color 1.0 0.3 0.3
+	size 0.15
+}
+
+{ sphere
+	loc -3.0 0.0 0.0
+	color 0.3 1.0 1.0
+	size 0.15
+}
+
+{ sphere
+	loc 0.0 3.0 0.0
+	color 0.3 1.0 0.3
+	size 0.15
+}
+
+{ sphere
+	loc 0.0 -3.0 0.0
+	color 1.0 0.3 1.0
+	size 0.15
+}
+{ sphere
+	loc 0.0 0.0 3.0
+	color 0.3 0.3 1.0
+	size 0.15
+}
+
+{ sphere
+	loc 0.0 0.0 -3.0
+	color 1.0 1.0 0.3
+	size 0.15
+}
+
+
+
+
+{ cylinder
+	loc 0.0 0.0 0.0
+	dir 0.0 1.0 0.0
+	size 0.1
+	color 0.0 1.0 0.0
+}
+
+{ cylinder
+	loc 0.0 0.0 0.0
+	dir 1.0 0.0 0.0
+	size 0.1
+	color 1.0 0.0 0.0
+}
+
+{ cylinder
+	loc 0.0 0.0 0.0
+	dir 0.0 0.0 1.0
+	size 0.1
+	color 0.0 0.0 1.0
+}
+
+
+
+
+
+
+
+{ light
+	loc 3.0 3.0 3.0
+}
+
+{ camera
+	loc 2.0 2.0 10.0
+	coi 0.0 0.0 0.0
+}

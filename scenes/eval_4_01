@@ -1,0 +1,15 @@
+{ camera
+	loc 0.0 0.0 10.0
+	coi 4.0 4.0 4.0
+}
+
+{ light
+	loc 10.0 4.0 8.0
+}
+
+{ sphere
+	loc 0.0 0.0 0.0
+	color 0.6 0.6 3.3
+	size 1.6
+	translate 4.0 4.0 4.0
+}

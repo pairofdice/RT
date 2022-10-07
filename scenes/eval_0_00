@@ -1,0 +1,14 @@
+{ sphere
+	loc 0.0 0.0 0.0
+	size 3.42
+	color 1.0 0.0 0.0
+}
+
+{ light
+	loc 0.0 0.0 10.0
+}
+
+{ camera
+	loc 0.0 0.0 10.0
+	coi 0.0 0.0 0.0
+}

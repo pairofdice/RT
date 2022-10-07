@@ -1,0 +1,16 @@
+{ cylinder
+	loc 0.0 0.0 0.0
+	dir 0.0 1.0 0.0
+	size 2.0
+	color 1.0 0.0 0.85
+	rotate 0.0 0.0 90.0
+}
+
+{ light
+	loc 5.0 5.0 10.0
+}
+
+{ camera
+	loc 0.0 0.0 10.0
+	coi 0.0 0.0 0.0
+}

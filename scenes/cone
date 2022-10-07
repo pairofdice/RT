@@ -1,0 +1,30 @@
+{ cone
+	loc 4.0 0.0 0.0
+	dir 0.0 0.5 1.0
+	color 1.0 0.3 0.3
+	size 0.2
+}
+
+{ cone
+	loc 0.0 0.0 0.0
+	dir 0.0 0.5 1.0
+	color 0.3 1.0 0.3
+	size 0.2
+}
+
+{ cone
+	loc -4.0 0.0 0.0
+	dir 0.0 0.5 1.0
+	color 0.3 0.3 1.0
+	size 0.2
+}
+
+
+{ light
+	loc 0.5 0.5 9.0
+}
+
+{ camera
+	loc 0.0 0.0 10.0
+	coi 0.0 0.0 0.0
+}

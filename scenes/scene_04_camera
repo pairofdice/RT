@@ -1,0 +1,28 @@
+
+{ cylinder
+	loc 0.0 0.0 -6.0
+	dir 0.0 1.0 0.0
+	size 0.1
+	color 0.0 1.0 0.0
+}
+
+{ cylinder
+	loc 0.0 0.0 -6.0
+	dir 1.0 0.0 0.0
+	size 0.1
+	color 1.0 0.0 0.0
+}
+
+{ cylinder
+	loc 0.0 0.0 -6.0
+	dir -0.2 0.2 1.0
+	size 0.1
+	color 0.0 0.0 1.0
+}
+
+{ camera
+	loc 0.0 50.0 0.0
+	coi 0.0 0.0 -6.0
+	scene_up 0.0 1.0 0.0
+}
+

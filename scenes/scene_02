@@ -1,0 +1,117 @@
+
+{ sphere
+	loc: 0.0 0.0 -10.0
+	size: 5.0
+	color: 1.0  0 0
+}
+
+{ sphere
+	loc: 0.0 0.0 -10.0
+	size: 5.0
+	color: 1.0  0.874 0.4352
+}
+
+{ sphere
+	loc: 0.0 0.0 -40.0
+	size: 25.0
+	color: 1.0  0.874 0.4352
+}
+
+{ sphere
+	loc: -2.0 1.0 -7.0
+	size: 2.0
+	color: 1.0 1.0 1.0
+}
+
+{ sphere
+	loc: 2.0 1.0 -7.0
+	size: 2.0
+	color: 1.0 1.0 1.0
+}
+
+{ sphere
+	loc: 0.0 -1.5 -7.0
+	size: 2.0
+	color: 1.0 1.0 1.0
+}
+
+{ sphere
+	loc: -2.0 1.0 -5.45
+	size: 0.6
+	color: 0.0 0.0 0.0
+}
+
+{ sphere
+	loc: 2.0 1.0 -5.45
+	size: 0.6
+	color: 0.0 0.0 0.0
+}
+
+{ sphere
+	loc: -0.5 -1.65 -5.35
+	size: 0.3
+	color: 0.0 0.0 0.0
+}
+
+{ sphere
+	loc: 0.5 -1.65 -5.35
+	size: 0.3
+	color: 0.0 0.0 0.0
+}
+
+{ sphere
+	loc: -10.0 -4.0 -7.0
+	size: 1.0
+	color: 1.0 0.0 0.0
+}
+
+{ sphere
+	loc: 0.0 4.0 -5.0
+	size: 1.0
+	color: 0.0 1.0 0.0
+}
+
+{ sphere
+	loc: 7.0 -4 -13.0
+	size: 1.0
+	color: 0.0 0.0 1.0
+}
+
+{ cylinder
+	loc: 0.0 6.0 -7.0
+	dir: 1.0 0.2 0.2
+	size: 0.6
+	color: 0.3 0.4 1.0
+}
+
+
+{ light
+	loc: -11.0 0.0 0.0
+	color: 1.0 1.0 1.0
+	strength: 100.0
+}
+
+
+{ plane
+	loc -11.0 0.0 0.0
+	dir 1.0 0.0 0.0
+	color 0.8 0.8 1.0
+}
+{ plane
+	loc 11.0 0.0 0.0
+	dir -1.0 0.0 0.0
+	color 0.8 0.8 1.0
+}
+
+
+{ camera
+	loc 0.0 1.0 10.0
+	coi 0.0 0.0 0.0
+}
+
+
+ctx->OBJECTS[11] = plane_new((t_vec3){0.0, 5.0, 0.0}, (t_vec3){0.0, -1.5, 0.0}, 200, 200, 255);
+ctx->OBJECTS[12] = plane_new((t_vec3){11.0, 0.0, 0.0}, (t_vec3){-1.0, 0.0, 0.0}, 255, 0, 0);
+ctx->OBJECTS[13] = plane_new((t_vec3){-11.0, 0.0, 0.0}, (t_vec3){1.0, 0.0, 0.0}, 0, 0, 255);
+ctx->OBJECTS[14] = plane_new((t_vec3){0.0, 0.0, -24.0}, (t_vec3){0.0, 0.0, 1.0}, 255, 111, 33);
+ctx->OBJECTS[15] = plane_new((t_vec3){0.0, -9.0, 0.0}, (t_vec3){0.0, 1.0, 0.0}, 0, 255, 0);

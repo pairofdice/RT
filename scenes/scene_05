@@ -1,0 +1,38 @@
+{ sphere
+	loc: -7.0 3.0 -5.0
+	size: 1.0
+	color: 1.0 0.0 0.0
+}
+
+{ sphere
+	loc: 0.0 3.0 -5.0
+	size: 1.0
+	color: 0.0 1.0 0.0
+}
+
+{ sphere
+	loc: 7.0 3.0 -5.0
+	size: 1.0
+	color: 0.0 0.0 1.0
+}
+
+
+
+{ light
+	loc: 0.0 15.0 -4.0
+	color: 1.0 1.0 1.0
+	strength: 100.0
+}
+
+
+{ plane
+	loc 0.0 -2.0 0.0
+	dir 0.0 1.0 0.0
+	color 0.8 0.8 1.0
+}
+
+
+{ camera
+	loc 0.0 1.0 10.0
+	coi 0.0 0.0 0.0
+}
