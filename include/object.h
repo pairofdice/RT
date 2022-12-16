@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/16 13:08:59 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:48:10 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_hit_record
 	t_vector		reflect_v;
 	t_tuple			over_point;
 	int				neg_hit;
+	int				is_shadowed;
 
 
 }					t_hit_record;
@@ -144,6 +145,23 @@ typedef struct s_negative
 	size_t			i;
 	size_t			j;
 }				t_negative;
+
+typedef struct s_lighting
+{
+	t_color		result;
+	t_color		effective_color;
+	t_vector	to_light_v;
+	t_color		ambient;
+	double		light_dot_normal;
+	t_color		diffuse;
+	t_color		specular;
+	t_vector	reflection_v;
+	double		reflection_dot_eye;
+	double		factor;
+}				t_lighting;
+
+
+
 
 t_object			object_new(int shape_type);
 double				calc_discriminant(double a, double b, double c);
