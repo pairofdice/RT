@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade_hit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:22:13 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/16 17:28:13 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/12/17 18:29:12 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 	{
 		light = *(t_light *)vec_get(&scene->lights, i);
 		ray->hit.is_shadowed = is_shadowed(scene,
-				light,
-				ray->hit.over_point,
+				&light,
+				&ray->hit.over_point,
 				&ray->hit);
 		temp_color = lighting(
 				&light,

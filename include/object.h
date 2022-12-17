@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/16 16:48:10 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/12/17 18:28:29 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_hit_record
 	t_vector		reflect_v;
 	t_tuple			over_point;
 	int				neg_hit;
+	size_t				neg_hit_id;
 	int				is_shadowed;
 
 
@@ -192,7 +193,8 @@ t_vector			normal_at(t_object *obj, t_point point);
 t_material			material_new();
 
 
-
+void	get_negative_intersects(t_ray *ray, size_t neg_obj_id,
+								t_negative *neg_hits);
 size_t	move_negative(t_ray *ray, size_t neg_obj_id, t_negative *n);
 int		first_positive_object(t_ray *ray, t_intersection *closest_t,
 							t_negative *n);
