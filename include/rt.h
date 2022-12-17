@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/16 17:06:14 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/17 18:26:36 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,11 @@ t_light				sun_light_new(t_point direction, t_color intensity);
 t_material			material_new();
 
 
-t_color				lighting(t_material *mat,  t_light *light, t_point *point,t_vector *to_eye, t_vector *normal, int in_shadow);
+// t_color				lighting(t_material *mat,  t_light *light, t_point *point,t_vector *to_eye, t_vector *normal, int in_shadow);
+// t_color	lighting(t_material *mat, t_light *light, t_point *point, t_vector *to_eye, t_vector *normal_v, int in_shadow, t_hit_record *hit);
+t_color	lighting(t_light *light, t_hit_record *hit);
+
+
 void				img_pixel_put(
 						t_frame_buffer *fb, 
 						unsigned int x,

@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:44:03 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/12 20:00:00 by jsaarine         ###   ########.fr       */
+/*   Updated: 2022/12/16 15:47:32 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,13 @@ t_matrix	matrix_submatrix(t_matrix *src, t_coords skip)
 	if (src->size == 3 || src->size == 4)
 	{
 		c.row = 0;
-		padding.row = 0;
 		while (c.row < result.size)
 		{
-			if (c.row == skip.row)
-				padding.row = 1;
+			padding.row = (c.row >= skip.row);
 			c.col = 0;
-			padding.col = 0;
 			while (c.col < result.size)
 			{
-				if (c.col == skip.col)
-					padding.col = 1;
+				padding.col = (c.col >= skip.col);
 				result.rc[c.row][c.col] = src->rc[c.row + padding.row][c.col
 					+ padding.col];
 				c.col++;
