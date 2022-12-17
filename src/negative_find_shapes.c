@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:21:47 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/15 14:14:12 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:14:56 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	first_positive_object(t_ray *ray, t_intersection *closest_t,
 	while (n->i < ray->xs.vec.len)
 	{
 		n->t1 = *(t_intersection *) vec_get(&ray->xs.vec, n->i);
-		if (n->t1.object->negative != TRUE)
+		if (n->t1.object->negative != TRUE && n->t1.t > n->t[0] && n->t1.t < n->t[1])
 			loop_positive_comparison(ray, n, closest_t);
 		n->i++;
 	}
