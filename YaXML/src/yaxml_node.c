@@ -17,13 +17,19 @@ t_xml_node	*xml_node_new(t_xml_node *parent)
 	t_xml_node	*new;
 
 	new = (t_xml_node *)malloc(sizeof(t_xml_node));
+	if (new == NULL)
+		return (NULL);
 	new->parent = parent;
 	new->tag = NULL;
 	new->data = NULL;
-	xml_attrlist_init(&new->attributes);
-	xml_nodelist_init(&new->children);
+	if (!xml_attrlist_init(&new->attributes) || \
+	!xml_nodelist_init(&new->children))
+		return (NULL);
 	if (parent)
-		xml_nodelist_add(&parent->children, new);
+	{
+		if (!xml_nodelist_add(&parent->children, new))
+			return (NULL);
+	}
 	return (new);
 }
 
@@ -40,12 +46,18 @@ t_xml_nodelist	*xml_node_children(t_xml_node *parent, const char *tag)
 
 	index = 0;
 	list = (t_xml_nodelist *)malloc(sizeof(t_xml_nodelist));
-	xml_nodelist_init(list);
+	if (list == NULL)
+		return (NULL);
+	if (!xml_nodelist_init(list))
+		return (NULL);
 	while (index < parent->children.size)
 	{
 		child = parent->children.list[index];
 		if (!ft_strcmp(child->tag, tag))
-			xml_nodelist_add(list, child);
+		{
+			if (!xml_nodelist_add(list, child))
+				return (NULL);
+		}
 		index++;
 	}
 	return (list);
@@ -78,6 +90,22 @@ t_xml_attr	*xml_node_attr(t_xml_node *node, char *key)
 		attr = &node->attributes.list[index];
 		if (!ft_strcmp(attr->key, key))
 			return (attr);
+		index++;
+	}
+	return (NULL);
+}
+
+t_xml_node	*xml_node_tag(t_xml_nodelist *list, char *tag)
+{
+	t_xml_node	*node;
+	int			index;
+
+	index = 0;
+	while (index < list->size)
+	{
+		node = list->list[index];
+		if (!ft_strcmp(node->tag, tag))
+			return (node);
 		index++;
 	}
 	return (NULL);

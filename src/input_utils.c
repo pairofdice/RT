@@ -60,31 +60,31 @@ void	get_tuple(t_tuple *tuple, char *str)
 	}
 }
 
-/*prepare functions can't return FALSE as of yet, need a way identify errors*/
+int	free_lists(	t_xml_nodelist **camera, t_xml_nodelist **objects, \
+t_xml_nodelist **lights)
+{
+	xml_nodelist_free(*camera);
+	xml_nodelist_free(*objects);
+	xml_nodelist_free(*lights);
+	return (FALSE);
+}
+
+/*TODO: prepare functions can't return FALSE as of yet, need a way identify errors*/
 int	read_xml(t_xml_doc *doc, t_main *main)
 {
-	int			index;
+	t_xml_nodelist	*camera;
+	t_xml_nodelist	*objects;
+	t_xml_nodelist	*lights;
 
-	index = 0;
-	while (index < doc->head->children.size)
-	{
-		if (!ft_strcmp(doc->head->children.list[index]->tag, "object"))
-		{
-			if (!prepare_object(doc->head->children.list[index], \
-			&main->obj[main->obj_count++]))
-				return (FALSE);
-		}
-		else if (!ft_strcmp(doc->head->children.list[index]->tag, "camera"))
-		{
-			if (!prepare_camera(doc->head->children.list[index], &main->cam))
-				return (FALSE);
-		}
-		else if (!ft_strcmp(doc->head->children.list[index]->tag, "light"))
-		{
-			if (!prepare_light(doc->head->children.list[index], &main->light))
-				return (FALSE);
-		}
-		index++;
-	}
+	camera = xml_node_children(doc->head, "camera");
+	objects = xml_node_children(doc->head, "object");
+	lights = xml_node_children(doc->head, "light");
+	/*make one big if statement with ORs?*/
+	if (!prepare_camera(camera, &main->scene.cam))
+		return (free_lists(&camera, &objects, &lights));
+	if (!prepare_objects(objects, &main->scene.objects))
+		return (free_lists(&camera, &objects, &lights));
+	if (!prepare_lights(lights, &main->scene.lights))
+		return (free_lists(&camera, &objects, &lights));
 	return (TRUE);
 }

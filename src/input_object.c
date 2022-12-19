@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakinen <mmakinen@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:26:33 by mmakinen          #+#    #+#             */
-/*   Updated: 2022/12/16 12:31:14 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:35:44 by mmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,11 @@ int	get_details(t_xml_node *node, t_object *obj)
 int	get_obj_details(t_xml_node *node, t_object *obj)
 {
 	int			index;
-	t_xml_node	*temp;
 
 	index = 0;
 	while (index < node->children.size)
 	{
-		temp = node->children.list[index];
-		if (!get_details(temp, obj))
+		if (!get_details(xml_nodelist_at(&node->children, index), obj))
 			return (FALSE);
 		index++;
 	}
@@ -95,29 +93,37 @@ static inline void	populate_types(char (*types)[9])
 
 int	get_object(t_xml_node *node, t_object *obj)
 {
-	t_xml_attr	*atr;
-	int			index[2];
+	int			index;
 	char		types[4][9];
+	char		*value;
 
+	index = 0;
 	populate_types(types);
-	while (index[0] < node->attributes.size)
+	if (node == NULL || node->attributes.size == 0)
 	{
-		atr = &node->attributes.list[index[0]];
-		if (!ft_strcmp(atr->key, "type"))
-		{
-			index[1] = 0;
-			while (index[1] < 4)
-			{
-				if (!ft_strcmp(atr->value, types[index[1]]))
-					*obj = object_new(index[1]);
-				index[1]++;
-			}
-		}
-		if (!ft_strcmp(atr->key, "negative") && !ft_strcmp(atr->value, "true"))
-			obj->negative = TRUE;
-		index[0]++;
-	}
-	if (node->attributes.size == 0 || !get_obj_details(node, obj))
+		ft_putendl_fd("ERROR: invalid node in get_object", 2);
 		return (FALSE);
+	}		
+	value = xml_node_attr_value(node, "type");
+	if (value == NULL)
+	{
+		ft_putendl_fd("ERROR: object has no type", 2);
+		return (FALSE);
+	}
+	while (index < 4)
+	{
+		if (!ft_strcmp(value, types[index]))
+			*obj = object_new(index);
+		index++;
+	}
+	obj->negative = FALSE;
+	value = xml_node_attr_value(node, "negative");
+	if (value != NULL && !ft_strcmp(value, "true"))
+		obj->negative = TRUE;
+	if (!get_obj_details(node, obj))
+	{
+		ft_putendl_fd("ERROR: get_obj_details failed", 2);
+		return (FALSE);
+	}		
 	return (TRUE);
 }

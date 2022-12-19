@@ -20,25 +20,40 @@ void	xml_attr_free(t_xml_attr *attr)
 		free(attr->value);
 }
 
-void	xml_nodelist_free(t_xml_nodelist *list)
-{
-	free(list);
-}
-
-void	xml_node_free(t_xml_node *node)
+void	xml_attrlist_free(t_xml_attrlist *attributes)
 {
 	int	index;
 
 	index = 0;
+	while (index < attributes->size)
+	{
+		xml_attr_free(&attributes->list[index]);
+		index++;
+	}
+	free(attributes->list);
+}
+
+void	xml_nodelist_free(t_xml_nodelist *children)
+{
+	int	index;
+
+	index = 0;
+	while (index < children->size)
+	{
+		xml_node_free(children->list[index]);
+		index++;
+	}
+	free(children->list);
+}
+
+void	xml_node_free(t_xml_node *node)
+{
 	if (node->tag)
 		free(node->tag);
 	if (node->data)
 		free(node->data);
-	while (index < node->attributes.size)
-	{
-		xml_attr_free(&node->attributes.list[index]);
-		index++;
-	}
+	xml_attrlist_free(&node->attributes);
+	xml_nodelist_free(&node->children);
 	free(node);
 }
 
@@ -48,5 +63,6 @@ void	xml_doc_free(t_xml_doc *doc)
 		free(doc->version);
 	if (doc->encoding)
 		free(doc->encoding);
-	xml_node_free(doc->head);
+	if (doc->head)
+		xml_node_free(doc->head);
 }

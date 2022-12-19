@@ -25,9 +25,9 @@ int			get_camera(t_xml_node *node, t_cam *cam);
 int			get_details(t_xml_node *node, t_object *obj);
 int			get_obj_details(t_xml_node *node, t_object *obj);
 int			get_object(t_xml_node *node, t_object *obj);
-int			prepare_object(t_xml_node *node, t_object *obj);
-int			prepare_camera(t_xml_node *node, t_cam *cam);
-int			prepare_light(t_xml_node *node, t_light *light);
-int		read_xml(t_xml_doc *doc, t_main *main);
+int			prepare_objects(t_xml_nodelist *list, t_vec *obj);
+int			prepare_camera(t_xml_nodelist *list, t_cam *cam);
+int			prepare_lights(t_xml_nodelist *list, t_vec *light);
+int			read_xml(t_xml_doc *doc, t_main *main);
 
 #endif

@@ -17,6 +17,8 @@ int	ft_strcmp(char const *s1, char const *s2)
 	int	count;
 
 	count = 0;
+	if (s1 == NULL || s2 == NULL)
+		return (0);
 	while (s1[count] == s2[count])
 	{
 		if (s1[count] == '\0')
