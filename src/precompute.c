@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:04:17 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/17 17:27:28 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:48:08 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	precompute(t_ray *ray, t_scene *scene)
 	{
 		closest_t = find_negative_object_intersect(ray, closest_t.i, scene);
 		hit = ray->hit;
-		if (closest_t.t == INFINITY)
+		if (hit.hit_dist == INFINITY)
 			return (1);
 	}
 	else
