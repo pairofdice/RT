@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/19 13:50:35 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:46:45 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ int	main(void)
 	main.sdl.stereocopy = FALSE;
 	scene_new(&main.scene);
 	
-	main.cam.transform = matrix_translate(10, 0.0, -10.0);
+	main.cam.transform = matrix_translate(0, 0.0, -10.0);
 	main.cam.coi_transform = matrix_translate(0, 0.0, 15.0);
 
 	cam_scale = matrix_scale(1,1,1);
 	main.cam.transform = matrix_multiply(&main.cam.transform, &cam_scale);
-	main.cam.motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1,0,0)));
-	main.cam.coi_motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1,0,0)));
+	main.cam.motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
+	main.cam.coi_motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 
 	main.light = point_light_new(point_new(0, 0, 0.0), color_new(1,1,1));
 	vec_push(&main.scene.lights, &main.light);
@@ -153,7 +153,7 @@ int	main(void)
 	scale = matrix_scale(5,5,5);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &scale);
 	main.obj[0].material.color = color_new(1,1,1);
-	main.obj[0].motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1,0,0)));
+	main.obj[0].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 	main.obj[0].material.pattern.pattern_id = NONE;
 	main.obj[0].material.pattern.pattern_perlin = TRUE;
 	main.obj[0].negative = FALSE;
@@ -173,6 +173,7 @@ int	main(void)
 	main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &rotate);
 	scale = matrix_scale(4,4,4);
 	main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &scale);
+	main.obj[1].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 	main.obj[1].material.color = color_new(1.0, 1.0, 1.0);
 	main.obj[1].material.pattern.pattern_id = NONE;
 	main.obj[1].material.pattern.pattern_perlin = TRUE;
@@ -193,6 +194,7 @@ int	main(void)
 	main.obj[2].transform = matrix_multiply(&main.obj[2].transform, &rotate);
 	scale = matrix_scale(4,4,4);
 	main.obj[2].transform = matrix_multiply(&main.obj[2].transform, &scale);
+	main.obj[2].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 	main.obj[2].material.color = color_new(1.0, 0.5, 1.0);
 	main.obj[2].material.pattern.pattern_id = NONE;
 	main.obj[2].material.pattern.pattern_perlin = TRUE;
@@ -214,6 +216,7 @@ int	main(void)
 	main.obj[3].transform = matrix_multiply(&main.obj[3].transform, &rotate);
 	scale = matrix_scale(4,4,4);
 	main.obj[3].transform = matrix_multiply(&main.obj[3].transform, &scale);
+	main.obj[3].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 	main.obj[3].material.color = color_new(1, 0.5,0);
 	main.obj[3].material.pattern.pattern_id = NONE;
 	main.obj[3].material.pattern.pattern_perlin = FALSE;
@@ -234,6 +237,7 @@ int	main(void)
 	main.obj[4].transform = matrix_multiply(&main.obj[4].transform, &rotate);
 	scale = matrix_scale(4,4,4);
 	main.obj[4].transform = matrix_multiply(&main.obj[4].transform, &scale);
+	main.obj[4].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 	main.obj[4].material.color = color_new(1, 0.5,0);
 	main.obj[4].material.pattern.pattern_id = NONE;
 	main.obj[4].material.pattern.pattern_perlin = FALSE;
@@ -254,6 +258,7 @@ int	main(void)
 	main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &rotate);
 	scale = matrix_scale(5,5,5);
 	main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &scale);
+	main.obj[5].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 	main.obj[5].material.color = color_new(1, 1, 1);
 	main.obj[5].material.pattern.pattern_id = GRID;
 	main.obj[5].material.pattern.pattern_perlin = TRUE;
@@ -280,7 +285,7 @@ int	main(void)
 		draw_frame(&main);
 		// if (main.sdl.stereocopy == TRUE)
 		// 	create_stereoscope(&main, cam_scale, main.cam.transform);
-		/* create_motion_blur(&main); */
+		create_motion_blur(&main);
 	}
 /* 	tests(&main, draw_debug); */
 	rt_loop_and_exit(&main.sdl);

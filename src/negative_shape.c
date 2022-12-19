@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:13:33 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/19 13:46:11 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:56:43 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ t_intersection	find_negative_object_intersect(t_ray *ray, int neg_obj_id,
 		obj = *(t_object *) vec_get(&scene->objects, neg_obj_id);
 		ray->hit.normal = normal_at(&obj, ray->hit.hit_loc);
 		ray->hit.normal = tuple_neg(ray->hit.normal);
+		ray->hit.to_eye = tuple_neg(ray->dir);
 	}
 	else
 		find_next_intersection(ray, &closest_t, &neg_hits, scene);
-	ray->hit.to_eye = tuple_neg(ray->dir);
 	return (closest_t);
 }

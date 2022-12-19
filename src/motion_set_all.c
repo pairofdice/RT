@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:43:31 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/07 11:36:32 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:14:25 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,21 @@ static int	set_camera_motions(t_cam *cam)
 
 int	motion_set_all(t_main *main)
 {
-	int	i;
+	t_object	*obj;
+	size_t		i;
 	int	motions_done;
 
 	i = 0;
 	motions_done = 0;
-	while (i < main->obj_count)
+	while (i < main->scene.objects.len)
 	{
-		if (main->obj[i].motion.on_off == TRUE
-			&& main->obj[i].motion.speed_iteration < main->obj[i].motion.speed)
+		obj = (t_object *)vec_get(&main->scene.objects, i);
+		if (obj->motion.on_off == TRUE
+			&& obj->motion.speed_iteration < main->obj->motion.speed)
 		{
-				main->obj[i].transform = motion_move(main->obj[i].transform,
-					&main->obj[i].motion);
+				obj->transform = motion_move(obj->transform,
+					&obj->motion);
+					
 			motions_done++;
 		}
 		i++;
