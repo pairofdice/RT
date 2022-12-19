@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:13:33 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/17 15:29:07 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:46:11 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	get_negative_intersects(t_ray *ray, size_t neg_obj_id,
 
 	i = 0;
 	hit = 0;
-	while (i < ray->xs.vec.len)
+	while (i < ray->xs.vec.len && hit < 2)
 	{
 		t = *(t_intersection *) vec_get(&ray->xs.vec, i);
 		if (t.object->id == neg_obj_id)
 		{
 			neg_hits->t[hit] = t.t;
-			hit = 1;
+			hit++;
 		}
 		i++;
 	}
@@ -49,7 +49,6 @@ int	check_next_obj(t_ray *ray, t_intersection *closest_t, t_scene *scene)
 			ray->hit.hit_loc = ray_position(*ray, ray->hit.hit_dist);
 			ray->hit.object = closest_t->object;
 			ray->hit.normal = normal_at(closest_t->object, ray->hit.hit_loc);
-			ray->hit.to_eye = tuple_neg(ray->dir);
 		}
 	}
 	return (0);
@@ -94,9 +93,9 @@ t_intersection	find_negative_object_intersect(t_ray *ray, int neg_obj_id,
 		obj = *(t_object *) vec_get(&scene->objects, neg_obj_id);
 		ray->hit.normal = normal_at(&obj, ray->hit.hit_loc);
 		ray->hit.normal = tuple_neg(ray->hit.normal);
-		ray->hit.to_eye = tuple_neg(ray->dir);
 	}
 	else
 		find_next_intersection(ray, &closest_t, &neg_hits, scene);
+	ray->hit.to_eye = tuple_neg(ray->dir);
 	return (closest_t);
 }

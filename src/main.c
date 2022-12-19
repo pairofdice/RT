@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/17 18:19:06 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:48:20 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	main(void)
 	main.sdl.stereocopy = FALSE;
 	scene_new(&main.scene);
 	
-	main.cam.transform = matrix_translate(-15, 0.0, -10.0);
+	main.cam.transform = matrix_translate(10, 0.0, -10.0);
 	main.cam.coi_transform = matrix_translate(0, 0.0, 15.0);
 
 	cam_scale = matrix_scale(1,1,1);
@@ -265,7 +265,7 @@ int	main(void)
 	vec_push(&main.scene.objects, &main.obj[2]);
 	vec_push(&main.scene.objects, &main.obj[3]);
 	vec_push(&main.scene.objects, &main.obj[4]);
-	//vec_push(&main.scene.objects, &main.obj[5]);
+	vec_push(&main.scene.objects, &main.obj[5]);
 	
 	int draw_debug = 0;
 
