@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:43:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/12 14:08:32 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:27:51 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	load_perlin_data(t_perlin *perlin)
 			return (0);
 		while (i < 256)
 			fscanf(fp, "%d", &permutation[i++]);
+		//!!!!!!!!!!!! DO WE USE FSCAN OR DO WE NEED TO CONWERT TO SOMETHING ELSE!!!!
 		fclose(fp);
 		i = 0;
 		while (i < 256)
@@ -75,8 +76,10 @@ double	perlin_noice(t_tuple point, t_perlin *perlin)
 	perlin->u = fade(point.s_xyzw.x);
 	perlin->v = fade(point.s_xyzw.y);
 	perlin->w = fade(point.s_xyzw.z);
+	
 	perlin->a = perlin->p[perlin->x_i] + perlin->y_i;
 	perlin->aa = perlin->p[perlin->a] + perlin->z_i;
+	// printf("hello %d %d %d\n", perlin->a, perlin->p[perlin->a], perlin->z_i);
 	perlin->ab = perlin->p[perlin->a + 1] + perlin->z_i;
 	perlin->b = perlin->p[perlin->x_i + 1] + perlin->y_i;
 	perlin->ba = perlin->p[perlin->b] + perlin->z_i;

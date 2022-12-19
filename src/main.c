@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/19 14:46:45 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:30:23 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,20 +141,20 @@ int	main(void)
 	
 	main.obj[0] = object_new(SPHERE);
 	main.obj[0].transform = matrix_translate(0.0, 0.0, 15.0);
-											x_r = 0.0;
+											x_r = 0.3;
 											y_r = 0.0;
-											z_r = 0.0;
+											z_r = M_PI_2;
 	rotate = matrix_rotate_x(x_r);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
 	rotate = matrix_rotate_y(y_r);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
 	rotate = matrix_rotate_z(z_r);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
-	scale = matrix_scale(5,5,5);
+	scale = matrix_scale(10,10,10);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &scale);
 	main.obj[0].material.color = color_new(1,1,1);
 	main.obj[0].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
-	main.obj[0].material.pattern.pattern_id = NONE;
+	main.obj[0].material.pattern.pattern_id = STRIPED;
 	main.obj[0].material.pattern.pattern_perlin = TRUE;
 	main.obj[0].negative = FALSE;
 	main.obj[0].id = 0;
@@ -258,7 +258,7 @@ int	main(void)
 	main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &rotate);
 	scale = matrix_scale(5,5,5);
 	main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &scale);
-	main.obj[5].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
+	main.obj[5].motion = motion_new(FALSE, 1.0, vector_new(1,0,0));
 	main.obj[5].material.color = color_new(1, 1, 1);
 	main.obj[5].material.pattern.pattern_id = GRID;
 	main.obj[5].material.pattern.pattern_perlin = TRUE;
@@ -266,18 +266,20 @@ int	main(void)
 	main.obj[5].id = 5;
 	
 	vec_push(&main.scene.objects, &main.obj[0]);
-	vec_push(&main.scene.objects, &main.obj[1]);
-	vec_push(&main.scene.objects, &main.obj[2]);
-	vec_push(&main.scene.objects, &main.obj[3]);
-	vec_push(&main.scene.objects, &main.obj[4]);
-	vec_push(&main.scene.objects, &main.obj[5]);
+	// vec_push(&main.scene.objects, &main.obj[1]);
+	// vec_push(&main.scene.objects, &main.obj[2]);
+	// vec_push(&main.scene.objects, &main.obj[3]);
+	// vec_push(&main.scene.objects, &main.obj[4]);
+	// vec_push(&main.scene.objects, &main.obj[5]);
 	
 	int draw_debug = 0;
 
 	if (!draw_debug)
 	{
+		t_perlin	perlin;
+		load_perlin_data(&perlin);
+		main.scene.perlin = perlin;
 		initialize_camera(&main.cam, main.cam.transform);
-		load_perlin_data(&main.perlin);
 		create_threads(&main, 1);
 		draw_frame(&main);
 		edge_detection(&main.sdl.frame_buffer);
