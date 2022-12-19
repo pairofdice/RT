@@ -18,9 +18,8 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <fcntl.h>
-# include "rt.h"
 
-//# include "libft.h"
+# include "libft.h"
 
 # ifndef TRUE
 #  define TRUE 1
@@ -51,11 +50,10 @@ typedef struct s_xml_attribute_list
 
 typedef struct s_xml_node_list
 {
-	int		memory_size;
-	int		size;
-	struct	s_xml_node	**list;
+	int					memory_size;
+	int					size;
+	struct s_xml_node	**list;
 }	t_xml_nodelist;
-
 
 typedef struct s_xml_node
 {
@@ -74,27 +72,28 @@ typedef struct s_xml_document
 }	t_xml_doc;
 
 /* XML doc */
-int	xml_doc_load(t_xml_doc *doc, const char *path);
+int				xml_doc_load(t_xml_doc *doc, const char *path);
 
 /* Free allocated memory */
-void	xml_attr_free(t_xml_attr *attr);
-void	xml_nodelist_free(t_xml_nodelist *list);
-void	xml_node_free(t_xml_node *node);
-void	xml_doc_free(t_xml_doc *doc);
+void			xml_attr_free(t_xml_attr *attr);
+void			xml_nodelist_free(t_xml_nodelist *list);
+void			xml_node_free(t_xml_node *node);
+void			xml_doc_free(t_xml_doc *doc);
 
 /* node */
-t_xml_node	*xml_node_new(t_xml_node *parent);
-t_xml_node	*xml_node_child(t_xml_node *parent, int index);
+t_xml_node		*xml_node_new(t_xml_node *parent);
+t_xml_node		*xml_node_child(t_xml_node *parent, int index);
 t_xml_nodelist	*xml_node_children(t_xml_node *parent, const char *tag);
-char	*xml_node_attr_value(t_xml_node *node, char *key);
-t_xml_attr	*xml_node_attr(t_xml_node *node, char *key);
+char			*xml_node_attr_value(t_xml_node *node, char *key);
+t_xml_attr		*xml_node_attr(t_xml_node *node, char *key);
+t_xml_node		*xml_node_tag(t_xml_nodelist *list, char *tag);
 
 /* list */
+int				xml_attrlist_init(t_xml_attrlist *list);
+int				xml_attrlist_add(t_xml_attrlist *list, t_xml_attr *attr);
+int				xml_nodelist_init(t_xml_nodelist *list);
+int				xml_nodelist_add(t_xml_nodelist *list, t_xml_node *node);
+t_xml_node		*xml_nodelist_at(t_xml_nodelist *list, int index);
 
-void	xml_attrlist_init(t_xml_attrlist *list);
-void	xml_attrlist_add(t_xml_attrlist *list, t_xml_attr *attr);
-void	xml_nodelist_init(t_xml_nodelist *list);
-void	xml_nodelist_add(t_xml_nodelist *list, t_xml_node *node);
-t_xml_node	*xml_nodelist_at(t_xml_nodelist *list, int index);
-
+t_tag_type		parse_attr(char *buf, int index[2], char *lex, t_xml_node *current_node);
 #endif
