@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/19 16:30:23 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:06:56 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,9 +276,7 @@ int	main(void)
 
 	if (!draw_debug)
 	{
-		t_perlin	perlin;
-		load_perlin_data(&perlin);
-		main.scene.perlin = perlin;
+		load_perlin_data(&main.scene.perlin);
 		initialize_camera(&main.cam, main.cam.transform);
 		create_threads(&main, 1);
 		draw_frame(&main);
