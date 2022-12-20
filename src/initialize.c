@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:43:10 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:24:03 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:34:27 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int	initialize_buffers(t_frame_buffer *fb)
 	fb->filter = (int *)malloc(sizeof(int) * fb->data_len);
 	fb->mask = (char *)malloc(sizeof(char) * fb->data_len);
 	fb->motion_calc = (t_color *)malloc(sizeof(t_color) * fb->data_len);
-	if (fb->data == NULL || fb->filter == NULL || fb->motion_calc == NULL || fb->stereocopy == NULL)
+	if (fb->data == NULL || fb->filter == NULL
+		|| fb->motion_calc == NULL || fb->stereocopy == NULL)
 		return (0);
 	return (1);
 }

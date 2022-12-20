@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:03:36 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:15:36 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:35:56 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,12 @@ static void	add_to_color_buffer(t_frame_buffer *fb, int times)
 		while (x < WIN_W)
 		{
 			color = int_to_color(fb->data[y * WIN_W + x]);
-			fb->motion_calc[y * WIN_W + x].s_rgb.r += ((color.s_rgb.r / 255) * times);
-			fb->motion_calc[y * WIN_W + x].s_rgb.g += ((color.s_rgb.g / 255) * times);
-			fb->motion_calc[y * WIN_W + x].s_rgb.b += ((color.s_rgb.b / 255) * times);
+			fb->motion_calc[y * WIN_W + x].s_rgb.r
+				+= ((color.s_rgb.r / 255) * times);
+			fb->motion_calc[y * WIN_W + x].s_rgb.g
+				+= ((color.s_rgb.g / 255) * times);
+			fb->motion_calc[y * WIN_W + x].s_rgb.b
+				+= ((color.s_rgb.b / 255) * times);
 			x++;
 		}
 		y++;

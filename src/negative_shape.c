@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:13:33 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/19 13:56:43 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:37:47 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	check_next_obj(t_ray *ray, t_intersection *closest_t, t_scene *scene)
 {
 	if (closest_t->t != INFINITY && closest_t->object->negative == TRUE)
 	{
-		*closest_t = find_negative_object_intersect(ray, closest_t->object->id, scene);
+		*closest_t = find_negative_object_intersect(ray,
+				closest_t->object->id, scene);
 		if (closest_t->t == INFINITY)
 			return (1);
 	}

@@ -6,13 +6,11 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:56:58 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/16 12:13:06 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:53:22 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
-
-
 
 // int	fill_hit_record(t_main *main, t_ray *ray)
 // {
@@ -68,42 +66,39 @@
 // 	vec_free(&main->ray.xs.vec);
 // 	return (0);
 //}
+static void	aa_help(t_anti_aliasing *aa, t_main *main, int pixel_x)
+{
+	aa->x = ((float)pixel_x + (aa->offset / 2) + (aa->offset * aa->i));
+	initialize_ray(&main->ray, aa->x, aa->y, &main->cam);
+	aa->color = tuple_add(aa->color, color_at(&main->scene, &main->ray));
+	vec_free(&main->ray.xs.vec);
+	aa->sub_pixel++;
+}
 
 int	anti_aliasing(t_main *main, int pixel_x, int pixel_y, int ant_a)
 {
-	double	x;
-	double	y;
-	double	offset;
-	int		i;
-	int		j;
-	int		sub_pixel;
-	t_color	color;
-	j = 0;
-	sub_pixel = 0;
-	offset = (1.0 / ant_a);
-	color = color_new(0,0,0);
-	main->ray.hit.color = color_new(0,0,0);
-	while (j < ant_a)
+	t_anti_aliasing	aa;
+
+	aa.j = 0;
+	aa.sub_pixel = 0;
+	aa.offset = (1.0 / ant_a);
+	aa.color = color_new(0, 0, 0);
+	main->ray.hit.color = color_new(0, 0, 0);
+	while (aa.j < ant_a)
 	{
-		i = 0;
-		y = ((float)pixel_y + (offset / 2) + (offset * j));
-		while (i < ant_a)
+		aa.i = 0;
+		aa.y = ((float)pixel_y + (aa.offset / 2) + (aa.offset * aa.j));
+		while (aa.i < ant_a)
 		{
-			if (ant_a == 1 || (((j % 2 == 0) && (i % 2 == 1)) || ((j % 2 == 1)
-						&& (i % 2 == 0))))
-			{
-				x = ((float)pixel_x + (offset / 2) + (offset * i));
-				initialize_ray(&main->ray, x, y, &main->cam);
-				color = tuple_add(color, color_at(&main->scene, &main->ray));
-				// vec_free(&main->ray.xs.vec);
-				sub_pixel++;
-			}
-			i++;
+			if (ant_a == 1 || (((aa.j % 2 == 0) && (aa.i % 2 == 1))
+					|| ((aa.j % 2 == 1) && (aa.i % 2 == 0))))
+				aa_help(&aa, main, pixel_x);
+			aa.i++;
 		}
-		j++;
+		aa.j++;
 	}
-	color = tuple_scalar_div(color, sub_pixel);
-	return (color_to_int(color));
+	aa.color = tuple_scalar_div(aa.color, aa.sub_pixel);
+	return (color_to_int(aa.color));
 }
 
 void	render_image(t_main *main, int task, int ant_al)

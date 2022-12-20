@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 17:43:31 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/19 13:50:24 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:35:15 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static t_intersection	find_shadow_true_negatives(
 	neg_id = get_first_neg_intersect(&ray, dist, &n);
 	get_negative_intersects(&ray, neg_id, &n);
 	move_negative(&ray, neg_id, &n);
-	
 	t = get_first_intersect(&ray, &n);
 	if (t.t != INFINITY && t.object->negative == TRUE)
 		t = find_negative_object_intersect(&ray, t.t, scene);
@@ -109,8 +108,6 @@ int	is_shadowed(
 		if ((intersection.t < distance && intersection.t > 0))
 			return (1);
 	}
-	if (hit)
-	{}
 	vec_free(&ray.xs.vec);
 	return (0);
 }
