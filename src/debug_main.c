@@ -134,10 +134,6 @@ int	main(int ac, char **av)
 		read_xml(&doc, &main);
 		xml_doc_free(&doc);
 		main.cam = main.scene.cam;
-//		main.cam.pos = main.scene.cam.pos;
-//		main.cam.transform = main.scene.cam.transform;
-//		main.cam.motion = main.scene.cam.motion;
-//		main.cam.coi_motion = main.scene.cam.coi_motion;
 
 //		main.cam.transform = matrix_translate(10, 0.0, -10.0);
 //		main.cam.coi_transform = matrix_translate(0, 0.0, 15.0);
