@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:21:08 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/07 11:35:29 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:21:35 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ t_motion_blur	motion_new(int true_false, double speed, t_tuple dir)
 	new.on_off = true_false;
 	new.speed = speed;
 	new.speed_iteration = 0.0;
-	new.dir = dir;
+	new.dir = tuple_unit(dir);
 	return (new);
 }

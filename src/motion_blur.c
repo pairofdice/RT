@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:03:36 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/07 14:18:17 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:12:29 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	color_to_data(t_frame_buffer *fb)
 	}
 }
 
-static void	add_to_color_buffer(t_frame_buffer *fb)
+static void	add_to_color_buffer(t_frame_buffer *fb, int times)
 {
 	t_color	color;
 	int		y;
@@ -64,9 +64,9 @@ static void	add_to_color_buffer(t_frame_buffer *fb)
 		while (x < WIN_W)
 		{
 			color = int_to_color(fb->data[y * WIN_W + x]);
-			fb->motion_calc[y * WIN_W + x].s_rgb.r += (color.s_rgb.r / 255);
-			fb->motion_calc[y * WIN_W + x].s_rgb.g += (color.s_rgb.g / 255);
-			fb->motion_calc[y * WIN_W + x].s_rgb.b += (color.s_rgb.b / 255);
+			fb->motion_calc[y * WIN_W + x].s_rgb.r += ((color.s_rgb.r / 255) * times);
+			fb->motion_calc[y * WIN_W + x].s_rgb.g += ((color.s_rgb.g / 255) * times);
+			fb->motion_calc[y * WIN_W + x].s_rgb.b += ((color.s_rgb.b / 255) * times);
 			x++;
 		}
 		y++;
@@ -78,7 +78,7 @@ void	create_motion_blur(t_main *main)
 	int		frame_count;
 
 	frame_count = 1;
-	add_to_color_buffer(&main->sdl.frame_buffer);
+	add_to_color_buffer(&main->sdl.frame_buffer, 1);
 	while (motion_set_all(main) > 0)
 	{
 		main->cam.coi_transform
@@ -88,12 +88,14 @@ void	create_motion_blur(t_main *main)
 		edge_detection(&main->sdl.frame_buffer);
 		main->ant_al = A_A_DIV;
 		draw_frame(main);
-		add_to_color_buffer(&main->sdl.frame_buffer);
+		add_to_color_buffer(&main->sdl.frame_buffer, 1);
 		frame_count++;
+		printf("%d\n", frame_count);
 	}
 	if (frame_count > 1)
 	{
-		normalise_color(&main->sdl.frame_buffer, frame_count);
+		add_to_color_buffer(&main->sdl.frame_buffer, 10);
+		normalise_color(&main->sdl.frame_buffer, frame_count + 10);
 		color_to_data(&main->sdl.frame_buffer);
 		edge_detection(&main->sdl.frame_buffer);
 	}

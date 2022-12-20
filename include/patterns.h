@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:59:18 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/05 15:09:05 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:50:08 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ typedef struct s_pattern
 
 
 int	pattern_striped(double	coordinate_in);
-void	pattern_grid(t_point hit_loc, t_color *hit_color, double pattern_dif, double perlin);
+t_color	pattern_grid(t_point hit_loc, t_color hit_color, double pattern_dif, double perlin);
 
 #endif

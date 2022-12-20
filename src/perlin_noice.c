@@ -6,36 +6,37 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:43:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/12 14:08:32 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:06:11 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
 
-int	load_perlin_data(t_perlin *perlin)
+void	load_perlin_data(t_perlin *perlin)
 {
-	FILE	*fp;
-	int		permutation[256];
-	int		i;
+	int			fd;
+	char		*line;
+	char		**values;
+	int			i;
 
-	if (!(perlin->is_data_writen))
+	i = 0;
+	perlin->is_data_writen = TRUE;
+	fd = open("include/perlindata.txt", O_RDONLY);
+	if (perlin->is_data_writen != FALSE && fd < 0)
+		perlin->is_data_writen = FALSE;
+	if (get_next_line(fd, &line) < 0)
+		perlin->is_data_writen = FALSE;
+	close(fd);
+	values = ft_strsplit(line, ' ');
+	if (values[0] == NULL)
+		perlin->is_data_writen = FALSE;
+	while (perlin->is_data_writen == TRUE && i < 256 && values[i] != '\0')
 	{
-		i = 0;
-		fp = fopen("include/perlindata.txt", "r");
-		if (fp == NULL)
-			return (0);
-		while (i < 256)
-			fscanf(fp, "%d", &permutation[i++]);
-		fclose(fp);
-		i = 0;
-		while (i < 256)
-		{
-			perlin->p[i] = permutation[i];
-			perlin->p[256 + i] = permutation[i];
-			i++;
-		}
+		fd = ft_atoi(values[i]);
+		perlin->p[i] = fd;
+		perlin->p[256 + i] = fd;
+		i++;
 	}
-	return (1);
 }
 
 double	calculate_return(t_tuple p, t_perlin *perlin)

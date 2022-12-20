@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:17:33 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/12 14:09:10 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:06:15 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_perlin
 }				t_perlin;
 
 double	perlin_noice(t_tuple point, t_perlin *perlin);
-int		load_perlin_data(t_perlin *perlin);
+void		load_perlin_data(t_perlin *perlin);
 double	grad(int hash, double x, double y, double z);
 double	lerp(double t, double a, double b);
 double	fade(double t);

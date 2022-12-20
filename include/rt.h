@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/17 18:26:36 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:53:00 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_scene
 {
 	t_vec			lights;
 	t_vec			objects;
+	t_perlin		perlin;
 }					t_scene;
 
 typedef struct s_main
@@ -104,7 +105,6 @@ typedef struct s_main
 	t_ray			ray;
 	t_ray			shadow;
 	t_light			light;
-	t_perlin		perlin;
 	t_object		obj[500];
 	int				obj_count;
 	int				shape_count;
@@ -190,7 +190,7 @@ int					default_scene(t_scene *scene);
 void		scene_intersect(t_scene *scene, t_ray *ray);
 
 
-void	pattern_at(t_hit_record hit,t_point hit_loc, t_color *hit_color, t_perlin *perlin);
+t_color	pattern_at(t_hit_record hit,t_point hit_loc, t_color hit_color, t_perlin perlin);
 
 int		motion_set_all(t_main *main);
 void	create_motion_blur(t_main *main);

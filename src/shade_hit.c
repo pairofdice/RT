@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:22:13 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/17 18:29:12 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 14:59:25 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 	t_color	reflected;
 	t_light	light;
 	size_t	i;
+	t_ray	temp;
+	t_matrix	test;
 
 	i = 0;
 	result = color_new(0, 0, 0);
@@ -32,6 +34,16 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 		temp_color = lighting(
 				&light,
 				&ray->hit);
+		if (ray->hit.object->material.pattern.pattern_id != NONE)
+		{
+			test = matrix_inverse(&ray->hit.object->transform);
+			temp = ray_transform(ray, &test);
+			temp.orig = ray_position(temp, ray->hit.hit_dist),
+			temp_color = pattern_at(ray->hit,
+					temp.orig,
+					temp_color,
+					scene->perlin);
+		}
 		result = tuple_add(result, temp_color);
 		reflected = reflected_color(scene, ray);
 		result = tuple_add(result, reflected);
