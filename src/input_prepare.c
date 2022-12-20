@@ -76,9 +76,6 @@ int	prepare_camera(t_xml_nodelist *list, t_cam *cam)
 	cam->transform = matrix_multiply(&cam->transform, &scale);
 	cam->motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1, 0, 0)));
 	cam->coi_motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1, 0, 0)));
-	printf("cam pos = %f %f %f\n", cam->pos.a[0], cam->pos.a[1], cam->pos.a[2]);
-//	initialize_camera_2(cam, cam->transform);
-	printf("cam coi = %f %f %f\n", cam->coi.a[0], cam->coi.a[1], cam->coi.a[2]);
 	return (TRUE);
 }
 

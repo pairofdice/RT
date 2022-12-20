@@ -52,6 +52,6 @@ int	motion_set_all(t_main *main)
 		}
 		i++;
 	}
-	motions_done += set_camera_motions(&main->cam);
+	motions_done += set_camera_motions(&main->scene.cam);
 	return (motions_done);
 }

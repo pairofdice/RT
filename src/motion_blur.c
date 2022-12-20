@@ -84,8 +84,8 @@ void	create_motion_blur(t_main *main)
 	add_to_color_buffer(&main->sdl.frame_buffer, 1);
 	while (motion_set_all(main) > 0)
 	{
-		main->cam.coi_transform
-			= coi_transform(&main->cam, main->cam.transform);
+		main->scene.cam.coi_transform
+			= coi_transform(&main->scene.cam, main->scene.cam.transform);
 		main->ant_al = 1;
 		draw_frame(main);
 		edge_detection(&main->sdl.frame_buffer);

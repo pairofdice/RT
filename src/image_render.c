@@ -69,7 +69,7 @@
 static void	aa_help(t_anti_aliasing *aa, t_main *main, int pixel_x)
 {
 	aa->x = ((float)pixel_x + (aa->offset / 2) + (aa->offset * aa->i));
-	initialize_ray(&main->ray, aa->x, aa->y, &main->cam);
+	initialize_ray(&main->ray, aa->x, aa->y, &main->scene.cam);
 	aa->color = tuple_add(aa->color, color_at(&main->scene, &main->ray));
 	vec_free(&main->ray.xs.vec);
 	aa->sub_pixel++;

@@ -101,7 +101,6 @@ typedef struct s_scene
 typedef struct s_main
 {
 	t_sdl			sdl;
-	t_cam			cam;
 	t_multi			multi;
 	t_ray			ray;
 	t_ray			shadow;
