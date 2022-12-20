@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:14:51 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:44:40 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,17 @@ typedef struct s_main
 	int				ant_al;
 	t_scene			scene;
 }					t_main;
+
+typedef struct s_anti_aliasing
+{
+	double		x;
+	double		y;
+	double		offset;
+	int			i;
+	int			j;
+	int			sub_pixel;
+	t_color		color;
+}				t_anti_aliasing;
 
 int					initialize_window(t_main *main);
 void				initialize_camera(t_cam *cam, t_matrix transform);

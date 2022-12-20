@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:22 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:00:58 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:38:20 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ t_color	pattern_at(t_hit_record hit,
 	double	perlin_out;
 
 	perlin_out = 0;
-	if (hit.object->material.pattern.pattern_perlin == TRUE  && perlin.is_data_writen == TRUE)
+	if (hit.object->material.pattern.pattern_perlin == TRUE
+		&& perlin.is_data_writen == TRUE)
 		perlin_out = perlin_noice(hit_loc, &perlin);
 	if (hit.object->material.pattern.pattern_id == GRID)
 		hit_color = pattern_grid(hit_loc, hit_color,
-			hit.object->material.pattern.pattern_dif, perlin_out);
+				hit.object->material.pattern.pattern_dif, perlin_out);
 	if (hit.object->material.pattern.pattern_id == STRIPED)
 	{
 		if (pattern_striped(hit_loc.s_xyzw.x + perlin_out) == 1)

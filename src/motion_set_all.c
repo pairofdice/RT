@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:43:31 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/19 15:10:44 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:36:47 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	motion_set_all(t_main *main)
 {
 	t_object	*obj;
 	size_t		i;
-	int	motions_done;
+	int			motions_done;
 
 	i = 0;
 	motions_done = 0;
@@ -48,7 +48,6 @@ int	motion_set_all(t_main *main)
 		{
 				obj->transform = motion_move(obj->transform,
 					&obj->motion);
-					
 			motions_done++;
 		}
 		i++;
