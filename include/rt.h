@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 14:53:00 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:14:51 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_scene
 	t_vec			lights;
 	t_vec			objects;
 	t_perlin		perlin;
+	t_cam			cam;
 }					t_scene;
 
 typedef struct s_main

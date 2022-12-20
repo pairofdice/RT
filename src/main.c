@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:06:56 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:16:39 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,9 @@ int	main(void)
 	
 	main.obj[0] = object_new(SPHERE);
 	main.obj[0].transform = matrix_translate(0.0, 0.0, 15.0);
-											x_r = 0.3;
+											x_r = 0.0;
 											y_r = 0.0;
-											z_r = M_PI_2;
+											z_r = 0.0;
 	rotate = matrix_rotate_x(x_r);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
 	rotate = matrix_rotate_y(y_r);
@@ -153,7 +153,7 @@ int	main(void)
 	scale = matrix_scale(10,10,10);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &scale);
 	main.obj[0].material.color = color_new(1,1,1);
-	main.obj[0].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
+	main.obj[0].motion = motion_new(TRUE, 1.0, tuple_unit(vector_new(1,0,0)));
 	main.obj[0].material.pattern.pattern_id = STRIPED;
 	main.obj[0].material.pattern.pattern_perlin = TRUE;
 	main.obj[0].negative = FALSE;

@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:03:36 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/19 15:12:29 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:15:36 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	create_motion_blur(t_main *main)
 		draw_frame(main);
 		add_to_color_buffer(&main->sdl.frame_buffer, 1);
 		frame_count++;
-		printf("%d\n", frame_count);
 	}
 	if (frame_count > 1)
 	{
