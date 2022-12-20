@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:16:39 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:28:39 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,8 @@ void	draw_filter(t_sdl *sdl, int *filter_type, int i)
 	{
 		if (sdl->stereocopy == TRUE)
 			draw_to_window(sdl, sdl->frame_buffer.stereocopy);
-		else if (sdl->event.key.keysym.sym == SDLK_UP)
-			*filter_type = NORMAL;
-		else
-			*filter_type = EDGE;
 	}
-	if (*filter_type == NORMAL)
+	else if (*filter_type == NORMAL)
 		draw_to_window(sdl, sdl->frame_buffer.data);
 	else
 	{
@@ -91,11 +87,11 @@ int	main(void)
 		return (1);
 		//FREE BUFFERS!!!!!!
 	
-	main.sdl.stereocopy = FALSE;
+	main.sdl.stereocopy = TRUE;
 	scene_new(&main.scene);
 	
 	main.cam.transform = matrix_translate(0, 0.0, -10.0);
-	main.cam.coi_transform = matrix_translate(0, 0.0, 15.0);
+	main.cam.coi_transform = matrix_translate(0, 0.0, 30.0);
 
 	cam_scale = matrix_scale(1,1,1);
 	main.cam.transform = matrix_multiply(&main.cam.transform, &cam_scale);
@@ -140,7 +136,7 @@ int	main(void)
 	
 	
 	main.obj[0] = object_new(SPHERE);
-	main.obj[0].transform = matrix_translate(0.0, 0.0, 15.0);
+	main.obj[0].transform = matrix_translate(0.0, 0.0, 10.0);
 											x_r = 0.0;
 											y_r = 0.0;
 											z_r = 0.0;
@@ -150,10 +146,10 @@ int	main(void)
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
 	rotate = matrix_rotate_z(z_r);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
-	scale = matrix_scale(10,10,10);
+	scale = matrix_scale(1,1,1);
 	main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &scale);
 	main.obj[0].material.color = color_new(1,1,1);
-	main.obj[0].motion = motion_new(TRUE, 1.0, tuple_unit(vector_new(1,0,0)));
+	main.obj[0].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 	main.obj[0].material.pattern.pattern_id = STRIPED;
 	main.obj[0].material.pattern.pattern_perlin = TRUE;
 	main.obj[0].negative = FALSE;
@@ -283,9 +279,10 @@ int	main(void)
 		edge_detection(&main.sdl.frame_buffer);
 		main.ant_al = A_A_DIV;
 		draw_frame(&main);
-		// if (main.sdl.stereocopy == TRUE)
-		// 	create_stereoscope(&main, cam_scale, main.cam.transform);
-		create_motion_blur(&main);
+		if (main.sdl.stereocopy == TRUE)
+			create_stereoscope(&main, cam_scale, main.cam.transform);
+		else
+			create_motion_blur(&main);
 	}
 /* 	tests(&main, draw_debug); */
 	rt_loop_and_exit(&main.sdl);

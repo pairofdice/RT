@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:32:13 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/11/26 15:43:19 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:27:37 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	create_stereoscope(t_main *main, t_matrix cam_scale,
 							t_matrix cam_transform)
 {
 	main->sdl.frame_buffer.stereocopy
-		= ft_memcpy((void *)main->sdl.frame_buffer.stereocopy,
-			(void *)main->sdl.frame_buffer.data,
+		= ft_memcpy(main->sdl.frame_buffer.stereocopy,
+			main->sdl.frame_buffer.data,
 			main->sdl.frame_buffer.data_len * sizeof(int));
 	cam_scale = matrix_translate((-main->sdl.stereocopy * 1.5), 0, 0.0);
 	cam_transform = matrix_multiply(&cam_transform, &cam_scale);
