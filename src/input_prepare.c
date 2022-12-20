@@ -59,7 +59,7 @@ void	initialize_camera_2(t_cam *cam, t_matrix transform)
 
 int	prepare_camera(t_xml_nodelist *list, t_cam *cam)
 {
-	t_matrix	temp;
+	t_matrix	scale;
 	if (list->size != 1)
 	{
 		if (list->size < 1)
@@ -68,16 +68,16 @@ int	prepare_camera(t_xml_nodelist *list, t_cam *cam)
 			ft_putendl_fd("Error: too many cameras in input", 2);
 		return (FALSE);
 	}
-	initialize_camera(cam, matrix_translate_2(tuple_unit(vector_new(0, 0, 0))));
 	cam->coi = point_new(0.0, 0.0, 0.0);
+	scale = matrix_scale(1,1,1);
 	get_camera(list->list[0], cam);
+	cam->transform = matrix_translate_2(cam->pos);
 	cam->coi_transform = matrix_translate_2(cam->coi);
+	cam->transform = matrix_multiply(&cam->transform, &scale);
 	cam->motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1, 0, 0)));
 	cam->coi_motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1, 0, 0)));
-	cam->transform = matrix_translate_2(cam->pos);
 	printf("cam pos = %f %f %f\n", cam->pos.a[0], cam->pos.a[1], cam->pos.a[2]);
-	temp = matrix_translate_2(cam->pos);
-	initialize_camera_2(cam, cam->transform);
+//	initialize_camera_2(cam, cam->transform);
 	printf("cam coi = %f %f %f\n", cam->coi.a[0], cam->coi.a[1], cam->coi.a[2]);
 	return (TRUE);
 }

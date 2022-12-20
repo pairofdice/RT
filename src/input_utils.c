@@ -63,9 +63,12 @@ void	get_tuple(t_tuple *tuple, char *str)
 int	free_lists(	t_xml_nodelist **camera, t_xml_nodelist **objects, \
 t_xml_nodelist **lights)
 {
-	xml_nodelist_free(*camera);
-	xml_nodelist_free(*objects);
-	xml_nodelist_free(*lights);
+	free((*camera)->list);
+	free((*objects)->list);
+	free((*lights)->list);
+	free(*camera);
+	free(*objects);
+	free(*lights);
 	return (FALSE);
 }
 
@@ -86,5 +89,6 @@ int	read_xml(t_xml_doc *doc, t_main *main)
 		return (free_lists(&camera, &objects, &lights));
 	if (!prepare_lights(lights, &main->scene.lights))
 		return (free_lists(&camera, &objects, &lights));
+	free_lists(&camera, &objects, &lights);
 	return (TRUE);
 }
