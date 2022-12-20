@@ -48,7 +48,7 @@ void	create_stereoscope(t_main *main, t_matrix cam_scale,
 			main->sdl.frame_buffer.data_len * sizeof(int));
 	cam_scale = matrix_translate((-main->sdl.stereocopy * 1.5), 0, 0.0);
 	cam_transform = matrix_multiply(&cam_transform, &cam_scale);
-	initialize_camera(&main->cam, cam_transform);
+	initialize_camera(&main->scene.cam, cam_transform);
 	main->ant_al = 1;
 	draw_frame(main);
 	edge_detection(&main->sdl.frame_buffer);
