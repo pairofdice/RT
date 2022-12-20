@@ -35,7 +35,7 @@ int	*get_correct_buffer(t_sdl *sdl, int *filter_type)
 		return (sdl->frame_buffer.filter);
 }
 
-void	kay_hooks(t_sdl *sdl, int *quit, int *filter_type)
+void	key_hooks(t_sdl *sdl, int *quit, int *filter_type)
 {
 	if (sdl->event.type == SDL_QUIT)
 		*quit = 1;

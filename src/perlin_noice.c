@@ -30,13 +30,18 @@ void	load_perlin_data(t_perlin *perlin)
 	values = ft_strsplit(line, ' ');
 	if (values[0] == NULL)
 		perlin->is_data_writen = FALSE;
-	while (perlin->is_data_writen == TRUE && i < 256 && values[i] != '\0')
+	while (perlin->is_data_writen == TRUE && i < 256 && values[i][0] != '\0')
 	{
 		fd = ft_atoi(values[i]);
 		perlin->p[i] = fd;
 		perlin->p[256 + i] = fd;
 		i++;
 	}
+	i = 0;
+	while (values[i])
+		free(values[i++]);
+	free(values);
+	free(line);
 }
 
 double	calculate_return(t_tuple p, t_perlin *perlin)

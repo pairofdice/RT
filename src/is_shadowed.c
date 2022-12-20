@@ -106,7 +106,10 @@ int	is_shadowed(
 		else
 			intersection = find_shadow_true_negatives(ray, distance, scene);
 		if ((intersection.t < distance && intersection.t > 0))
+		{
+			vec_free(&ray.xs.vec);
 			return (1);
+		}
 	}
 	vec_free(&ray.xs.vec);
 	return (0);

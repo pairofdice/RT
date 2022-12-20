@@ -166,7 +166,7 @@ void				worker_broadcast(t_main *ctx);
 
 void				draw_to_window(t_sdl *sdl, int *filter);
 void				draw_filter(t_sdl *sdl, int *filter_type, int i);
-void				kay_hooks(t_sdl *sdl, int *quit, int *filter_type);
+void				key_hooks(t_sdl *sdl, int *quit, int *filter_type);
 void				creat_screen_shot(int *image);
 char				*create_screen_shot_name(char *image_name, int image_nbr);
 
