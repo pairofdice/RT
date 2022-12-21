@@ -100,16 +100,10 @@ int	get_object(t_xml_node *node, t_object *obj)
 	index = 0;
 	populate_types(types);
 	if (node == NULL || node->attributes.size == 0)
-	{
-		ft_putendl_fd("ERROR: invalid node in get_object", 2);
-		return (FALSE);
-	}		
+		return (return_error("ERROR: invalid node in get_object"));
 	value = xml_node_attr_value(node, "type");
 	if (value == NULL)
-	{
-		ft_putendl_fd("ERROR: object has no type", 2);
-		return (FALSE);
-	}
+		return (return_error("ERROR: object has no type"));
 	while (index < 4)
 	{
 		if (!ft_strcmp(value, types[index]))
@@ -121,9 +115,6 @@ int	get_object(t_xml_node *node, t_object *obj)
 	if (value != NULL && !ft_strcmp(value, "true"))
 		obj->negative = TRUE;
 	if (!get_obj_details(node, obj))
-	{
-		ft_putendl_fd("ERROR: get_obj_details failed", 2);
-		return (FALSE);
-	}		
+		return (return_error("ERROR: get_obj_details failed"));
 	return (TRUE);
 }

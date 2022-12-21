@@ -29,5 +29,6 @@ int			prepare_objects(t_xml_nodelist *list, t_vec *obj);
 int			prepare_camera(t_xml_nodelist *list, t_cam *cam);
 int			prepare_lights(t_xml_nodelist *list, t_vec *light);
 int			read_xml(t_xml_doc *doc, t_main *main);
+int			return_error(const char *str);
 
 #endif

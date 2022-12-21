@@ -12,6 +12,12 @@
 
 #include "../include/input.h"
 
+int	return_error(const char *str)
+{
+	ft_putendl_fd(str, 2);
+	return (FALSE);
+}
+
 int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
 {
 	t_matrix	rotate;
@@ -20,10 +26,7 @@ int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
 
 	index = 0;
 	if (list->size == 0)
-	{
-		ft_putendl_fd("Error: no objects in input", 2);
-		return (FALSE);
-	}
+		return (return_error("Error: no objects in input"));
 	while (index < list->size)
 	{
 		if (!get_object(xml_nodelist_at(list, index), &obj))
@@ -37,12 +40,10 @@ int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
 		obj.transform = matrix_multiply(&obj.transform, &rotate);
 		rotate = matrix_scale(obj.scale.a[0], obj.scale.a[1], obj.scale.a[2]);
 		obj.transform = matrix_multiply(&obj.transform, &rotate);
-		obj.id = index;
+		obj.id = index++;
 		vec_push(objects, &obj);
-		index++;
 	}
 	return (TRUE);
-
 }
 
 void	initialize_camera_2(t_cam *cam, t_matrix transform)
@@ -60,6 +61,7 @@ void	initialize_camera_2(t_cam *cam, t_matrix transform)
 int	prepare_camera(t_xml_nodelist *list, t_cam *cam)
 {
 	t_matrix	scale;
+
 	if (list->size != 1)
 	{
 		if (list->size < 1)
@@ -69,7 +71,7 @@ int	prepare_camera(t_xml_nodelist *list, t_cam *cam)
 		return (FALSE);
 	}
 	cam->coi = point_new(0.0, 0.0, 0.0);
-	scale = matrix_scale(1,1,1);
+	scale = matrix_scale(1, 1, 1);
 	get_camera(list->list[0], cam);
 	cam->transform = matrix_translate_2(cam->pos);
 	cam->coi_transform = matrix_translate_2(cam->coi);
@@ -79,7 +81,8 @@ int	prepare_camera(t_xml_nodelist *list, t_cam *cam)
 	return (TRUE);
 }
 
-/*TODO needs improvement, the type while loop could overwrite itself, needs error check*/
+/*TODO needs improvement, 
+the type while loop could overwrite itself, needs error check*/
 int	prepare_lights(t_xml_nodelist *list, t_vec *lights)
 {
 	int			index;
@@ -89,10 +92,7 @@ int	prepare_lights(t_xml_nodelist *list, t_vec *lights)
 
 	index = 0;
 	if (list->size == 0)
-	{
-		ft_putendl_fd("Error: no lights in input", 2);
-		return (FALSE);
-	}
+		return (return_error("Error: no lights in input"));
 	while (index < list->size)
 	{
 		node = xml_nodelist_at(list, index);

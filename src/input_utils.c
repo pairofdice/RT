@@ -72,7 +72,6 @@ t_xml_nodelist **lights)
 	return (FALSE);
 }
 
-/*TODO: prepare functions can't return FALSE as of yet, need a way identify errors*/
 int	read_xml(t_xml_doc *doc, t_main *main)
 {
 	t_xml_nodelist	*camera;
@@ -82,7 +81,6 @@ int	read_xml(t_xml_doc *doc, t_main *main)
 	camera = xml_node_children(doc->head, "camera");
 	objects = xml_node_children(doc->head, "object");
 	lights = xml_node_children(doc->head, "light");
-	/*make one big if statement with ORs?*/
 	if (!prepare_camera(camera, &main->scene.cam))
 		return (free_lists(&camera, &objects, &lights));
 	if (!prepare_objects(objects, &main->scene.objects))
