@@ -15,12 +15,12 @@
 
 t_color	color_new_2(t_tuple tuple)
 {
-	return(color_new(tuple.a[0], tuple.a[1], tuple.a[2]));
+	return (color_new(tuple.a[0], tuple.a[1], tuple.a[2]));
 }
 
 t_point	point_new_2(t_tuple tuple)
 {
-	return(point_new(tuple.a[0], tuple.a[1], tuple.a[2]));
+	return (point_new(tuple.a[0], tuple.a[1], tuple.a[2]));
 }
 
 /*TODO CLEANUP?*/
