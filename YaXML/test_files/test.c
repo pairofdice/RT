@@ -53,6 +53,5 @@ int	main(int ac, char **av)
 		print_node(doc.head, 0);
 		xml_doc_free(&doc);
 	}
-	printf("%f %f %f\n", atof(" 1.0 0.0 5.0 "), atof(" 0.0 5.0 "), atof(" 5.0 "));
 	return (0);
 }

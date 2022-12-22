@@ -12,196 +12,96 @@
 
 #include "yaxml.h"
 
-static int	check_end(const char *str, const char *target)
+int	xml_get_data(t_xml_node *current_node, char *buf, char lex[256])
 {
-	int	str_len;
-	int	target_len;
-	int	index[0];
-
-	index[0] = 0;
-	str_len = ft_strlen(str);
-	target_len = ft_strlen(target);
-	printf("\tCHECK END : %s\n\n",target_len);
-	if (str_len < target_len)
-		return (FALSE);
-	while (index[0] < target_len)
-	{
-		if (str[str_len - target_len + index[0]] != target[index[0]])
-			return (FALSE);
-	}
+	if (!current_node)
+		return (xml_error_free(buf, "Text outside document"));
+	if (!current_node->data)
+		current_node->data = ft_strdup(lex);
 	return (TRUE);
 }
 
-size_t	get_size(const char *path)
+int	xml_node_end(char *buf, char lex[256], int index[2], \
+t_xml_node **current_node)
 {
-	int		fd;
-	size_t	size;
-	size_t	temp;
-	char	buf[4096];
+	index[0] += 2;
+	while (buf[index[0]] != '>')
+		lex[index[1]++] = buf[index[0]++];
+	lex[index[1]] = '\0';
+	if (!*current_node)
+		return (xml_error_free(buf, "Already at head"));
+	if (ft_strcmp((*current_node)->tag, lex))
+	{
+		ft_putstr_fd((*current_node)->tag, 2);
+		ft_putstr_fd(" != ", 2);
+		ft_putendl_fd(lex, 2);
+		return (xml_error_free(buf, "Mismatched tags"));
+	}
+	*current_node = (*current_node)->parent;
+	index[0]++;
+	index[1] = 0;
+	return (TRUE);
+}
 
-	size = 0;
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
+int	xml_init_doc(t_xml_doc *doc, t_buffer *buffer, t_xml_node **current_node)
+{
+	doc->head = xml_node_new(NULL);
+	if (doc->head == NULL)
 	{
-		ft_putendl_fd("ERROR: Could not load file", 2);
+		xml_doc_free(doc);
+		free(buffer->mem);
 		return (FALSE);
 	}
-	temp = read(fd, buf, 4096);
-	while (temp > 0)
-	{
-		size += temp;
-		temp = read(fd, buf, 4096);
-	}
-	if (close(fd) == -1)
-	{
-		ft_putendl_fd("ERROR: Couild not close file at get_size", 2);
-		return (FALSE);
-	}
-	return (size);
+	*current_node = doc->head;
+	return (TRUE);
 }
 
 int	xml_doc_load(t_xml_doc *doc, const char *path)
 {
-	int			fd;
-	size_t		size;
+	t_buffer	buffer;
 	char		*buf;
-	char		lex[256];
+	char		lex[1024];
 	int			index[2];
 	t_xml_node	*current_node;
-	t_xml_node	*desc;
 
 	index[0] = 0;
 	index[1] = 1;
 	lex[0] = 0;
-	size = get_size(path);
-	buf = (char *)malloc(sizeof(*buf) * size + 1);
-	if (!buf)
-	{
-		free(buf);
+	if (!xml_read_file(&buffer, path))
 		return (FALSE);
-	}
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_putendl_fd("ERROR: Could not load file", 2);
-		free(buf);
+	if (!xml_init_doc(doc, &buffer, &current_node))
 		return (FALSE);
-	}
-	if (read(fd, buf, size) == -1)
-	{
-		ft_putendl_fd("ERROR: Couild not read file", 2);
-		free(buf);
-		return (FALSE);
-	}
-	buf[size] = '\0';
-	if (close(fd) == -1)
-	{
-		ft_putendl_fd("ERROR: Could not close file at xml_doc_load", 2);
-		free(buf);
-		return (FALSE);
-	}
-	doc->head = xml_node_new(NULL);
-	current_node = doc->head;
+	buf = buffer.mem;
 	while (buf[index[0]] != '\0')
 	{
 		if (buf[index[0]] == '<')
 		{
 			lex[index[1]] = '\0';
-			//data
 			if (index[1] > 0)
 			{
-				if (!current_node)
-				{
-					ft_putendl_fd("ERROR: Text outside document", 2);
-					free(buf);
+				if (!xml_get_data(current_node, buf, lex))
 					return (FALSE);
-				}
-				if (!current_node->data)
-					current_node->data = ft_strdup(lex);
 				index[1] = 0;
 			}
-			//End of node
 			if (buf[index[0] + 1] == '/')
 			{
-				index[0] += 2;
-				while (buf[index[0]] != '>')
-					lex[index[1]++] = buf[index[0]++];
-				lex[index[1]] = '\0';
-				if (!current_node)
-				{
-					ft_putendl_fd("ERROR: Already at head", 2);
-					free(buf);
+				if (!xml_node_end(buf, lex, index, &current_node))
 					return (FALSE);
-				}
-				if (ft_strcmp(current_node->tag, lex))
-				{
-					ft_putstr_fd(current_node->tag, 2);
-					ft_putstr_fd(" != ", 2);
-					ft_putendl_fd(lex, 2);
-					ft_putendl_fd("ERROR: Mismatched tags", 2);
-					free(buf);
-					return (FALSE);
-				}
-				current_node = current_node->parent;
-				index[0]++;
-				index[1] = 0;
 				continue ;
 			}
-			// Special nodes - COMMENTS NEED MORE WORK
 			if (buf[index[0] + 1] == '!')
 			{
-				while (buf[index[0]] != ' ' && buf[index[0]] != '>')
-					lex[index[1]++] = buf[index[0]++];
-				lex[index[1]] = '\0';
-				//comments - This while loop seems kinda stupid, make it better
-				if (!ft_strcmp(lex, "<!--"))
-				{
-					while (!check_end(lex, "-->"))
-					{
-						lex[index[1]++] = buf[index[0]++];
-						lex[index[1]] = '\0';
-					}
+				if (xml_comment(buf, &index[0]))
 					continue ;
-				}
 			}
-			//declaration tags
 			if (buf[index[0] + 1] == '?')
 			{
-				while (buf[index[0]] != ' ' && buf[index[0]] != '>')
-					lex[index[1]++] = buf[index[0]++];
-				lex[index[1]] = '\0';
-				// This is XML declaration
-				if (!ft_strcmp(lex, "<?xml"))
-				{
-					index[1] = 0;
-					desc = xml_node_new(NULL);
-					parse_attr(buf, index, lex, desc);
-					doc->version = ft_strdup(\
-					xml_node_attr_value(desc, "version"));
-					doc->encoding = ft_strdup(\
-					xml_node_attr_value(desc, "encoding"));
-					xml_node_free(desc);
-					index[1] = 0;
-					index[0]++;
+				if (xml_declaration(buf, index, doc))
 					continue ;
-				}
 			}
-			//set current node
 			current_node = xml_node_new(current_node);
-			//start tag
-			index[0]++;
-			if (parse_attr(buf, index, lex, current_node) == TAG_INLINE)
-			{
-				index[1] = 0;
-				current_node = current_node->parent;
-				index[0]++;
+			if (xml_start_tag(buf, index, lex, &current_node))
 				continue ;
-			}
-			//set tag name if none
-			lex[index[1]] = '\0';
-			if (!current_node->tag)
-				current_node->tag = ft_strdup(lex);
-			//reset lexer
 			index[1] = 0;
 			index[0]++;
 			continue ;
@@ -209,11 +109,11 @@ int	xml_doc_load(t_xml_doc *doc, const char *path)
 		else
 		{
 			lex[index[1]++] = buf[index[0]++];
-			//ignore newlines and tabs
 			if (lex[index[1] - 1] == '\n' || lex[index[1] - 1] == '\t')
 				index[1]--;
 		}
 	}
-	free(buf);
+	if (buf != NULL)
+		free(buf);
 	return (TRUE);
 }

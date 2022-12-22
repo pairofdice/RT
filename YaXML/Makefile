@@ -16,12 +16,16 @@ NAME :=		yaxml.a
 OBJ_DIR =	obj
 SRC_DIR =	src
 INCLUDE =	-I ./include/ -I ./libft/
-LIBFT =		-L ./libft/
-OBJS =		yaxml_doc_2.o\
+LIBFT =		./libft/libft.a
+OBJS =		yaxml_doc.o\
 			yaxml_free.o\
 			yaxml_list.o\
 			yaxml_node.o\
-			yaxml_parse_attr.o
+			yaxml_attr.o\
+			yaxml_utils.o\
+			yaxml_parse_attr.o\
+			yaxml_file_handling.o\
+			yaxml_error.o
 OBJECTS =	$(addprefix $(OBJ_DIR)/, $(OBJS))
 
 all: $(NAME)

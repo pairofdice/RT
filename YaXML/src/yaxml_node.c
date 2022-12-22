@@ -63,38 +63,6 @@ t_xml_nodelist	*xml_node_children(t_xml_node *parent, const char *tag)
 	return (list);
 }
 
-char	*xml_node_attr_value(t_xml_node *node, char *key)
-{
-	t_xml_attr	attr;
-	int			index;
-
-	index = 0;
-	while (index < node->attributes.size)
-	{
-		attr = node->attributes.list[index];
-		if (attr.key != 0 && !ft_strcmp(attr.key, key))
-			return (attr.value);
-		index++;
-	}
-	return (NULL);
-}
-
-t_xml_attr	*xml_node_attr(t_xml_node *node, char *key)
-{
-	t_xml_attr	*attr;
-	int			index;
-
-	index = 0;
-	while (index < node->attributes.size)
-	{
-		attr = &node->attributes.list[index];
-		if (!ft_strcmp(attr->key, key))
-			return (attr);
-		index++;
-	}
-	return (NULL);
-}
-
 t_xml_node	*xml_node_tag(t_xml_nodelist *list, char *tag)
 {
 	t_xml_node	*node;

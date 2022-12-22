@@ -21,7 +21,8 @@ int	tag_name(int index[2], char *lex, t_xml_node *current_node)
 	return (TRUE);
 }
 
-int	attribute_key(char *buf, char *lex, int index[2], t_xml_node *current_node)
+int	attribute_key(const char *buf, char *lex, int index[2], \
+t_xml_node *current_node)
 {
 	t_xml_attr	current_attr;
 
@@ -57,7 +58,7 @@ t_tag_type	inline_mode(int *index, char *lex, t_xml_node *current_node)
 	return (TAG_INLINE);
 }
 
-t_tag_type	parse_attr(char *buf, int index[2], char *lex, \
+t_tag_type	xml_parse_attr(const char *buf, int index[2], char *lex, \
 t_xml_node *current_node)
 {
 	while (buf[index[0]] != '>')
