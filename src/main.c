@@ -148,7 +148,6 @@ int	main(int ac, char **av)
 //		vec_push(&main.scene.lights, &main.light);
 		main.obj_count = 2;
 		initialize_camera(&main.scene.cam, main.scene.cam.transform);
-		main.scene.cam.inverse_transform = matrix_inverse(&main.scene.cam.transform);
 		/* Debug cam values
 		printf("objs = %zu\nlights = %zu\ncamera = %f %f %f\ncam coi %f %f %f\n",\
 		 main.scene.objects.len, main.scene.lights.len, main.scene.cam.pos.a[0], main.scene.cam.pos.a[1], main.scene.cam.pos.a[2],\
@@ -162,7 +161,6 @@ int	main(int ac, char **av)
 
 		cam_scale = matrix_scale(1,1,1);
 		main.scene.cam.transform = matrix_multiply(&main.scene.cam.transform, &cam_scale);
-		main.scene.cam.inverse_transform = matrix_inverse(&main.scene.cam.transform);
 		main.scene.cam.motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 		main.scene.cam.coi_motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 
