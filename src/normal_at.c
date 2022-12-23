@@ -28,10 +28,12 @@ t_vector	normal_at(t_object *obj, t_point point)
 	t_point		obj_point;
 	t_vector	obj_normal;
 	t_vector	world_normal;
-	t_matrix	inverse;
+//	t_matrix	obj->inverse_transform;
+	t_matrix	temp;
 
-	inverse = matrix_inverse(&obj->transform);
-	obj_point = matrix_tuple_multiply(&inverse, &point);
+//	obj->inverse_transform = matrix_obj->inverse_transform(&obj->transform);
+	temp = obj->inverse_transform;
+	obj_point = matrix_tuple_multiply(&obj->inverse_transform, &point);
 	if (obj->type == SPHERE)
 		obj_normal = tuple_sub(obj_point, point_new(0, 0, 0));
 	if (obj->type == CYLINDER)
@@ -43,8 +45,8 @@ t_vector	normal_at(t_object *obj, t_point point)
 		obj_normal = vector_new(0, 1, 0);
 	if (obj->type == CONE)
 		cone_normal(&obj_point, &obj_normal);
-	matrix_transpose(&inverse);
-	world_normal = matrix_tuple_multiply(&inverse, &obj_normal);
+	matrix_transpose(&temp);
+	world_normal = matrix_tuple_multiply(&temp, &obj_normal);
 	world_normal.s_xyzw.w = 0;
 	return (tuple_unit(world_normal));
 }

@@ -40,6 +40,7 @@ int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
 		obj.transform = matrix_multiply(&obj.transform, &rotate);
 		rotate = matrix_scale(obj.scale.a[0], obj.scale.a[1], obj.scale.a[2]);
 		obj.transform = matrix_multiply(&obj.transform, &rotate);
+		obj.inverse_transform = matrix_inverse(&obj.transform);
 		obj.id = index++;
 		vec_push(objects, &obj);
 	}

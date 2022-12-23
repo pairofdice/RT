@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
+#include "../include/input.h"
 #include "../include/rt.h"
 
 //Copys 1d arrey to texture and draws it.
@@ -94,8 +94,8 @@ void	render_image_debug(t_main *main, int task, int ant_al)
 		while (x < WIN_W)
 		{
 			copy.ray.hit.color = color_new(0, 0, 0);
-			while (ant_al != 1 && x < WIN_W && main->sdl.frame_buffer.mask[((y
-							* WIN_W) + x)] == 0)
+			while (ant_al != 1 && x < WIN_W && \
+			main->sdl.frame_buffer.mask[((y	* WIN_W) + x)] == 0)
 				x++;
 			if (x == WIN_W)
 				break ;
@@ -148,6 +148,7 @@ int	main(int ac, char **av)
 //		vec_push(&main.scene.lights, &main.light);
 		main.obj_count = 2;
 		initialize_camera(&main.scene.cam, main.scene.cam.transform);
+		main.scene.cam.inverse_transform = matrix_inverse(&main.scene.cam.transform);
 		/* Debug cam values
 		printf("objs = %zu\nlights = %zu\ncamera = %f %f %f\ncam coi %f %f %f\n",\
 		 main.scene.objects.len, main.scene.lights.len, main.scene.cam.pos.a[0], main.scene.cam.pos.a[1], main.scene.cam.pos.a[2],\
@@ -161,6 +162,7 @@ int	main(int ac, char **av)
 
 		cam_scale = matrix_scale(1,1,1);
 		main.scene.cam.transform = matrix_multiply(&main.scene.cam.transform, &cam_scale);
+		main.scene.cam.inverse_transform = matrix_inverse(&main.scene.cam.transform);
 		main.scene.cam.motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 		main.scene.cam.coi_motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 
@@ -214,6 +216,7 @@ int	main(int ac, char **av)
 		main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
 		scale = matrix_scale(5,5,5);
 		main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &scale);
+		main.obj[0].inverse_transform = matrix_inverse(&main.obj[0].transform);
 		main.obj[0].material.color = color_new(1,1,1);
 		main.obj[0].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 		main.obj[0].material.pattern.pattern_id = STRIPED;
@@ -235,6 +238,7 @@ int	main(int ac, char **av)
 		main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &rotate);
 		scale = matrix_scale(4,4,4);
 		main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &scale);
+		main.obj[1].inverse_transform = matrix_inverse(&main.obj[1].transform);
 		main.obj[1].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 		main.obj[1].material.color = color_new(1.0, 1.0, 1.0);
 		main.obj[1].material.pattern.pattern_id = NONE;
@@ -256,6 +260,7 @@ int	main(int ac, char **av)
 		main.obj[2].transform = matrix_multiply(&main.obj[2].transform, &rotate);
 		scale = matrix_scale(4,4,4);
 		main.obj[2].transform = matrix_multiply(&main.obj[2].transform, &scale);
+		main.obj[2].inverse_transform = matrix_inverse(&main.obj[2].transform);
 		main.obj[2].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 		main.obj[2].material.color = color_new(1.0, 0.5, 1.0);
 		main.obj[2].material.pattern.pattern_id = NONE;
@@ -278,6 +283,7 @@ int	main(int ac, char **av)
 		main.obj[3].transform = matrix_multiply(&main.obj[3].transform, &rotate);
 		scale = matrix_scale(4,4,4);
 		main.obj[3].transform = matrix_multiply(&main.obj[3].transform, &scale);
+		main.obj[3].inverse_transform = matrix_inverse(&main.obj[3].transform);
 		main.obj[3].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 		main.obj[3].material.color = color_new(1, 0.5,0);
 		main.obj[3].material.pattern.pattern_id = NONE;
@@ -299,6 +305,7 @@ int	main(int ac, char **av)
 		main.obj[4].transform = matrix_multiply(&main.obj[4].transform, &rotate);
 		scale = matrix_scale(4,4,4);
 		main.obj[4].transform = matrix_multiply(&main.obj[4].transform, &scale);
+		main.obj[4].inverse_transform = matrix_inverse(&main.obj[4].transform);
 		main.obj[4].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
 		main.obj[4].material.color = color_new(1, 0.5,0);
 		main.obj[4].material.pattern.pattern_id = NONE;
@@ -320,6 +327,7 @@ int	main(int ac, char **av)
 		main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &rotate);
 		scale = matrix_scale(5,5,5);
 		main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &scale);
+		main.obj[5].inverse_transform = matrix_inverse(&main.obj[5].transform);
 		main.obj[5].motion = motion_new(FALSE, 1.0, vector_new(1,0,0));
 		main.obj[5].material.color = color_new(1, 1, 1);
 		main.obj[5].material.pattern.pattern_id = GRID;
