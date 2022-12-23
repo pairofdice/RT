@@ -32,7 +32,7 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 		temp_color = lighting(&light, &ray->hit);
 		if (ray->hit.object->material.pattern.pattern_id != NONE)
 		{
-			test = matrix_inverse(&ray->hit.object->transform);
+			test = ray->hit.object->inverse_transform;
 			temp = ray_transform(ray, &test);
 			temp.orig = ray_position(temp, ray->hit.hit_dist);
 			temp_color = pattern_at(ray->hit, temp.orig, temp_color,
