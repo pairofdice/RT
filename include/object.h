@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/17 18:28:29 by jjuntune         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:13:24 by mmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_object
 	int				negative;
 	size_t			id;
 	t_matrix		transform;
+	t_matrix		inverse_transform;
 	t_tuple			color;
 	t_material		material;
 	t_motion_blur	motion;
