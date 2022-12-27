@@ -12,14 +12,14 @@
 
 #include "yaxml.h"
 
-int	xml_error_free(char *buf, char *err_str)
+int	xml_error_free(t_buffers *buf, char *err_str)
 {
 	if (err_str != NULL)
 	{
 		ft_putstr_fd("ERROR: ", 2);
 		ft_putendl_fd(err_str, 2);
 	}
-	free(buf);
+	free(buf->mem);
 	return (FALSE);
 }
 

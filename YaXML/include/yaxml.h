@@ -71,26 +71,26 @@ typedef struct s_xml_document
 	char		*encoding;
 }	t_xml_doc;
 
-typedef struct s_buffer
+typedef struct s_buffers
 {
 	char	*mem;
+	char	lex[1024];
 	size_t	buff_len;
-}	t_buffer;
+}	t_buffers;
 
 /* XML doc */
 int				xml_doc_load(t_xml_doc *doc, const char *path);
-int				xml_comment(const char *buf, int *index);
-int				xml_declaration(const char *buf, int *index, t_xml_doc *doc);
-int				xml_start_tag(const char *buf, int index[2], char *lex, \
-				t_xml_node **node);
+int				xml_comment(t_buffers *buf, int *index);
+int				xml_declaration(t_buffers *buf, int *index, t_xml_doc *doc);
+int				xml_start_tag(t_buffers *buf, int index[2], t_xml_node **node);
 
 /* File handling */
 size_t			xml_get_size(const char *path);
-int				xml_read_file(t_buffer *buf, const char *path);
+int				xml_read_file(t_buffers *buf, const char *path);
 
 /* Utility function */
 int				xml_return_error(const char *str);
-int				xml_error_free(char *buf, char *err_str);
+int				xml_error_free(t_buffers *buf, char *err_str);
 
 /* Free allocated memory */
 void			xml_attr_free(t_xml_attr *attr);
@@ -115,6 +115,6 @@ int				xml_attrlist_add(t_xml_attrlist *list, t_xml_attr *attr);
 int				xml_nodelist_init(t_xml_nodelist *list);
 int				xml_nodelist_add(t_xml_nodelist *list, t_xml_node *node);
 t_xml_node		*xml_nodelist_at(t_xml_nodelist *list, int index);
-t_tag_type		xml_parse_attr(const char *buf, int index[2], char *lex, \
+t_tag_type		xml_parse_attr(t_buffers *buf, int index[2], \
 				t_xml_node *current_node);
 #endif

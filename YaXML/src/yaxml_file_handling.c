@@ -40,7 +40,7 @@ size_t	xml_get_size(const char *path)
 	return (size);
 }
 
-int	xml_read_file(t_buffer *buf, const char *path)
+int	xml_read_file(t_buffers *buf, const char *path)
 {
 	int	fd;
 
@@ -49,14 +49,14 @@ int	xml_read_file(t_buffer *buf, const char *path)
 		return (FALSE);
 	buf->mem = (char *)malloc(sizeof(buf->mem) * buf->buff_len + 1);
 	if (!buf->mem)
-		return (xml_error_free(buf->mem, "Buffer malloc failed"));
+		return (xml_error_free(buf, "Buffer malloc failed"));
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (xml_error_free(buf->mem, "Could not load file"));
+		return (xml_error_free(buf, "Could not load file"));
 	if (read(fd, buf->mem, buf->buff_len) == -1)
-		return (xml_error_free(buf->mem, "Could not read file"));
+		return (xml_error_free(buf, "Could not read file"));
 	buf->mem[buf->buff_len] = '\0';
 	if (close(fd) == -1)
-		return (xml_error_free(buf->mem, "Could not close file"));
+		return (xml_error_free(buf, "Could not close file"));
 	return (TRUE);
 }
