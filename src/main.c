@@ -134,7 +134,7 @@ int	main(int ac, char **av)
 	if (initialize_window(&main) == 0)
 		return (1);
 		//FREE BUFFERS!!!!!!
-	int draw_debug = 2;
+	int draw_debug = 1;
 
 
 	if (draw_debug == 1)
