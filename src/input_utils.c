@@ -80,6 +80,10 @@ int	read_xml(t_xml_doc *doc, t_main *main)
 	t_xml_nodelist	*objects;
 	t_xml_nodelist	*lights;
 
+	doc->version = NULL;
+	doc->encoding = NULL;
+	scene_new(&main->scene);
+	load_perlin_data(&main->scene.perlin);
 	camera = xml_node_children(doc->head, "camera");
 	objects = xml_node_children(doc->head, "object");
 	lights = xml_node_children(doc->head, "light");

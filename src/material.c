@@ -23,5 +23,7 @@ t_material	material_new(void)
 	m.specular = 0.9;
 	m.pattern.pattern_dif = 0.9;
 	m.reflective = 0.0;
+	m.pattern.pattern_id = NONE;
+	m.pattern.pattern_perlin = FALSE;
 	return (m);
 }

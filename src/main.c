@@ -105,242 +105,28 @@ void	render_image_debug(t_main *main, int task, int ant_al)
 		y += NUM_TASKS;
 	}
 }
-// AVOID MULTITHREADING FOR DEBUGGING
+
 int	main(int ac, char **av)
 {
 	t_main		main;
-	t_matrix	rotate;
-	t_matrix	cam_scale;
-	t_matrix	scale;
-	double	x_r;
-	double	y_r;
-	double	z_r;
 	t_xml_doc	doc;
 	
 	main.sdl.stereocopy = FALSE;
-	scene_new(&main.scene);	
-	
+	main.ant_al = 0;
 	if (ac == 2)
 	{
-		doc.head = NULL;
-		doc.version = NULL;
-		doc.encoding = NULL;
-	//	initialize_camera(&main.scene.cam, matrix_translate(0, 0, 0));
 		if (!xml_doc_load(&doc, av[1]))
 		{
-			ft_putendl_fd("couldn't read file!", 2);
+			ft_putendl_fd("ERROR: Couldn't read file!", 2);
 			return (1);
 		}
-		main.scene.cam.transform = matrix_translate(0.0, 0.0, 0.0);
-		main.scene.cam.coi_transform = matrix_translate(0, 0.0, 0.0);
 		read_xml(&doc, &main);
 		xml_doc_free(&doc);
-		//main.scene.cam = main.scene.cam;
-
-//		main.scene.cam.transform = matrix_translate(10, 0.0, -10.0);
-//		main.scene.cam.coi_transform = matrix_translate(0, 0.0, 15.0);
-//		cam_scale = matrix_scale(1,1,1);
-//		main.scene.cam.transform = matrix_multiply(&main.scene.cam.transform, &cam_scale);
-//		main.scene.cam.motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1,0,0)));
-//		main.scene.cam.coi_motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1,0,0)));
-
-//		main.light = point_light_new(point_new(0, 2.5, -10.0), color_new(1,1,1));
-//		vec_push(&main.scene.lights, &main.light);
-		main.obj_count = 2;
-		initialize_camera(&main.scene.cam, main.scene.cam.transform);
-		/* Debug cam values
-		printf("objs = %zu\nlights = %zu\ncamera = %f %f %f\ncam coi %f %f %f\n",\
-		 main.scene.objects.len, main.scene.lights.len, main.scene.cam.pos.a[0], main.scene.cam.pos.a[1], main.scene.cam.pos.a[2],\
-		 main.scene.cam.coi.a[0], main.scene.cam.coi.a[1], main.scene.cam.coi.a[2]);
-		*/
 	}
 	else
-	{	
-		main.scene.cam.transform = matrix_translate(0, 0.0, -10.0);
-		main.scene.cam.coi_transform = matrix_translate(0, 0.0, 30.0);
-
-		cam_scale = matrix_scale(1,1,1);
-		main.scene.cam.transform = matrix_multiply(&main.scene.cam.transform, &cam_scale);
-		main.scene.cam.motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
-		main.scene.cam.coi_motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
-
-		main.light = point_light_new(point_new(0, 0, 0.0), color_new(1,1,1));
-		vec_push(&main.scene.lights, &main.light);
-		main.light = point_light_new(point_new(20, 20, 0.0), color_new(1,0,0));
-		vec_push(&main.scene.lights, &main.light);
-		main.light = point_light_new(point_new(-20, -20, 0.0), color_new(0,1,0));
-		vec_push(&main.scene.lights, &main.light);
-		main.light = point_light_new(point_new(-20, 20, 10.0), color_new(0,0,1));
-		vec_push(&main.scene.lights, &main.light);
-
-
-
-		// main.light.pos = point_new(10, 0, 0);
-		// t_object o;
-
-		// o = object_new(SPHERE);
-		// o.id = 0;
-		// vec_push(&main.scene.objects, &o);
-		// o = object_new(SPHERE);
-		// o.id = 1;
-		// vec_push(&main.scene.objects, &o);
-		// o = object_new(SPHERE);
-		// o.id = 2;
-		// vec_push(&main.scene.objects, &o);
-		// o = object_new(SPHERE);
-		// o.id = 3;
-		// vec_push(&main.scene.objects, &o);
-		// o = object_new(SPHERE);
-		// o.id = 4;
-		// vec_push(&main.scene.objects, &o);
-		// o = object_new(SPHERE);
-		// o.id = 5;
-		// vec_push(&main.scene.objects, &o);
-		// o = object_new(SPHERE);
-		// o.id = 6;
-		// vec_push(&main.scene.objects, &o);
-
-
-		main.obj[0] = object_new(SPHERE);
-		main.obj[0].transform = matrix_translate(0.0, 0.0, 15.0);
-												x_r = 0.0;
-												y_r = 0.0;
-												z_r = 0.0;
-		rotate = matrix_rotate_x(x_r);
-		main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
-		rotate = matrix_rotate_y(y_r);
-		main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
-		rotate = matrix_rotate_z(z_r);
-		main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &rotate);
-		scale = matrix_scale(5,5,5);
-		main.obj[0].transform = matrix_multiply(&main.obj[0].transform, &scale);
-		main.obj[0].inverse_transform = matrix_inverse(&main.obj[0].transform);
-		main.obj[0].material.color = color_new(1,1,1);
-		main.obj[0].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
-		main.obj[0].material.pattern.pattern_id = STRIPED;
-		main.obj[0].material.pattern.pattern_perlin = TRUE;
-		main.obj[0].negative = FALSE;
-		main.obj[0].id = 0;
-
-		main.obj[1] = object_new(SPHERE);
-		main.obj[1].transform = matrix_translate(2.0, 2.0, 15.0);
-												x_r = M_PI_2;
-												y_r = 0.0;
-												z_r = 0.0;
-
-		rotate = matrix_rotate_x(x_r);
-		main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &rotate);
-		rotate = matrix_rotate_y(y_r);
-		main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &rotate);
-		rotate = matrix_rotate_z(z_r);
-		main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &rotate);
-		scale = matrix_scale(4,4,4);
-		main.obj[1].transform = matrix_multiply(&main.obj[1].transform, &scale);
-		main.obj[1].inverse_transform = matrix_inverse(&main.obj[1].transform);
-		main.obj[1].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
-		main.obj[1].material.color = color_new(1.0, 1.0, 1.0);
-		main.obj[1].material.pattern.pattern_id = NONE;
-		main.obj[1].material.pattern.pattern_perlin = TRUE;
-		main.obj[1].negative = TRUE;
-		main.obj[1].id = 1;
-
-		main.obj[2] = object_new(SPHERE);
-		main.obj[2].transform = matrix_translate(2.0, -2.0, 15.0);
-												x_r = -M_PI_2;
-												y_r = 0.0;
-												z_r = 0.0;
-
-		rotate = matrix_rotate_x(x_r);
-		main.obj[2].transform = matrix_multiply(&main.obj[2].transform, &rotate);
-		rotate = matrix_rotate_y(y_r);
-		main.obj[2].transform = matrix_multiply(&main.obj[2].transform, &rotate);
-		rotate = matrix_rotate_z(z_r);
-		main.obj[2].transform = matrix_multiply(&main.obj[2].transform, &rotate);
-		scale = matrix_scale(4,4,4);
-		main.obj[2].transform = matrix_multiply(&main.obj[2].transform, &scale);
-		main.obj[2].inverse_transform = matrix_inverse(&main.obj[2].transform);
-		main.obj[2].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
-		main.obj[2].material.color = color_new(1.0, 0.5, 1.0);
-		main.obj[2].material.pattern.pattern_id = NONE;
-		main.obj[2].material.pattern.pattern_perlin = TRUE;
-		main.obj[2].negative = TRUE;
-		main.obj[2].id = 2;
-
-
-		main.obj[3] = object_new(SPHERE);
-		main.obj[3].transform = matrix_translate(-2.0, 2.0, 15.0);
-												x_r = 0.0;
-												y_r = 0.0;
-												z_r = 0.0;
-
-		rotate = matrix_rotate_x(x_r);
-		main.obj[3].transform = matrix_multiply(&main.obj[3].transform, &rotate);
-		rotate = matrix_rotate_y(y_r);
-		main.obj[3].transform = matrix_multiply(&main.obj[3].transform, &rotate);
-		rotate = matrix_rotate_z(z_r);
-		main.obj[3].transform = matrix_multiply(&main.obj[3].transform, &rotate);
-		scale = matrix_scale(4,4,4);
-		main.obj[3].transform = matrix_multiply(&main.obj[3].transform, &scale);
-		main.obj[3].inverse_transform = matrix_inverse(&main.obj[3].transform);
-		main.obj[3].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
-		main.obj[3].material.color = color_new(1, 0.5,0);
-		main.obj[3].material.pattern.pattern_id = NONE;
-		main.obj[3].material.pattern.pattern_perlin = FALSE;
-		main.obj[3].negative = TRUE;
-		main.obj[3].id = 3;
-
-		main.obj[4] = object_new(SPHERE);
-		main.obj[4].transform = matrix_translate(-2.0, -2.0, 15.0);
-												x_r = 0.0;
-												y_r = 0.0;
-												z_r = 0.0;
-
-		rotate = matrix_rotate_x(x_r);
-		main.obj[4].transform = matrix_multiply(&main.obj[4].transform, &rotate);
-		rotate = matrix_rotate_y(y_r);
-		main.obj[4].transform = matrix_multiply(&main.obj[4].transform, &rotate);
-		rotate = matrix_rotate_z(z_r);
-		main.obj[4].transform = matrix_multiply(&main.obj[4].transform, &rotate);
-		scale = matrix_scale(4,4,4);
-		main.obj[4].transform = matrix_multiply(&main.obj[4].transform, &scale);
-		main.obj[4].inverse_transform = matrix_inverse(&main.obj[4].transform);
-		main.obj[4].motion = motion_new(FALSE, 1.0, tuple_unit(vector_new(1,0,0)));
-		main.obj[4].material.color = color_new(1, 0.5,0);
-		main.obj[4].material.pattern.pattern_id = NONE;
-		main.obj[4].material.pattern.pattern_perlin = FALSE;
-		main.obj[4].negative = TRUE;
-		main.obj[4].id = 4;
-
-		main.obj[5] = object_new(SPHERE);
-		main.obj[5].transform = matrix_translate(0.0, 0.0, 10.0);
-												x_r = 0.0;
-												y_r = 0.0;
-												z_r = 0.0;
-
-		rotate = matrix_rotate_x(x_r);
-		main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &rotate);
-		rotate = matrix_rotate_y(y_r);
-		main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &rotate);
-		rotate = matrix_rotate_z(z_r);
-		main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &rotate);
-		scale = matrix_scale(5,5,5);
-		main.obj[5].transform = matrix_multiply(&main.obj[5].transform, &scale);
-		main.obj[5].inverse_transform = matrix_inverse(&main.obj[5].transform);
-		main.obj[5].motion = motion_new(FALSE, 1.0, vector_new(1,0,0));
-		main.obj[5].material.color = color_new(1, 1, 1);
-		main.obj[5].material.pattern.pattern_id = GRID;
-		main.obj[5].material.pattern.pattern_perlin = TRUE;
-		main.obj[5].negative = TRUE;
-		main.obj[5].id = 5;
-
-		vec_push(&main.scene.objects, &main.obj[0]);
-		vec_push(&main.scene.objects, &main.obj[1]);
-		vec_push(&main.scene.objects, &main.obj[2]);
-		vec_push(&main.scene.objects, &main.obj[3]);
-		vec_push(&main.scene.objects, &main.obj[4]);
-		vec_push(&main.scene.objects, &main.obj[5]);
-
-		initialize_camera(&main.scene.cam, main.scene.cam.transform);
+	{
+			ft_putendl_fd("Usage: <input>.xml", 2);
+			return (1);
 	}
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -348,11 +134,8 @@ int	main(int ac, char **av)
 	if (initialize_window(&main) == 0)
 		return (1);
 		//FREE BUFFERS!!!!!!
+	int draw_debug = 2;
 
-	
-	int draw_debug = 1;
-
-	load_perlin_data(&main.scene.perlin);
 
 	if (draw_debug == 1)
 	{
@@ -362,14 +145,13 @@ int	main(int ac, char **av)
 		main.ant_al = A_A_DIV;
 		draw_frame(&main);
 		if (main.sdl.stereocopy == TRUE)
-			create_stereoscope(&main, cam_scale, main.scene.cam.transform);
+			create_stereoscope(&main, main.scene.cam.transform);
 		else
 			create_motion_blur(&main);
 	}
 	if (draw_debug == 2)
 	{
 		render_image_debug(&main, 0, 1);
-
 	}
 /* 	tests(&main, draw_debug); */
 	rt_loop_and_exit(&main.sdl);
