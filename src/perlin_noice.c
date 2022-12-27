@@ -12,6 +12,17 @@
 
 #include "../include/rt.h"
 
+void	free_mallocs(char *line, char **values)
+{
+	int	i;
+
+	i = 0;
+	while (values[i])
+		free(values[i++]);
+	free(values);
+	free(line);
+}
+
 void	load_perlin_data(t_perlin *perlin)
 {
 	int			fd;
@@ -37,11 +48,7 @@ void	load_perlin_data(t_perlin *perlin)
 		perlin->p[256 + i] = fd;
 		i++;
 	}
-	i = 0;
-	while (values[i])
-		free(values[i++]);
-	free(values);
-	free(line);
+	free_mallocs(line, values);
 }
 
 double	calculate_return(t_tuple p, t_perlin *perlin)
