@@ -79,11 +79,10 @@ int	prepare_camera(t_xml_nodelist *list, t_cam *cam)
 	cam->transform = matrix_multiply(&cam->transform, &scale);
 	cam->motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1, 0, 0)));
 	cam->coi_motion = motion_new(FALSE, 5.0, tuple_unit(vector_new(1, 0, 0)));
+	initialize_camera(cam, cam->transform);
 	return (TRUE);
 }
 
-/*TODO needs improvement, 
-the type while loop could overwrite itself, needs error check*/
 int	prepare_lights(t_xml_nodelist *list, t_vec *lights)
 {
 	int			index;
