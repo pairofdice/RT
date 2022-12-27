@@ -12,29 +12,29 @@
 
 #include "yaxml.h"
 
-int	xml_get_data(t_xml_node *current_node, char *buf, char lex[256])
+int	xml_get_data(t_xml_node *current_node, t_buffers *buf)
 {
 	if (!current_node)
 		return (xml_error_free(buf, "Text outside document"));
 	if (!current_node->data)
-		current_node->data = ft_strdup(lex);
+		current_node->data = ft_strdup(buf->lex);
 	return (TRUE);
 }
 
-int	xml_node_end(char *buf, char lex[256], int index[2], \
+int	xml_node_end(t_buffers *buf, int index[2], \
 t_xml_node **current_node)
 {
 	index[0] += 2;
-	while (buf[index[0]] != '>')
-		lex[index[1]++] = buf[index[0]++];
-	lex[index[1]] = '\0';
+	while (buf->mem[index[0]] != '>')
+		buf->lex[index[1]++] = buf->mem[index[0]++];
+	buf->lex[index[1]] = '\0';
 	if (!*current_node)
 		return (xml_error_free(buf, "Already at head"));
-	if (ft_strcmp((*current_node)->tag, lex))
+	if (ft_strcmp((*current_node)->tag, buf->lex))
 	{
 		ft_putstr_fd((*current_node)->tag, 2);
 		ft_putstr_fd(" != ", 2);
-		ft_putendl_fd(lex, 2);
+		ft_putendl_fd(buf->lex, 2);
 		return (xml_error_free(buf, "Mismatched tags"));
 	}
 	*current_node = (*current_node)->parent;
@@ -43,77 +43,75 @@ t_xml_node **current_node)
 	return (TRUE);
 }
 
-int	xml_init_doc(t_xml_doc *doc, t_buffer *buffer, t_xml_node **current_node)
+int	xml_init(t_xml_doc *doc, t_buffers *buffer, t_xml_node **current_node, \
+int index[2])
 {
 	doc->head = xml_node_new(NULL);
 	if (doc->head == NULL)
 	{
 		xml_doc_free(doc);
-		free(buffer->mem);
+		free(&buffer->mem);
 		return (FALSE);
 	}
 	*current_node = doc->head;
+	buffer->lex[0] = 0;
+	index[0] = 0;
+	index[1] = 0;
+	return (TRUE);
+}
+
+int	xml_get_content(t_buffers *buf, int index[2], \
+t_xml_node **current_node, t_xml_doc *doc)
+{
+	buf->lex[index[1]] = '\0';
+	if (index[1] > 0)
+	{
+		if (!xml_get_data(*current_node, buf))
+			return (FALSE);
+		index[1] = 0;
+	}
+	if (buf->mem[index[0] + 1] == '/')
+	{
+		if (!xml_node_end(buf, index, current_node))
+			return (FALSE);
+		return (TRUE);
+	}
+	if (buf->mem[index[0] + 1] == '!' && xml_comment(buf, &index[0]))
+		return (TRUE);
+	if (buf->mem[index[0] + 1] == '?' && xml_declaration(buf, index, doc))
+		return (TRUE);
+	*current_node = xml_node_new(*current_node);
+	if (xml_start_tag(buf, index, current_node))
+		return (TRUE);
+	index[1] = 0;
+	index[0]++;
 	return (TRUE);
 }
 
 int	xml_doc_load(t_xml_doc *doc, const char *path)
 {
-	t_buffer	buffer;
-	char		*buf;
-	char		lex[1024];
+	t_buffers	buf;
 	int			index[2];
-	t_xml_node	*current_node;
+	t_xml_node	*curr_node;
 
-	index[0] = 0;
-	index[1] = 1;
-	lex[0] = 0;
-	if (!xml_read_file(&buffer, path))
+	if (!xml_read_file(&buf, path) || !xml_init(doc, &buf, &curr_node, index))
 		return (FALSE);
-	if (!xml_init_doc(doc, &buffer, &current_node))
-		return (FALSE);
-	buf = buffer.mem;
-	while (buf[index[0]] != '\0')
+	while (buf.mem[index[0]] != '\0')
 	{
-		if (buf[index[0]] == '<')
+		if (buf.mem[index[0]] == '<')
 		{
-			lex[index[1]] = '\0';
-			if (index[1] > 0)
-			{
-				if (!xml_get_data(current_node, buf, lex))
-					return (FALSE);
-				index[1] = 0;
-			}
-			if (buf[index[0] + 1] == '/')
-			{
-				if (!xml_node_end(buf, lex, index, &current_node))
-					return (FALSE);
-				continue ;
-			}
-			if (buf[index[0] + 1] == '!')
-			{
-				if (xml_comment(buf, &index[0]))
-					continue ;
-			}
-			if (buf[index[0] + 1] == '?')
-			{
-				if (xml_declaration(buf, index, doc))
-					continue ;
-			}
-			current_node = xml_node_new(current_node);
-			if (xml_start_tag(buf, index, lex, &current_node))
-				continue ;
-			index[1] = 0;
-			index[0]++;
+			if (!xml_get_content(&buf, index, &curr_node, doc))
+				return (FALSE);
 			continue ;
 		}
 		else
 		{
-			lex[index[1]++] = buf[index[0]++];
-			if (lex[index[1] - 1] == '\n' || lex[index[1] - 1] == '\t')
+			buf.lex[index[1]++] = buf.mem[index[0]++];
+			if (buf.lex[index[1] - 1] == '\n' || buf.lex[index[1] - 1] == '\t')
 				index[1]--;
 		}
 	}
-	if (buf != NULL)
-		free(buf);
+	if (buf.mem != NULL)
+		free(buf.mem);
 	return (TRUE);
 }

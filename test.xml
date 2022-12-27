@@ -1,8 +1,13 @@
 <camera>
-	<pos> 0.0 0.0 -10.0 </pos>
+	<pos> 10.0 0.0 -10.0 </pos>
+	<coi> 0.0 0.0 15.0 </coi>
 </camera>
 <light type="point">
-	<pos> 0.0 2.5 -10.0 </pos>
+	<pos> 0.0 2.5 -100.0 </pos>
+	<color> 1.0 1.0 1.0 </color>
+</light>
+<light type="point">
+	<pos> 50.0 2.5 -20.0 </pos>
 	<color> 1.0 1.0 1.0 </color>
 </light>
 <object type="sphere">

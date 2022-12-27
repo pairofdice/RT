@@ -42,11 +42,7 @@ $(OBJ_DIR):
 $(LIBFT):
 	@make -C libft/
 
-test: test_files/test.c $(OBJECTS) $(LIBFT)
-	$(CC) -o $@ -g $(INCLUDE) $^
-
 clean:
-	@rm -f test
 	@rm -rf $(OBJ_DIR)
 	@make -C libft/ clean
 

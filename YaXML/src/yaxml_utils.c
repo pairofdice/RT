@@ -32,22 +32,22 @@ void	*xml_resize_memory(void *ptr, size_t size, size_t old_size)
 	return (new);
 }
 
-int	xml_comment(const char *buf, int *index)
+int	xml_comment(t_buffers*buf, int *index)
 {
 	int	temp;
 
 	temp = *index;
-	if (buf[temp + 2] == '\0' || buf[temp + 3] == '\0' || \
-		buf[temp + 2] != '-' || buf[temp + 3] != '-')
+	if (buf->mem[temp + 2] == '\0' || buf->mem[temp + 3] == '\0' || \
+		buf->mem[temp + 2] != '-' || buf->mem[temp + 3] != '-')
 		return (FALSE);
-	while (buf[temp] != '\0')
+	while (buf->mem[temp] != '\0')
 	{
-		while (buf[temp] != '\0' && buf[temp] != '>')
+		while (buf->mem[temp] != '\0' && buf->mem[temp] != '>')
 			(temp)++;
-		if (buf[temp] == '\0')
+		if (buf->mem[temp] == '\0')
 			return (FALSE);
-		else if (buf[temp] == '>' && buf[temp - 1] == '-' && \
-		buf[temp - 2] == '-')
+		else if (buf->mem[temp] == '>' && buf->mem[temp - 1] == '-' && \
+		buf->mem[temp - 2] == '-')
 		{
 			*index = ++temp;
 			return (TRUE);
@@ -58,20 +58,19 @@ int	xml_comment(const char *buf, int *index)
 	return (FALSE);
 }
 
-int	xml_declaration(const char *buf, int *index, t_xml_doc *doc)
+int	xml_declaration(t_buffers *buf, int *index, t_xml_doc *doc)
 {
 	t_xml_node	*desc;
-	char		lex[1024];
 
-	while (buf[index[0]] != '\0' && buf[index[0]] != ' ' && \
-	buf[index[0]] != '>')
-		lex[index[1]++] = buf[index[0]++];
-	lex[index[1]] = '\0';
-	if (!ft_strcmp(lex, "<?xml"))
+	while (buf->mem[index[0]] != '\0' && buf->mem[index[0]] != ' ' && \
+	buf->mem[index[0]] != '>')
+		buf->lex[index[1]++] = buf->mem[index[0]++];
+	buf->lex[index[1]] = '\0';
+	if (!ft_strcmp(buf->lex, "<?xml"))
 	{
 		index[1] = 0;
 		desc = xml_node_new(NULL);
-		xml_parse_attr(buf, index, lex, desc);
+		xml_parse_attr(buf, index, desc);
 		doc->version = ft_strdup(\
 		xml_node_attr_value(desc, "version"));
 		doc->encoding = ft_strdup(\
@@ -84,18 +83,18 @@ int	xml_declaration(const char *buf, int *index, t_xml_doc *doc)
 	return (FALSE);
 }
 
-int	xml_start_tag(const char *buf, int index[2], char *lex, t_xml_node **node)
+int	xml_start_tag(t_buffers *buf, int index[2], t_xml_node **node)
 {
 	index[0]++;
-	if (xml_parse_attr(buf, index, lex, *node) == TAG_INLINE)
+	if (xml_parse_attr(buf, index, *node) == TAG_INLINE)
 	{
 		index[1] = 0;
 		*node = (*node)->parent;
 		index[0]++;
 		return (TRUE);
 	}
-	lex[index[1]] = '\0';
+	buf->lex[index[1]] = '\0';
 	if (!(*node)->tag)
-		(*node)->tag = ft_strdup(lex);
+		(*node)->tag = ft_strdup(buf->lex);
 	return (FALSE);
 }
