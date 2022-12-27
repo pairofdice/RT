@@ -6,6 +6,7 @@
 	<pos> 0.0 2.5 -100.0 </pos>
 	<color> 1.0 1.0 1.0 </color>
 </light>
+
 <light type="point">
 	<pos> 50.0 2.5 -20.0 </pos>
 	<color> 1.0 1.0 1.0 </color>
@@ -18,7 +19,7 @@
 </object>
 <object type="cone">
 	<loc> 5.0 2.0 10.0 </loc>
-	<rot> 0.0 0.0 0.0 </rot>
+	<rot> 0.0 0.0 30 </rot>
 	<material pattern="none" perlin="false"> 1.0 0.5 0.0 </material>
 	<scale> 0.5 1.0 1.0 </scale>
 </object>

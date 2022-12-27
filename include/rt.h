@@ -151,7 +151,7 @@ void				fix_aliasing_color(t_main *main, int sub_pixel_count);
 int					check_shadow(t_main *main, t_ray *ray);
 void				creat_filters(t_frame_buffer *fb, int filter_type);
 void				create_sepia(t_frame_buffer *fb);
-void				create_stereoscope(t_main *main, t_matrix cam_scale, t_matrix cam_transform);
+void				create_stereoscope(t_main *main, t_matrix cam_transform);
 
 
 int					rgb_to_white(t_color *rgb);
