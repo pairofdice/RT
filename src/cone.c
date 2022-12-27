@@ -41,11 +41,9 @@ int	intersect_cone(t_ray *inc_ray, t_object *s)
 	t_abcd		abcd;
 	double		t1;
 	double		t2;
-//	t_matrix	s->inverse_transform;
 	t_ray		ray;
 
 	ray = ray_new_no_malloc(inc_ray->orig, inc_ray->dir);
-//	s->inverse_transform = matrix_inverse(&s->transform);
 	ray = ray_transform(inc_ray, &s->inverse_transform);
 	abcd.a = calc_a(ray);
 	abcd.b = calc_b(ray);

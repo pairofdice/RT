@@ -15,11 +15,9 @@
 int	intersect_plane(t_ray *inc_ray, t_object *s)
 {
 	double			t;
-//	t_matrix		s->inverse_transform;
 	t_ray			ray;
 
 	ray = ray_new_no_malloc(inc_ray->orig, inc_ray->dir);
-//	s->inverse_transform = matrix_inverse(&s->transform);
 	ray = ray_transform(inc_ray, &s->inverse_transform);
 	if (fabs(ray.dir.s_xyzw.y) < EPSILON)
 		return (0);
