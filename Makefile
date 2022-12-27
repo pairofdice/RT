@@ -26,6 +26,7 @@ YAXML_LIBRARY = YaXML/yaxml.a
 SRC_FILES = $(addprefix $(SRC_DIR), main.c \
 								input_light_and_camera.c\
 								input_object.c\
+								input_object_utils.c\
 								input_prepare.c\
 								input_utils.c\
 								initialize.c\
