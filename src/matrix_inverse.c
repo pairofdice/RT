@@ -20,7 +20,6 @@ t_matrix	matrix_inverse(t_matrix *m)
 	double		det;
 
 	det = matrix_determinant(m);
-	// if det == 0, ABORT!!!
 	result = matrix_new(m->size);
 	coords.row = 0;
 	while (coords.row < m->size)
