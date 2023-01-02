@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/19 13:50:35 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:22:21 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,8 @@
 
 //Copys 1d arrey to texture and draws it.
 
-void	draw_filter(t_sdl *sdl, int *filter_type, int i)
+void	draw_filter(t_sdl *sdl, int *filter_type)
 {
-	if (i == 1)
-	{
-		if (sdl->event.key.keysym.sym == SDLK_DOWN && *filter_type > 0)
-			*filter_type -= 1;
-		else if (sdl->event.key.keysym.sym == SDLK_DOWN)
-			*filter_type = EDGE;
-		else if (sdl->event.key.keysym.sym == SDLK_UP && *filter_type < 6)
-			*filter_type += 1;
-		else if (sdl->event.key.keysym.sym == SDLK_UP)
-			*filter_type = STEREOSCOPY;
-	}
 	if (*filter_type == STEREOSCOPY)
 	{
 		if (sdl->stereocopy == TRUE)
@@ -46,20 +35,23 @@ void	draw_filter(t_sdl *sdl, int *filter_type, int i)
 	}
 }
 
-static void	free_buffers_and_sdl(t_sdl *sdl)
+static void	free_all(t_main *main)
 {
-	SDL_DestroyTexture(sdl->texture);
-	SDL_DestroyWindow(sdl->win);
-	SDL_DestroyRenderer(sdl->ren);
-	free(sdl->frame_buffer.data);
-	free(sdl->frame_buffer.filter);
-	free(sdl->frame_buffer.mask);
-	free(sdl->frame_buffer.motion_calc);
+	SDL_DestroyTexture(main->sdl.texture);
+	SDL_DestroyWindow(main->sdl.win);
+	SDL_DestroyRenderer(main->sdl.ren);
+	free(main->sdl.frame_buffer.data);
+	free(main->sdl.frame_buffer.filter);
+	free(main->sdl.frame_buffer.mask);
+	free(main->sdl.frame_buffer.motion_calc);
+	vec_free(&main->scene.objects);
+	vec_free(&main->scene.lights);
+	free(main->sdl.frame_buffer.stereocopy);
 }
 
 // Infinite loop to handle the window.
 
-void	rt_loop_and_exit(t_sdl *sdl)
+void	rt_loop_and_exit(t_sdl *sdl, t_main *main)
 {
 	int	quit;
 	int	filter_type;
@@ -70,14 +62,10 @@ void	rt_loop_and_exit(t_sdl *sdl)
 	{
 		if (SDL_PollEvent(&sdl->event) != 0)
 			key_hooks(sdl, &quit, &filter_type);
-		draw_filter(sdl, &filter_type, 0);
+		draw_filter(sdl, &filter_type);
 	}
-	free_buffers_and_sdl(sdl);
+	free_all(main);
 }
-
-void	tests(t_main *main, int draw_debug); // unit tests
-int	anti_aliasing(t_main *main, int pixel_x, int pixel_y, int ant_a);
-
 
 void	render_image_debug(t_main *main, int task, int ant_al)
 {
@@ -95,7 +83,7 @@ void	render_image_debug(t_main *main, int task, int ant_al)
 		{
 			copy.ray.hit.color = color_new(0, 0, 0);
 			while (ant_al != 1 && x < WIN_W && \
-			main->sdl.frame_buffer.mask[((y	* WIN_W) + x)] == 0)
+			main->sdl.frame_buffer.mask[((y * WIN_W) + x)] == 0)
 				x++;
 			if (x == WIN_W)
 				break ;
@@ -110,54 +98,25 @@ int	main(int ac, char **av)
 {
 	t_main		main;
 	t_xml_doc	doc;
-	
+
 	main.sdl.stereocopy = FALSE;
 	main.ant_al = 0;
 	if (ac == 2)
 	{
-		if (!xml_doc_load(&doc, av[1]))
-		{
-			ft_putendl_fd("ERROR: Couldn't read file!", 2);
+		if (read_file(&main, &doc, av[1]) == 1)
 			return (1);
-		}
-		read_xml(&doc, &main);
-		xml_doc_free(&doc);
 	}
 	else
 	{
-			ft_putendl_fd("Usage: <input>.xml", 2);
-			return (1);
+		ft_putendl_fd("Usage: <input>.xml", 2);
+		return (1);
 	}
-
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		return (1);
 	if (initialize_window(&main) == 0)
 		return (1);
-		//FREE BUFFERS!!!!!!
-	int draw_debug = 1;
-
-
-	if (draw_debug == 1)
-	{
-		create_threads(&main, 1);
-		draw_frame(&main);
-		edge_detection(&main.sdl.frame_buffer);
-		main.ant_al = A_A_DIV;
-		draw_frame(&main);
-		if (main.sdl.stereocopy == TRUE)
-			create_stereoscope(&main, main.scene.cam.transform);
-		else
-			create_motion_blur(&main);
-	}
-	if (draw_debug == 2)
-	{
-		render_image_debug(&main, 0, 1);
-	}
-/* 	tests(&main, draw_debug); */
-	rt_loop_and_exit(&main.sdl);
-	vec_free(&main.scene.objects);
-	vec_free(&main.scene.lights);
-	free(main.sdl.frame_buffer.stereocopy);
+	create_frame(&main);
+	rt_loop_and_exit(&main.sdl, &main);
 	SDL_Quit();
 	return (0);
 }

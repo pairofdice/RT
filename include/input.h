@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakinen <mmakinen@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:33:14 by mmakinen          #+#    #+#             */
-/*   Updated: 2022/12/13 13:33:22 by mmakinen         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:16:58 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "yaxml.h"
 # include <math.h>
 
+int			read_file(t_main *main, t_xml_doc *doc, char *file);
 /*Open xml file for input*/
 int			read_xml(t_xml_doc *doc, t_main *main);
 

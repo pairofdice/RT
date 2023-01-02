@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:44:40 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:22:02 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,11 @@ typedef struct s_anti_aliasing
 	t_color		color;
 }				t_anti_aliasing;
 
+
 int					initialize_window(t_main *main);
+
 void				initialize_camera(t_cam *cam, t_matrix transform);
+void				create_frame(t_main *main);
 t_matrix			coi_transform(t_cam *cam, t_matrix transform);
 void				initialize_ray(t_ray *ray, double x, double y, t_cam *cam);
 void				render_image(t_main *main, int task, int ant_al);
@@ -156,6 +159,11 @@ void				create_stereoscope(t_main *main, t_matrix cam_transform);
 
 int					rgb_to_white(t_color *rgb);
 void				int_to_rgb(int color, t_color *rgb);
+int					anti_aliasing(
+								t_main *main,
+								int pixel_x,
+								int pixel_y,
+								int ant_a);
 void				edge_detection(t_frame_buffer *fb);
 
 int					draw_frame(t_main *main);
@@ -164,7 +172,7 @@ void				worker_task(int *task_n, t_main *ctx);
 void				worker_broadcast(t_main *ctx);
 
 void				draw_to_window(t_sdl *sdl, int *filter);
-void				draw_filter(t_sdl *sdl, int *filter_type, int i);
+void				draw_filter(t_sdl *sdl, int *filter_type);
 void				key_hooks(t_sdl *sdl, int *quit, int *filter_type);
 void				creat_screen_shot(int *image);
 char				*create_screen_shot_name(char *image_name, int image_nbr);

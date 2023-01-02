@@ -6,11 +6,24 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 13:38:00 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/12 12:53:45 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:22:50 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
+
+void	get_correct_fb(t_sdl *sdl, int *filter_type)
+{
+	if (sdl->event.key.keysym.sym == SDLK_DOWN && *filter_type > 0)
+		*filter_type -= 1;
+	else if (sdl->event.key.keysym.sym == SDLK_DOWN)
+		*filter_type = EDGE;
+	else if (sdl->event.key.keysym.sym == SDLK_UP && *filter_type < 6)
+		*filter_type += 1;
+	else if (sdl->event.key.keysym.sym == SDLK_UP)
+		*filter_type = STEREOSCOPY;
+	draw_filter(sdl, filter_type);
+}
 
 void	draw_to_window(t_sdl *sdl, int *filter)
 {
@@ -45,7 +58,7 @@ void	key_hooks(t_sdl *sdl, int *quit, int *filter_type)
 			*quit = 1;
 		if (sdl->event.key.keysym.sym == SDLK_DOWN
 			|| sdl->event.key.keysym.sym == SDLK_UP)
-			draw_filter(sdl, filter_type, 1);
+			get_correct_fb(sdl, filter_type);
 		if (sdl->event.key.keysym.sym == SDLK_p)
 		{
 			creat_screen_shot(get_correct_buffer(sdl, filter_type));

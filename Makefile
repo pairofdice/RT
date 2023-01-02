@@ -6,7 +6,7 @@
 #    By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 15:53:52 by jjuntune          #+#    #+#              #
-#    Updated: 2022/12/16 16:50:57 by jjuntune         ###   ########.fr        #
+#    Updated: 2023/01/02 16:14:47 by jjuntune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,7 +116,9 @@ SRC_FILES = $(addprefix $(SRC_DIR), main.c \
 								motion_blur.c\
 								is_shadowed.c\
 								reflected_color.c\
-								color_at.c)
+								color_at.c\
+								create_frame.c\
+								parser.c)
 
 OBJCT_FILES = $(subst $(SRC_DIR), $(BUILD_DIR), $(SRC_FILES:.c=.o))
 
