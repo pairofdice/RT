@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:43:31 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:36:47 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/02 15:17:33 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	motion_set_all(t_main *main)
 	{
 		obj = (t_object *)vec_get(&main->scene.objects, i);
 		if (obj->motion.on_off == TRUE
-			&& obj->motion.speed_iteration < main->obj->motion.speed)
+			&& obj->motion.speed_iteration < obj->motion.speed)
 		{
-				obj->transform = motion_move(obj->transform,
+			obj->inverse_transform = motion_move(obj->inverse_transform,
 					&obj->motion);
 			motions_done++;
 		}

@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:53:25 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/07 10:54:04 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/02 15:32:02 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
 # include "tuple.h"
 # include "matrix.h"
 
+# define MAX_SPEED 5
+
 typedef struct s_motion_blur
 {
-	int		on_off; // True / False
-	double	speed; // distance for the motionblur +0.1 to dir while speed_iteration < speed
-	double	speed_iteration;
-	t_tuple	dir; // direction of the movement. normalised ( tuple_unit(...) ).
-}			t_motion_blur;
+	int			on_off; // True / False
+	double		speed; // distance for the motionblur +0.1 to dir while speed_iteration < speed
+	double		speed_iteration;
+	t_tuple		dir; // direction of the movement. normalised ( tuple_unit(...) ).
+	t_matrix	transform;
+}				t_motion_blur;
 
 
 
