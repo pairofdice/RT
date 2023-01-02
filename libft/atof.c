@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:03:32 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/09/22 19:20:06 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/02 15:29:27 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ double	ft_atof(char *line_arg_r)
 		if ((double)line_arg_r[++i] >= '0' && (double)line_arg_r[i] <= '9')
 			r *= 10.0;
 	}
-	if (line_arg_r[i++] == ',')
+	if (line_arg_r[i++] == '.')
 		while (line_arg_r[i] >= '0' && line_arg_r[i] <= '9')
 			r += ((double)line_arg_r[i++] - '0') / get_desimal_div(count++);
 	return (r * (double)negative);
