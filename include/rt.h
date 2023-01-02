@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/02 16:22:02 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:22:48 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # include "motion.h"
 # include <stdio.h>
 
-# define WIN_W 500
-# define WIN_H 350
+# define WIN_W 750
+# define WIN_H 617
 # define MAX_DISTANCE 9999
 # define A_A_DIV 6
 # define EPSILON 0.00006103515625
