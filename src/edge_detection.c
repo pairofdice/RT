@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:02:06 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/02 17:20:43 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:37:59 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@ double	test_pixel(int *image, int i, int j)
 {
 	double	pixel;
 	double	compare;
+	int		count;
 
+	count = 0;
 	pixel = ((((image[(j * WIN_W) + i]) >> 24 & 255) / 255.0));
-	pixel *= 8;
-	compare = (((image[(j * WIN_W) + (i - 1)]) >> 24 & 255) / 255.0);
-	compare += (((image[(j * WIN_W) + (i + 1)]) >> 24 & 255) / 255.0);
-	compare += (((image[((j - 1) * WIN_W) + (i - 1)]) >> 24 & 255) / 255.0);
-	compare += (((image[((j - 1) * WIN_W) + (i + 1)]) >> 24 & 255) / 255.0);
-	compare += (((image[((j + 1) * WIN_W) + (i - 1)]) >> 24 & 255) / 255.0);
-	compare += (((image[((j + 1) * WIN_W) + (i + 1)]) >> 24 & 255) / 255.0);
-	compare += (((image[((j - 1) * WIN_W) + i]) >> 24 & 255) / 255.0);
-	compare += (((image[((j + 1) * WIN_W) + i]) >> 24 & 255) / 255.0);
+	compare = edge_detection_check(i - 1, j, &count, image);
+	compare += edge_detection_check(i + 1, j, &count, image);
+	compare += edge_detection_check(i - 1, j + 1, &count, image);
+	compare += edge_detection_check(i, j + 1, &count, image);
+	compare += edge_detection_check(i + 1, j + 1, &count, image);
+	compare += edge_detection_check(i - 1, j - 1, &count, image);
+	compare += edge_detection_check(i, j - 1, &count, image);
+	compare += edge_detection_check(i + 1, j - 1, &count, image);
+	pixel *= count;
 	pixel -= compare;
 	return (pixel);
 }
@@ -63,12 +65,9 @@ static void	great_mask(t_frame_buffer *fb)
 		while (i < WIN_W)
 		{
 			fb->mask[(j * WIN_W) + i] = 0;
-			if (j != 0 && j < WIN_H - 1 && i != 0 && i < WIN_W - 1)
-			{
-				color = test_pixel(fb->filter, i, j);
-				if (color > scale || color < -scale)
-					fb->mask[(j * WIN_W) + i] = 1;
-			}
+			color = test_pixel(fb->filter, i, j);
+			if (color > scale || color < -scale)
+				fb->mask[(j * WIN_W) + i] = 1;
 			i++;
 		}
 		j++;

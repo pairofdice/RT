@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/02 17:22:48 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:36:22 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,11 @@ int					anti_aliasing(
 								int pixel_y,
 								int ant_a);
 void				edge_detection(t_frame_buffer *fb);
+double				edge_detection_check(
+										int x,
+										int y,
+										int *count,
+										int *image);
 
 int					draw_frame(t_main *main);
 void				worker_wait(t_main *ctx);
