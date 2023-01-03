@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:58:50 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/02 17:11:23 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:07:39 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	worker_task(int *task_n, t_main *ctx)
 	*task_n = ctx->multi.tasks_taken;
 	ctx->multi.tasks_taken++;
 	pthread_mutex_unlock(&ctx->multi.tasks_taken_mutex);
-	render_image(ctx, *task_n, ctx->ant_al);
+	render_image(ctx, *task_n, ctx->settings.ant_al);
 	pthread_mutex_lock(&ctx->multi.tasks_done_mutex);
 	ctx->multi.tasks_done++;
 }

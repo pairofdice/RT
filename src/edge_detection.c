@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:02:06 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/03 12:37:59 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:18:27 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ double	test_pixel(int *image, int i, int j)
 	return (pixel);
 }
 
-static void	great_mask(t_frame_buffer *fb)
+static void	great_mask(t_frame_buffer *fb, t_settings s)
 {
 	int		i;
 	int		j;
 	double	color;
 	double	scale;
 
-	scale = 0.02;
+	scale = s.edge_detection_presission;
 	j = 0;
 	while (j < WIN_H)
 	{
@@ -74,7 +74,7 @@ static void	great_mask(t_frame_buffer *fb)
 	}
 }
 
-void	edge_detection(t_frame_buffer *fb)
+void	edge_detection(t_frame_buffer *fb, t_settings s)
 {
 	t_color	rgb;
 	int		color;
@@ -93,5 +93,5 @@ void	edge_detection(t_frame_buffer *fb)
 		}
 		j++;
 	}
-	great_mask(fb);
+	great_mask(fb, s);
 }

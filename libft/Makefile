@@ -6,7 +6,7 @@
 #    By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 13:01:51 by jjuntune          #+#    #+#              #
-#    Updated: 2022/12/16 16:50:50 by jjuntune         ###   ########.fr        #
+#    Updated: 2023/01/03 12:48:48 by jjuntune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ $(NAME): $(OFILES)
 	ar -rc $(NAME) $(OFILES)
 
 $(OFILES):
-	gcc -Wall -Wextra -Werror -g -fsanitize=address -c $(CFILES)
+	gcc -Wall -Wextra -Werror -g -c $(CFILES)
 
 clean:
 	rm -f $(OFILES)

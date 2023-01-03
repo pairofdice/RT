@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 16:03:36 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/02 15:22:03 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:11:21 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,15 @@ void	create_motion_blur(t_main *main)
 	{
 		main->scene.cam.coi_transform
 			= coi_transform(&main->scene.cam, main->scene.cam.transform);
-		main->ant_al = 1;
+		main->settings.ant_al = 1;
 		draw_frame(main);
-		edge_detection(&main->sdl.frame_buffer);
-		main->ant_al = A_A_DIV;
+		edge_detection(&main->sdl.frame_buffer, main->settings);
+		main->settings.ant_al = main->settings.orig_ant_al;
 		draw_frame(main);
 		add_to_color_buffer(&main->sdl.frame_buffer, 1);
 		frame_count++;
 	}
 	normalise_color(&main->sdl.frame_buffer, frame_count + 20);
 	color_to_data(&main->sdl.frame_buffer);
-	edge_detection(&main->sdl.frame_buffer);
+	edge_detection(&main->sdl.frame_buffer, main->settings);
 }

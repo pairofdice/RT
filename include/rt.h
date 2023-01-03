@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/03 12:36:22 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:11:31 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@
 # include "motion.h"
 # include <stdio.h>
 
-# define WIN_W 750
-# define WIN_H 617
+# define WIN_W 500
+# define WIN_H 350
 # define MAX_DISTANCE 9999
-# define A_A_DIV 6
 # define EPSILON 0.00006103515625
 
 enum
@@ -98,6 +97,13 @@ typedef struct s_scene
 	t_cam			cam;
 }					t_scene;
 
+typedef struct s_settings
+{
+	double	edge_detection_presission;
+	int		orig_ant_al;
+	int		ant_al;
+}			t_settings;
+
 typedef struct s_main
 {
 	t_sdl			sdl;
@@ -108,8 +114,8 @@ typedef struct s_main
 	t_object		obj[500];
 	int				obj_count;
 	int				shape_count;
-	int				ant_al;
 	t_scene			scene;
+	t_settings		settings;
 }					t_main;
 
 typedef struct s_anti_aliasing
@@ -164,7 +170,7 @@ int					anti_aliasing(
 								int pixel_x,
 								int pixel_y,
 								int ant_a);
-void				edge_detection(t_frame_buffer *fb);
+void				edge_detection(t_frame_buffer *fb, t_settings s);
 double				edge_detection_check(
 										int x,
 										int y,

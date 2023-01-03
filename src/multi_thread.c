@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:03:04 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/02 17:10:00 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:08:01 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	create_threads(t_main *main, int ant_al)
 	int	i;
 
 	i = 0;
-	main->ant_al = ant_al;
+	main->settings.ant_al = ant_al;
 	while (i < NUM_THREADS)
 	{
 		pthread_create(&main->multi.threadpool[i],

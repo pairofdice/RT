@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:01:28 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/02 17:23:00 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:57:02 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <pthread.h>
 
 # define NUM_THREADS 13
-# define NUM_TASKS 37
+# define NUM_TASKS 35
 
 typedef struct s_multi
 {

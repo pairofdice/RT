@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:32:13 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:27:37 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:12:35 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	create_stereoscope(t_main *main, t_matrix cam_transform)
 	cam_scale = matrix_translate((-main->sdl.stereocopy * 1.5), 0, 0.0);
 	cam_transform = matrix_multiply(&cam_transform, &cam_scale);
 	initialize_camera(&main->scene.cam, cam_transform);
-	main->ant_al = 1;
+	main->settings.ant_al = 1;
 	draw_frame(main);
-	edge_detection(&main->sdl.frame_buffer);
-	main->ant_al = A_A_DIV;
+	edge_detection(&main->sdl.frame_buffer, main->settings);
+	main->settings.ant_al = main->settings.orig_ant_al;
 	draw_frame(main);
 	create_red_blue_stereoscopy(&main->sdl.frame_buffer);
 }
