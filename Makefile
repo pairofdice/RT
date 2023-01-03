@@ -27,6 +27,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), main.c \
 								input_light_and_camera.c\
 								input_object.c\
 								input_object_utils.c\
+								input_object_material.c\
 								input_prepare.c\
 								input_utils.c\
 								initialize.c\
@@ -131,14 +132,14 @@ LD = gcc
 LDFLAGS = $(libsdl2_ldflags) # -flto
 CC = gcc
 OPTFLAGS = -O3 -flto # PUT BACK IN
-CFLAGS = -g -fsanitize=address -c -Wall -Werror -Wextra  $(addprefix -I, $(INCLUDE_DIR))\
+CFLAGS = -g -c -Wall -Werror -Wextra  $(addprefix -I, $(INCLUDE_DIR))\
 	$(libsdl2_cflags)
-CPPFLAGS = -D_REENTRANT
+#CPPFLAGS = -D_REENTRANT
 
 all: $(NAME)
 
 $(NAME): $(FT_LIBRARY) $(YAXML_LIBRARY) $(SCREEN_SHOT_DIR) $(OBJCT_FILES) | $(BUILD_DIR) 
-	$(LD) -g -fsanitize=address $(OBJCT_FILES) $(LDFLAGS) -o $(NAME) $(FT_LIBRARY) $(YAXML_LIBRARY)
+	$(LD) -g $(OBJCT_FILES) $(LDFLAGS) -o $(NAME) $(FT_LIBRARY) $(YAXML_LIBRARY)
 
 $(OBJCT_FILES): $(libsdl2_lib)
 

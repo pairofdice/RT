@@ -12,41 +12,15 @@
 
 #include "../include/input.h"
 
-int	get_material(t_xml_node *node, t_material *mat)
-{
-	t_xml_attr	*attr;
-	int			index;
-	t_tuple		col;
-
-	index = 0;
-	while (index < node->attributes.size)
-	{
-		attr = &node->attributes.list[index];
-		if (!ft_strcmp(attr->key, "pattern") && \
-		!ft_strcmp(attr->value, "striped"))
-			mat->pattern.pattern_id = STRIPED;
-		else if (!ft_strcmp(attr->key, "pattern") && \
-		!ft_strcmp(attr->value, "grid"))
-			mat->pattern.pattern_id = GRID;
-		else if (!ft_strcmp(attr->key, "perlin") && \
-		!ft_strcmp(attr->value, "true"))
-			mat->pattern.pattern_perlin = TRUE;
-		index++;
-	}
-	get_tuple(&col, node->data);
-	mat->color = color_new(col.a[0], col.a[1], col.a[2]);
-	return (TRUE);
-}
-
 int	get_motion(t_xml_node *node, t_motion_blur *motion)
 {
 	float		speed;
 	t_tuple		dir;
 	char		*str;
 
-	speed = 0;
+	speed = 1.0;
 	str = xml_node_attr_value(node, "speed");
-	if (str)
+	if (str != NULL)
 		speed = ft_atof(str);
 	get_tuple(&dir, node->data);
 	*motion = motion_new(TRUE, speed, tuple_unit(dir));
