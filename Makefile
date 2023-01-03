@@ -6,7 +6,7 @@
 #    By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 15:53:52 by jjuntune          #+#    #+#              #
-#    Updated: 2023/01/02 16:14:47 by jjuntune         ###   ########.fr        #
+#    Updated: 2023/01/03 12:36:43 by jjuntune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), main.c \
 								quadratic.c\
 								image_render.c\
 								edge_detection.c\
+								edge_detection_check.c\
 								filters.c\
 								filter_sepia.c\
 								multi_thread_worker.c\
