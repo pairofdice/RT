@@ -18,17 +18,18 @@
 
 # define MAX_SPEED 5
 
+/*	on_off = TRUE or FALSE 
+	speed = distance for the motionblur +0.1 to dir while speed_iteration < speed
+	dir = direction of the movement. normalised ( tuple_unit(...) ). */
 typedef struct s_motion_blur
 {
-	int			on_off; // True / False
-	double		speed; // distance for the motionblur +0.1 to dir while speed_iteration < speed
+	int			on_off;
+	double		speed;
 	double		speed_iteration;
-	t_tuple		dir; // direction of the movement. normalised ( tuple_unit(...) ).
+	t_tuple		dir;
 	t_matrix	transform;
 }				t_motion_blur;
 
-
-
-t_matrix	motion_move(t_matrix orig, t_motion_blur *motion);
-t_motion_blur motion_new(int true_false, double speed, t_tuple dir);
+t_matrix		motion_move(t_matrix orig, t_motion_blur *motion);
+t_motion_blur	motion_new(int true_false, double speed, t_tuple dir);
 #endif

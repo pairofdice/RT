@@ -38,7 +38,7 @@ typedef struct s_perlin
 }				t_perlin;
 
 double	perlin_noice(t_tuple point, t_perlin *perlin);
-void		load_perlin_data(t_perlin *perlin);
+void	load_perlin_data(t_perlin *perlin);
 double	grad(int hash, double x, double y, double z);
 double	lerp(double t, double a, double b);
 double	fade(double t);

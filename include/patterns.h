@@ -12,9 +12,9 @@
 
 #ifndef PATTERNS_H
 # define PATTERNS_H
-#include "tuple.h"
-#include "object.h"
-#include "matrix.h"
+# include "tuple.h"
+# include "object.h"
+# include "matrix.h"
 
 enum
 {
@@ -23,16 +23,18 @@ enum
 	GRID,
 };
 
+/*	pattern_id = enum above
+	pattern_perlin = TRUE or FALSE */
 typedef struct s_pattern
 {
 	t_matrix	pattern_transfor;
-	int			pattern_id; //enum abow
-	int			pattern_perlin; //TRUE / FALSE
+	int			pattern_id;
+	int			pattern_perlin;
 	double		pattern_dif;
 }	t_pattern;
 
-
-int	pattern_striped(double	coordinate_in);
-t_color	pattern_grid(t_point hit_loc, t_color hit_color, double pattern_dif, double perlin);
+int		pattern_striped(double coordinate_in);
+t_color	pattern_grid(t_point hit_loc, t_color hit_color, \
+		double pattern_dif, double perlin);
 
 #endif
