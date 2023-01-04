@@ -46,12 +46,12 @@ enum
 
 typedef struct s_material
 {
-	t_color	color;
-	double	ambient;
-	double	diffuse;
-	double	specular;
-	double	shininess;
-	double	reflective;
+	t_color		color;
+	double		ambient;
+	double		diffuse;
+	double		specular;
+	double		shininess;
+	double		reflective;
 	t_pattern	pattern;
 }	t_material;
 
@@ -107,10 +107,8 @@ typedef struct s_hit_record
 	t_vector		reflect_v;
 	t_tuple			over_point;
 	int				neg_hit;
-	size_t				neg_hit_id;
+	size_t			neg_hit_id;
 	int				is_shadowed;
-
-
 }					t_hit_record;
 
 typedef struct s_ray
@@ -119,7 +117,7 @@ typedef struct s_ray
 	t_tuple			dir;
 	t_hit_record	hit;
 	t_intersections	xs;
-	int 			remaining;
+	int				remaining;
 }					t_ray;
 
 typedef struct s_intersection
@@ -128,7 +126,6 @@ typedef struct s_intersection
 	size_t			i;
 	t_object		*object;
 }					t_intersection;
-
 
 typedef struct s_light
 {
@@ -162,9 +159,6 @@ typedef struct s_lighting
 	double		factor;
 }				t_lighting;
 
-
-
-
 t_object			object_new(int shape_type);
 double				calc_discriminant(double a, double b, double c);
 t_ray				ray_new(t_point origin, t_vector dir);
@@ -174,15 +168,10 @@ void				ray_free(t_ray *ray);
 t_point				ray_position(t_ray ray, double t);
 int					phere_intersect(t_ray *ray, t_object *s);
 t_ray				ray_transform(t_ray *source, t_matrix *transform);
-void				intersection_record(
-						t_ray *ray,
-						double time,
-						t_object *s);
-void				intersection_record_test(
-						t_ray *ray,
-						double t1,
-						double t2,
-						t_object *s);
+void				intersection_record(t_ray *ray, double time, \
+					t_object *s);
+void				intersection_record_test(t_ray *ray, double t1, \
+					double t2, t_object *s);
 int					intersect_sphere(t_ray *inc_ray, t_object *s);
 int					intersect_plane(t_ray *inc_ray, t_object *s);
 int					intersect_cylinder(t_ray *inc_ray, t_object *s);
@@ -191,12 +180,11 @@ t_intersection		intersection_new(double time, t_object *o);
 t_intersection		find_closest_intersection(t_intersections *xs);
 void				set_transform(t_object *obj, t_matrix *transform);
 t_vector			normal_at(t_object *obj, t_point point);
-t_material			material_new();
+t_material			material_new(void);
 
-
-void	get_negative_intersects(t_ray *ray, size_t neg_obj_id,
-								t_negative *neg_hits);
-size_t	move_negative(t_ray *ray, size_t neg_obj_id, t_negative *n);
-int		first_positive_object(t_ray *ray, t_intersection *closest_t,
-							t_negative *n);
+void				get_negative_intersects(t_ray *ray, size_t neg_obj_id, \
+					t_negative *neg_hits);
+size_t				move_negative(t_ray *ray, size_t neg_obj_id, t_negative *n);
+int					first_positive_object(t_ray *ray, \
+					t_intersection *closest_t, t_negative *n);
 #endif

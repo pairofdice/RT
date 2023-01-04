@@ -75,8 +75,8 @@ typedef struct s_cam
 	t_tuple			n;
 	t_tuple			c;
 	t_tuple			l;
-	t_matrix 		transform;
-	t_matrix 		coi_transform;
+	t_matrix		transform;
+	t_matrix		coi_transform;
 	double			plane_h;
 	double			plane_w;
 	t_motion_blur	motion;
@@ -129,7 +129,6 @@ typedef struct s_anti_aliasing
 	t_color		color;
 }				t_anti_aliasing;
 
-
 int					initialize_window(t_main *main);
 
 void				initialize_camera(t_cam *cam, t_matrix transform);
@@ -148,7 +147,7 @@ double				quadratic(t_abc abc, double b2_4ac);
 
 t_vec3				vec3_ray_at(t_ray u, double x);
 
-int				get_shape_intersections(t_ray *ray, t_object *shape);
+int					get_shape_intersections(t_ray *ray, t_object *shape);
 
 t_tuple				get_cylinder_normal(t_main *main, t_hit_record *hit);
 t_tuple				get_sphere_normal(t_main *main, t_hit_record *hit);
@@ -162,20 +161,12 @@ void				creat_filters(t_frame_buffer *fb, int filter_type);
 void				create_sepia(t_frame_buffer *fb);
 void				create_stereoscope(t_main *main, t_matrix cam_transform);
 
-
 int					rgb_to_white(t_color *rgb);
 void				int_to_rgb(int color, t_color *rgb);
-int					anti_aliasing(
-								t_main *main,
-								int pixel_x,
-								int pixel_y,
-								int ant_a);
+int					anti_aliasing(t_main *main, int pixel_x, int pixel_y, \
+					int ant_a);
 void				edge_detection(t_frame_buffer *fb, t_settings s);
-double				edge_detection_check(
-										int x,
-										int y,
-										int *count,
-										int *image);
+double				edge_detection_check(int x, int y, int *count, int *image);
 
 int					draw_frame(t_main *main);
 void				worker_wait(t_main *ctx);
@@ -197,41 +188,34 @@ double				float_clamp(double value, double min, double max);
 
 t_point				ray_position(t_ray ray, double t);
 
-
-
 t_light				point_light_new(t_point position, t_color intensity);
 t_light				sun_light_new(t_point direction, t_color intensity);
-/* t_light				ambient_light_new(t_color intensity); */
-t_material			material_new();
+t_material			material_new(void);
 
+t_color				lighting(t_light *light, t_hit_record *hit);
 
-// t_color				lighting(t_material *mat,  t_light *light, t_point *point,t_vector *to_eye, t_vector *normal, int in_shadow);
-// t_color	lighting(t_material *mat, t_light *light, t_point *point, t_vector *to_eye, t_vector *normal_v, int in_shadow, t_hit_record *hit);
-t_color	lighting(t_light *light, t_hit_record *hit);
-
-
-void				img_pixel_put(
-						t_frame_buffer *fb, 
-						unsigned int x,
-						unsigned int y, t_color color);
+void				img_pixel_put(t_frame_buffer *fb, unsigned int x, \
+					unsigned int y, t_color color);
 
 int					scene_new(t_scene *scene);
 int					default_scene(t_scene *scene);
-void		scene_intersect(t_scene *scene, t_ray *ray);
+void				scene_intersect(t_scene *scene, t_ray *ray);
 
+t_color				pattern_at(t_hit_record hit, t_point hit_loc, \
+					t_color hit_color, t_perlin perlin);
 
-t_color	pattern_at(t_hit_record hit,t_point hit_loc, t_color hit_color, t_perlin perlin);
-
-int		motion_set_all(t_main *main);
-void	create_motion_blur(t_main *main);
-t_color	reflected_color(t_scene *scene, t_ray *ray);
-int	is_shadowed(t_scene *scene, t_light *light, t_point *point, t_hit_record *hit);
-t_color	color_at(t_scene *scene, t_ray *ray);
-int		fill_hit_record(t_main *main, t_ray *ray);
-int		find_next_intersection(t_ray *ray, t_intersection *closest_t,
-							t_negative *neg_hits, t_scene *scene);
-t_intersection	find_negative_object_intersect(t_ray *ray, int neg_obj_id,
-												t_scene *scene);
-int				precompute(t_ray *ray, t_scene *scene);
-t_color			shade_hit(t_scene *scene, t_ray *ray);
+int					motion_set_all(t_main *main);
+void				create_motion_blur(t_main *main);
+t_color				reflected_color(t_scene *scene, t_ray *ray);
+int					is_shadowed(t_scene *scene, t_light *light, \
+					t_point *point, t_hit_record *hit);
+t_color				color_at(t_scene *scene, t_ray *ray);
+int					fill_hit_record(t_main *main, t_ray *ray);
+int					find_next_intersection(t_ray *ray, \
+					t_intersection *closest_t, \
+					t_negative *neg_hits, t_scene *scene);
+t_intersection		find_negative_object_intersect(t_ray *ray, int neg_obj_id, \
+					t_scene *scene);
+int					precompute(t_ray *ray, t_scene *scene);
+t_color				shade_hit(t_scene *scene, t_ray *ray);
 #endif

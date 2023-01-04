@@ -95,5 +95,6 @@ int				xml_nodelist_init(t_xml_nodelist *list);
 int				xml_nodelist_add(t_xml_nodelist *list, t_xml_node *node);
 t_xml_node		*xml_nodelist_at(t_xml_nodelist *list, int index);
 
-t_tag_type		parse_attr(char *buf, int index[2], char *lex, t_xml_node *current_node);
+t_tag_type		parse_attr(char *buf, int index[2], char *lex, \
+				t_xml_node *current_node);
 #endif
