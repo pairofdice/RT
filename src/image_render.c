@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:56:58 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/02 17:26:27 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:43:34 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ static void	aa_help(t_anti_aliasing *aa, t_main *main, int pixel_x)
 	vec_free(&main->ray.xs.vec);
 	aa->sub_pixel++;
 }
+
+/*
+**	anti_aliaing takes multiple samples of the pixel in a checkerboard pattern
+**	whitch size is determined by ant_a what you can change in .xml file.
+**	By doing this anti_aliasing we can make sharper looking images whit out
+**	higher resolution.
+*/
 
 int	anti_aliasing(t_main *main, int pixel_x, int pixel_y, int ant_a)
 {

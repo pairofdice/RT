@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/03 13:18:14 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:27:22 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	main(int ac, char **av)
 	t_main		main;
 	t_xml_doc	doc;
 
-	main.sdl.stereocopy = TRUE;
+	main.sdl.stereocopy = FALSE;
 	main.settings.edge_detection_presission = 0.02;
 	main.settings.orig_ant_al = 6;
 	if (ac == 2)
