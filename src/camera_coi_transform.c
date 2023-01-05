@@ -6,25 +6,25 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 19:28:28 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/07 11:30:03 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:27:43 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
 
-double	double_p2(double src)
+static double	double_p2(double src)
 {
 	return (src * src);
 }
 
-double	double_div(double a, double b)
+static double	double_div(double a, double b)
 {
 	if (a == 0 || b == 0)
 		return (0.0);
 	return (a / b);
 }
 
-double	calc_y_rot(t_tuple a, t_tuple b)
+static double	calc_y_rot(t_tuple a, t_tuple b)
 {
 	return (acos(
 			double_div(
@@ -33,7 +33,7 @@ double	calc_y_rot(t_tuple a, t_tuple b)
 				* sqrt((double_p2(b.s_xyzw.x) + double_p2(b.s_xyzw.z))))));
 }
 
-double	calc_x_rot(t_tuple a, t_tuple b)
+static double	calc_x_rot(t_tuple a, t_tuple b)
 {
 	return (acos(
 			double_div(
@@ -46,6 +46,12 @@ double	calc_x_rot(t_tuple a, t_tuple b)
 						+ double_p2(b.s_xyzw.y)
 						+ double_p2(b.s_xyzw.z))))));
 }
+
+/*
+**	coi_transform calculates the matrix transform rotations for the
+**	center of intrest so it stays in the midle of the camera where ever
+**	the camera is placed and coi is placed.
+*/
 
 t_matrix	coi_transform(t_cam *cam, t_matrix transform)
 {

@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:02:06 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/03 13:18:27 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:39:29 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	rgb_to_white(t_color *rgb)
 	return (color << 24 | color << 16 | color << 8);
 }
 
+/*
+**	test_pixel test the pixel if it haves edge in the image.
+**	id adds every pixel around the test pixel (that are inside the image)
+**	and return te diference.
+*/
+
 double	test_pixel(int *image, int i, int j)
 {
 	double	pixel;
@@ -49,6 +55,17 @@ double	test_pixel(int *image, int i, int j)
 	pixel -= compare;
 	return (pixel);
 }
+
+/*
+**	great_mask checks every pixel of the original photo what is turned to
+**	black and whit image.
+**	It checks the diference between test pixel and pixels around it
+**	returned by test_pixel abow and if thediference is too big it marks it
+**	down to fb->mask for creating filters and also for further
+**	anti aliasing ptimisation.
+**	scale is something that you can change in .xml file so it will be more
+**	precice whit color changes.
+*/
 
 static void	great_mask(t_frame_buffer *fb, t_settings s)
 {
