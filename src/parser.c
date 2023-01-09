@@ -12,15 +12,22 @@
 
 #include "../include/input.h"
 
-int	read_file(t_main *main, t_xml_doc *doc, char *file)
+int	read_file(t_main *main, char *file)
 {
-	if (!xml_doc_load(doc, file))
+	t_xml_doc	doc;
+
+	doc.version = NULL;
+	doc.encoding = NULL;
+	main->sdl.stereocopy = FALSE;
+	scene_new(&main->scene);
+	load_perlin_data(&main->scene.perlin);
+	if (!xml_doc_load(&doc, file))
 	{
 		ft_putendl_fd("ERROR: Couldn't read file!", 2);
 		return (FALSE);
 	}
-	if (!read_xml(doc, main))
-	return (FALSE);
-	xml_doc_free(doc);
+	if (!read_xml(&doc, main))
+		return (FALSE);
+	xml_doc_free(&doc);
 	return (TRUE);
 }
