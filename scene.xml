@@ -1,8 +1,8 @@
+<scene>
 <camera>
 	<pos> 0.0 0.0 -10.0 </pos>
 	<coi> 0.0 0.0 30.0 </coi>
 </camera>
-
 <light type="point">
 	<pos> 0.0 0.0 0.0 </pos>
 	<color> 1.0 1.0 1.0 </color>
@@ -61,3 +61,4 @@
 	<material pattern="striped" perlin="true"> 1.0 1.0 1.0 </material>
 	<scale> 5.0 5.0 5.0 </scale>
 </object>
+</scene>

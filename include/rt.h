@@ -111,9 +111,6 @@ typedef struct s_main
 	t_ray			ray;
 	t_ray			shadow;
 	t_light			light;
-	t_object		obj[500];
-	int				obj_count;
-	int				shape_count;
 	t_scene			scene;
 	t_settings		settings;
 }					t_main;

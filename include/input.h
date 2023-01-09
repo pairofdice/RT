@@ -16,7 +16,7 @@
 # include "yaxml.h"
 # include <math.h>
 
-int			read_file(t_main *main, t_xml_doc *doc, char *file);
+int			read_file(t_main *main, char *file);
 /*Open xml file for input*/
 int			read_xml(t_xml_doc *doc, t_main *main);
 
@@ -46,5 +46,9 @@ t_matrix	matrix_translate_2(t_tuple tuple);
 double		get_double(char *str);
 void		get_tuple(t_tuple *tuple, char *str);
 int			return_error(const char *str);
+int	free_lists_fail(t_xml_nodelist **camera, t_xml_nodelist **objects, \
+			t_xml_nodelist **lights, t_main *main);
+int	free_lists(t_xml_nodelist **camera, t_xml_nodelist **objects, \
+			t_xml_nodelist **lights);
 
 #endif

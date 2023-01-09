@@ -70,14 +70,10 @@ void	rt_loop_and_exit(t_sdl *sdl, t_main *main)
 int	main(int ac, char **av)
 {
 	t_main		main;
-	t_xml_doc	doc;
 
-	main.sdl.stereocopy = FALSE;
-	main.settings.edge_detection_presission = 0.02;
-	main.settings.orig_ant_al = 6;
 	if (ac == 2)
 	{
-		if (!read_file(&main, &doc, av[1]))
+		if (!read_file(&main, av[1]))
 			return (1);
 	}
 	else
