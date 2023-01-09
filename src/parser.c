@@ -17,9 +17,10 @@ int	read_file(t_main *main, t_xml_doc *doc, char *file)
 	if (!xml_doc_load(doc, file))
 	{
 		ft_putendl_fd("ERROR: Couldn't read file!", 2);
-		return (1);
+		return (FALSE);
 	}
-	read_xml(doc, main);
+	if (!read_xml(doc, main))
+	return (FALSE);
 	xml_doc_free(doc);
-	return (0);
+	return (TRUE);
 }

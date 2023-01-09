@@ -67,33 +67,6 @@ void	rt_loop_and_exit(t_sdl *sdl, t_main *main)
 	free_all(main);
 }
 
-void	render_image_debug(t_main *main, int task, int ant_al)
-{
-	t_main	copy;
-	int		y;
-	int		x;
-	int		color;
-
-	y = task;
-	copy = (t_main) * main;
-	while (y < WIN_H)
-	{
-		x = 0;
-		while (x < WIN_W)
-		{
-			copy.ray.hit.color = color_new(0, 0, 0);
-			while (ant_al != 1 && x < WIN_W && \
-			main->sdl.frame_buffer.mask[((y * WIN_W) + x)] == 0)
-				x++;
-			if (x == WIN_W)
-				break ;
-			color = anti_aliasing(&copy, x, y, ant_al);
-			main->sdl.frame_buffer.data[((y * WIN_W) + x++)] = color;
-		}
-		y += NUM_TASKS;
-	}
-}
-
 int	main(int ac, char **av)
 {
 	t_main		main;
@@ -104,7 +77,7 @@ int	main(int ac, char **av)
 	main.settings.orig_ant_al = 6;
 	if (ac == 2)
 	{
-		if (read_file(&main, &doc, av[1]) == 1)
+		if (!read_file(&main, &doc, av[1]))
 			return (1);
 	}
 	else

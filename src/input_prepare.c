@@ -66,10 +66,9 @@ int	prepare_camera(t_xml_nodelist *list, t_cam *cam)
 	if (list->size != 1)
 	{
 		if (list->size < 1)
-			ft_putendl_fd("Error: no camera in input", 2);
+			return (return_error("Error: no camera in input"));
 		if (list->size > 1)
-			ft_putendl_fd("Error: too many cameras in input", 2);
-		return (FALSE);
+			return (return_error("Error: too many cameras in input"));
 	}
 	cam->coi = point_new(0.0, 0.0, 0.0);
 	scale = matrix_scale(1, 1, 1);
