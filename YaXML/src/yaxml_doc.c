@@ -30,7 +30,7 @@ t_xml_node **current_node)
 	buf->lex[index[1]] = '\0';
 	if (!*current_node)
 		return (xml_error_free(buf, "Already at head"));
-	if (ft_strcmp((*current_node)->tag, buf->lex))
+	if (*current_node == NULL && ft_strcmp((*current_node)->tag, buf->lex))
 	{
 		ft_putstr_fd((*current_node)->tag, 2);
 		ft_putstr_fd(" != ", 2);
