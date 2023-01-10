@@ -1,5 +1,5 @@
 <scene stereoscopy="FALSE">
-	<settings edge_detection_precision="0.01" ant_al="6"/>
+	<settings edge_detection_precision="0.02" ant_al="6"/>
 	<camera>
 		<pos> 0.0 0.0 -15.0 </pos>
 		<coi> 0.0 0.0 15.0 </coi>
@@ -17,7 +17,7 @@
 		<color> 1.0 0.0 1.0 </color>
 	</light>
 	<object type="sphere">
-		<loc> 0.2 0.0 15.0 </loc>
+		<loc> 0.0 0.0 15.0 </loc>
 		<rot> 0.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false"> 
 			<color> 1.0 0.3 0.1 </color>
@@ -26,7 +26,7 @@
 		<scale> 4.0 4.0 4.0 </scale>
 	</object>
 	<object type="sphere">
-		<loc> 10.2 0.0 10.0 </loc>
+		<loc> 10.0 0.0 10.0 </loc>
 		<rot> 0.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false"> 
 			<color> 0.8 0.8 0.8 </color>
@@ -34,14 +34,32 @@
 		</material>
 		<scale> 4.0 4.0 0.4 </scale>
 	</object>
+	<object type="sphere" negative="true">
+		<loc> 7.5 0.0 10.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="fasle"> 
+			<color> 1.0 0.3 0.1 </color>
+			<surface ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0"/>
+		</material>
+		<scale> 3.0 3.0 3.0 </scale>
+	</object>
 	<object type="sphere">
-		<loc> -10.2 0.0 10.0 </loc>
+		<loc> -10.0 0.0 10.0 </loc>
 		<rot> 0.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false"> 
 			<color>  0.8 0.8 0.8 </color>
 			<surface ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0"/>
 		</material>
 		<scale> 0.4 4.0 4.0 </scale>
+	</object>
+	<object type="sphere" negative="true">
+		<loc> -10.0 0.0 10.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false"> 
+			<color>  0.8 0.8 0.8 </color>
+			<surface ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0"/>
+		</material>
+		<scale> 3.0 3.0 3.0 </scale>
 	</object>
 	<object type="plane">
 		<loc> 2.0 -5.0 200.0 </loc>

@@ -1,5 +1,5 @@
 <scene stereoscopy="TRUE">
-	<settings edge_detection_precision="0.01" ant_al="6"/>
+	<settings edge_detection_precision="0.02" ant_al="6"/>
 	<camera>
 		<pos> 10.0 0.0 -10.0 </pos>
 		<coi> 0.0 0.0 15.0 </coi>
@@ -45,7 +45,7 @@
 		<scale> 4.0 4.0 4.0 </scale>
 	</object>
 	<object type="cylinder" negative="true">
-		<loc> -22.0 0.0 0.0 </loc>
+		<loc> -24.0 0.0 0.0 </loc>
 		<rot> 90.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="fasle"> 
 			<color> 1.0 0.3 0.1 </color>
