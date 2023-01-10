@@ -75,5 +75,5 @@ void	initialize_ray(t_ray *ray, double x, double y, t_cam *cam)
 	ray->dir = tuple_unit(ray->dir);
 	*ray = ray_transform(ray, &cam->transform);
 	vec_new(&ray->xs.vec, 4, sizeof(t_intersection));
-	ray->remaining = 4;
+	ray->remaining = cam->max_reflections;
 }
