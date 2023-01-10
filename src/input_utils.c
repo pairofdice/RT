@@ -66,8 +66,8 @@ void	get_settings(t_xml_node *scene, t_main *main)
 	t_xml_node	*node;
 
 	node = xml_node_tag(&scene->children, "settings");
-	main->settings.edge_detection_presission = 0.02;
-	main->settings.orig_ant_al = 6;
+	main->settings.edge_detection_presission = EDGE_DETECTION_PRECISION;
+	main->settings.orig_ant_al = DEFAULT_ANTIALIAS;
 	if (node != NULL)
 	{
 		str = xml_node_attr_value(scene, "stereoscopy");
@@ -78,7 +78,7 @@ void	get_settings(t_xml_node *scene, t_main *main)
 			main->settings.edge_detection_presission = ft_atof(str);
 		str = xml_node_attr_value(node, "ant_al");
 		if (str != NULL)
-			main->settings.orig_ant_al = ft_atof(str);
+			main->settings.orig_ant_al = int_clamp(ft_atoi(str), 1, 6);
 	}
 }
 
