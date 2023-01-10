@@ -12,28 +12,20 @@
 
 #include "../include/input.h"
 
-int	free_lists_fail(t_xml_nodelist **camera, t_xml_nodelist **objects, \
-t_xml_nodelist **lights, t_main *main)
+int	free_lists_fail(t_xml_nodelist **nodelist, t_main *main)
 {
-	free((*camera)->list);
-	free((*objects)->list);
-	free((*lights)->list);
-	free(*camera);
-	free(*objects);
-	free(*lights);
+	free_lists(nodelist);
 	vec_free(&main->scene.lights);
 	vec_free(&main->scene.objects);
 	return (FALSE);
 }
 
-int	free_lists(t_xml_nodelist **camera, t_xml_nodelist **objects, \
-t_xml_nodelist **lights)
+int	free_lists(t_xml_nodelist **nodelist)
 {
-	free((*camera)->list);
-	free((*objects)->list);
-	free((*lights)->list);
-	free(*camera);
-	free(*objects);
-	free(*lights);
+	if (*nodelist != NULL)
+	{
+		free((*nodelist)->list);
+		free(*nodelist);
+	}
 	return (TRUE);
 }

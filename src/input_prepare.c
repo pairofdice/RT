@@ -26,7 +26,7 @@ int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
 
 	index = 0;
 	if (list->size == 0)
-		return (return_error("Error: no objects in input"));
+		return (return_error("ERROR: no objects in input"));
 	while (index < list->size)
 	{
 		if (!get_object(xml_nodelist_at(list, index), &obj))
@@ -66,9 +66,9 @@ int	prepare_camera(t_xml_nodelist *list, t_cam *cam)
 	if (list->size != 1)
 	{
 		if (list->size < 1)
-			return (return_error("Error: no camera in input"));
+			return (return_error("ERROR: no camera in input"));
 		if (list->size > 1)
-			return (return_error("Error: too many cameras in input"));
+			return (return_error("ERROR: too many cameras in input"));
 	}
 	cam->coi = point_new(0.0, 0.0, 0.0);
 	scale = matrix_scale(1, 1, 1);
@@ -91,7 +91,7 @@ int	prepare_lights(t_xml_nodelist *list, t_vec *lights)
 
 	index = 0;
 	if (list->size == 0)
-		return (return_error("Error: no lights in input"));
+		return (return_error("ERROR: no lights in input"));
 	while (index < list->size)
 	{
 		node = xml_nodelist_at(list, index);

@@ -85,24 +85,25 @@ void	get_settings(t_xml_node *scene, t_main *main)
 int	read_xml(t_xml_doc *doc, t_main *main)
 {
 	t_xml_node		*scene;
-	t_xml_nodelist	*camera;
-	t_xml_nodelist	*objects;
-	t_xml_nodelist	*lights;
+	t_xml_nodelist	*nodelist;
 
+	nodelist = NULL;
 	scene = xml_node_tag(&doc->head->children, "scene");
 	if (scene)
 	{
 		get_settings(scene, main);
-		camera = xml_node_children(scene, "camera");
-		if (!prepare_camera(camera, &main->scene.cam))
-			return (free_lists_fail(&camera, &objects, &lights, main));
-		objects = xml_node_children(scene, "object");
-		if (!prepare_objects(objects, &main->scene.objects))
-			return (free_lists_fail(&camera, &objects, &lights, main));
-		lights = xml_node_children(scene, "light");
-		if (!prepare_lights(lights, &main->scene.lights))
-			return (free_lists_fail(&camera, &objects, &lights, main));
-		return (free_lists(&camera, &objects, &lights));
+		nodelist = xml_node_children(scene, "camera");
+		if (!prepare_camera(nodelist, &main->scene.cam))
+			return (free_lists_fail(&nodelist, main));
+		free_lists(&nodelist);
+		nodelist = xml_node_children(scene, "object");
+		if (!prepare_objects(nodelist, &main->scene.objects))
+			return (free_lists_fail(&nodelist, main));
+		free_lists(&nodelist);
+		nodelist = xml_node_children(scene, "light");
+		if (!prepare_lights(nodelist, &main->scene.lights))
+			return (free_lists_fail(&nodelist, main));
+		return (free_lists(&nodelist));
 	}
 	return (return_error("ERROR: No scene in file"));
 }
