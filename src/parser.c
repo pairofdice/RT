@@ -27,7 +27,10 @@ int	read_file(t_main *main, char *file)
 		return (FALSE);
 	}
 	if (!read_xml(&doc, main))
+	{
+		xml_doc_free(&doc);
 		return (FALSE);
+	}
 	xml_doc_free(&doc);
 	return (TRUE);
 }
