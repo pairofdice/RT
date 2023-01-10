@@ -35,6 +35,24 @@
 		</material>
 		<scale> 4.0 4.0 4.0 </scale>
 	</object>
+	<object type="cylinder">
+		<loc> -25.0 0.0 0.0 </loc>
+		<rot> 90.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="fasle"> 
+			<color> 1.0 0.3 0.1 </color>
+			<surface ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0"/>
+		</material>
+		<scale> 4.0 4.0 4.0 </scale>
+	</object>
+	<object type="cylinder" negative="true">
+		<loc> -22.0 0.0 0.0 </loc>
+		<rot> 90.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="fasle"> 
+			<color> 1.0 0.3 0.1 </color>
+			<surface ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0"/>
+		</material>
+		<scale> 4.0 4.0 4.0 </scale>
+	</object>
 	<object type="plane">
 		<loc> 0.0 -2.0 20.0 </loc>
 		<rot> 90.0 0.0 0.0 </rot>
