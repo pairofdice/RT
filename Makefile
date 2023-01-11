@@ -50,7 +50,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), main.c \
 								perlin_noice_maths.c\
 								tuple_print.c\
 								tuple_new.c\
-								tuple_equal.c\
 								tuple_add.c\
 								tuple_neg.c\
 								tuple_sub.c\

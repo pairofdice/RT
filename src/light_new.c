@@ -32,13 +32,3 @@ t_light	sun_light_new(t_point direction, t_color intensity)
 	light.direction = direction;
 	return (light);
 }
-
-/* t_light	ambient_light_new(t_color intensity)
-{
-	t_light	light;
-
-	light.type = AMBIENT;
-	light.intensity = intensity;
-	return (light);
-}
- */

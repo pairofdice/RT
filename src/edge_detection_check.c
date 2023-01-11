@@ -15,7 +15,7 @@
 /*
 **	Edge_detection_check checks the coordinates of the image and if it's
 **	in the image it returns a color.
-**	It also adds count if it is inside the camerafor for future calculations.
+**	It also adds count if it is inside the camera for for future calculations.
 */
 
 double	edge_detection_check(int x, int y, int *count, int *image)

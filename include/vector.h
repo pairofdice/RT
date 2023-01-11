@@ -27,11 +27,6 @@ t_vec3	vec3_add(t_vec3 a, t_vec3 b);
 t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
 
 t_vec3	multiply_vectors(t_vec3 a, t_vec3 b);
-t_vec3	div_vectors(t_vec3 a, t_vec3 b);
-
-t_vec3	multiply_vect_float(t_vec3 a, double b);
-t_vec3	div_vect_float(t_vec3 a, double b);
-t_vec3	add_vect_float(t_vec3 a, double b);
 
 double	vec3_sqr(t_vec3 a);
 double	vec3_mag(t_vec3 u);
