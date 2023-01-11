@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:18:54 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/11 12:34:44 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/11 13:12:06 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ t_color	reflected_color(t_scene *scene, t_ray *ray)
 
 	reflectiv = ray->hit.object->material.reflective;
 	color = color_new(0, 0, 0);
-	if ((ray->hit.object->material.reflective < EPSILON))
-		return (ray->hit.color);
-	if (ray->remaining <= 0)
+	if (ray->remaining <= 0 || ray->hit.object->material.reflective < EPSILON)
 		return (color);
 	ray->remaining--;
 	ray->orig = ray->hit.over_point;
