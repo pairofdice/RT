@@ -1,0 +1,107 @@
+<scene stereoscopy="FALSE">
+	<settings edge_detection_precision="0.02" ant_al="2"/>
+	<camera>
+		<pos> 0.0 0.0 -0.99 </pos>
+		<coi> 0.0 0.0 0.0 </coi>
+	</camera>
+	<light type="point">
+		<pos> 0.0 0.0 0.0 </pos>
+		<color> 1.0 1.0 1.0 </color>
+	</light>
+
+
+	<object type="sphere" negative="false">
+		<loc> 1.0 1.0 0.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false"> 
+			<color> 0.8 0.5 0.8 </color>
+			<surface ambient="0.02" diffuse="0.15" specular="0.85" shininess="200" reflective="0.75"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+	<object type="sphere" negative="false">
+		<loc> -1.0 1.0 0.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false"> 
+			<color> 0.5 0.5 0.8 </color>
+			<surface ambient="0.02" diffuse="0.15" specular="0.85" shininess="200" reflective="0.75"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+	<object type="sphere" negative="false">
+		<loc> 1.0 -1.0 0.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false"> 
+			<color> 0.5 0.8 0.5 </color>
+			<surface ambient="0.02" diffuse="0.15" specular="0.85" shininess="200" reflective="0.75"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+	<object type="sphere" negative="false">
+		<loc> -1.0 -1.0 0.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false"> 
+			<color> 0.8 0.5 0.5 </color>
+			<surface ambient="0.02" diffuse="0.15" specular="0.85" shininess="200" reflective="0.75"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+
+
+	<object type="plane">
+		<loc> 0.0 0.0 1.0 </loc>
+		<rot> 90.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false">
+			<color> 0.0 0.0 0.0 </color>
+			<surface ambient="0.0" diffuse="0.0" specular="1.0" shininess="200" reflective="1.0"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+	<object type="plane">
+		<loc> 0.0 0.0 -1.0 </loc>
+		<rot> 90.5 0.5 0.0 </rot>
+		<material pattern="none" perlin="false">
+			<color> 0.0 0.0 0.0 </color>
+			<surface ambient="0.0" diffuse="0.0" specular="1.0" shininess="200" reflective="1.0"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+	<object type="plane">
+		<loc> -1.0 0.0 0.0 </loc>
+		<rot> 0.0 0.0 90.0 </rot>
+		<material pattern="none" perlin="false">
+			<color> 0.0 0.0 0.0 </color>
+			<surface ambient="0.0" diffuse="0.0" specular="1.0" shininess="200" reflective="1.0"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+	<object type="plane">
+		<loc> 1.0 0.0 0.0 </loc>
+		<rot> 0.0 0.0 90.0 </rot>
+		<material pattern="none" perlin="false">
+			<color> 0.0 0.0 0.0 </color>
+			<surface ambient="0.0" diffuse="0.0" specular="1.0" shininess="200" reflective="1.0"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+	<object type="plane">
+		<loc> 0.0 1.0 0.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false">
+			<color> 0.0 0.0 0.0 </color>
+			<surface ambient="0.0" diffuse="0.0" specular="1.0" shininess="200" reflective="1.0"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+	<object type="plane">
+		<loc> 0.0 -1.0 0.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false">
+			<color> 0.0 0.0 0.0 </color>
+			<surface ambient="0.0" diffuse="0.0" specular="1.0" shininess="200" reflective="1.0"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+</scene>
+
+<!-- <surface ambient= "0.03" diffuse= "0.9" specular= "0.1" shininess= "200" reflective= "0.65"/> -->
