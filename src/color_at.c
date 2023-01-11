@@ -13,7 +13,6 @@
 #include "rt.h"
 #include "../include/object.h"
 
-
 t_color	color_at(t_scene *scene, t_ray *ray)
 {
 	t_color	color;
