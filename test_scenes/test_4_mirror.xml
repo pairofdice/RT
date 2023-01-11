@@ -6,22 +6,22 @@
 	</camera>
 	<light type="point">
 		<pos> 0.0 50.5 -10.0 </pos>
-		<color> 1.0 1.0 1.0 </color>
+		<color> 1.0 0.01 0.01 </color>
 	</light>
 	<light type="point">
 		<pos> 50.0 25.0 -100.0 </pos>
-		<color> 1.0 1.0 1.0 </color>
+		<color> 0.01 1.0 0.01 </color>
 	</light>
 	<light type="point">
 		<pos> -50.0 25.0 -100.0 </pos>
-		<color> 1.0 1.0 1.0 </color>
+		<color> 0.01 0.01 1.0 </color>
 	</light>
 	<object type="sphere">
-		<loc> 0.0 0.0 15.0 </loc>
+		<loc> 0.0 1.0 15.0 </loc>
 		<rot> 0.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false"> 
-			<color> 1.0 0.0 0.0 </color>
-			<surface ambient="0.2" diffuse="0.1" specular="0.9" shininess="200" reflective="0.1"/>
+			<color> 1.0 0.2 0.2 </color>
+			<surface ambient="0.5" diffuse="0.2" specular="0.8" shininess="200" reflective="0.8"/>
 		</material>
 		<scale> 4.0 4.0 4.0 </scale>
 	</object>
@@ -66,7 +66,7 @@
 		<rot> 0.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false">
 			<color> 0.5 0.5 0.5 </color>
-			<surface ambient="0.2" diffuse="0.1" specular="0.9" shininess="200" reflective="0.9"/>
+			<surface ambient="0.2" diffuse="0.2" specular="0.8" shininess="200" reflective="0.3"/>
 		</material>
 		<scale> 1.0 1.0 1.0 </scale>
 	</object>
