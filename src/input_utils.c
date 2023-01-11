@@ -72,7 +72,7 @@ void	get_settings(t_xml_node *scene, t_main *main)
 	if (node != NULL)
 	{
 		str = xml_node_attr_value(scene, "stereoscopy");
-		if (str != NULL && !ft_strcmp(str, "TRUE"))
+		if (str != NULL && !ft_strcmp(str, "true"))
 			main->sdl.stereocopy = TRUE;
 		str = xml_node_attr_value(node, "edge_detection_precision");
 		if (str != NULL)
