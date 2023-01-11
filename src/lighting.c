@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:12:38 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/16 17:22:56 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:52:43 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
-#include "stdio.h"
 #include <math.h>
 
 static void	lighting_get_diffuse_and_specular(
@@ -62,5 +61,7 @@ t_color	lighting(t_light *light, t_hit_record *hit)
 	lighting.result = tuple_add(lighting.diffuse, lighting.specular);
 	lighting.result = tuple_add(lighting.result, lighting.ambient);
 	lighting.result.s_xyzw.w = 0;
+	lighting.result = tuple_scalar_mult(lighting.result,
+			(1.0 - hit->object->material.reflective));
 	return (lighting.result);
 }
