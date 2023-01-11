@@ -36,7 +36,7 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 					scene->perlin);
 		}
 		result = tuple_add(result, temp_color);
-		result = tuple_add(result, reflected_color(scene, ray));
 	}
+	result = tuple_add(result, reflected_color(scene, ray));
 	return (result);
 }
