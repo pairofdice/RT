@@ -193,7 +193,7 @@ t_light				point_light_new(t_point position, t_color intensity);
 t_light				sun_light_new(t_point direction, t_color intensity);
 t_material			material_new(void);
 
-t_color				lighting(t_light *light, t_hit_record *hit);
+t_color				lighting(t_light *light, t_hit_record *hit, t_color *phong);
 
 void				img_pixel_put(t_frame_buffer *fb, unsigned int x, \
 					unsigned int y, t_color color);
@@ -218,4 +218,5 @@ t_intersection		find_negative_object_intersect(t_ray *ray, int neg_obj_id, \
 					t_scene *scene);
 int					precompute(t_ray *ray, t_scene *scene);
 t_color				shade_hit(t_scene *scene, t_ray *ray);
+
 #endif
