@@ -44,7 +44,24 @@ static void	lighting_get_diffuse_and_specular(
 	}
 }
 
-t_color	lighting(t_light *light, t_hit_record *hit)
+t_color	shine(t_light *light, t_hit_record *hit)
+{
+	t_lighting	lighting;
+	t_material	mat;
+
+	mat = hit->object->material;
+	lighting.result = color_new(0, 0, 0);
+	lighting.result.s_xyzw.w = 1;
+	lighting.to_light_v = tuple_unit(tuple_sub(light->location, hit->hit_loc));
+	lighting.ambient = tuple_scalar_mult(lighting.effective_color, mat.ambient);
+	lighting.light_dot_normal = vector_dot(lighting.to_light_v, hit->normal);
+	lighting_get_diffuse_and_specular(&lighting, &mat, hit, light);
+	lighting.result = tuple_add(lighting.diffuse, lighting.specular);
+	lighting.result.s_xyzw.w = 0;
+	return (lighting.result);
+}
+
+t_color	lighting(t_light *light, t_hit_record *hit, t_color *phong)
 {
 	t_lighting	lighting;
 	t_material	mat;
@@ -58,7 +75,7 @@ t_color	lighting(t_light *light, t_hit_record *hit)
 	lighting.ambient = tuple_scalar_mult(lighting.effective_color, mat.ambient);
 	lighting.light_dot_normal = vector_dot(lighting.to_light_v, hit->normal);
 	lighting_get_diffuse_and_specular(&lighting, &mat, hit, light);
-	lighting.result = tuple_add(lighting.diffuse, lighting.specular);
+	*phong = tuple_add(*phong, tuple_add(lighting.diffuse, lighting.specular));
 	lighting.result = tuple_add(lighting.result, lighting.ambient);
 	lighting.result.s_xyzw.w = 0;
 	return (lighting.result);
