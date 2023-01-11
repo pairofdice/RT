@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/03 13:27:22 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:19:04 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	draw_filter(t_sdl *sdl, int *filter_type)
 	{
 		if (sdl->stereocopy == TRUE)
 			draw_to_window(sdl, sdl->frame_buffer.stereocopy);
-		else if (sdl->event.key.keysym.sym == SDLK_UP)
-			*filter_type = NORMAL;
-		else
+		else if (sdl->event.key.keysym.sym == SDLK_DOWN)
 			*filter_type = EDGE;
+		else
+			*filter_type = NORMAL;
 	}
 	else if (*filter_type == NORMAL)
 		draw_to_window(sdl, sdl->frame_buffer.data);
@@ -57,7 +57,7 @@ void	rt_loop_and_exit(t_sdl *sdl, t_main *main)
 	int	filter_type;
 
 	quit = 0;
-	filter_type = NORMAL;
+	filter_type = STEREOSCOPY;
 	while (quit == 0)
 	{
 		if (SDL_PollEvent(&sdl->event) != 0)

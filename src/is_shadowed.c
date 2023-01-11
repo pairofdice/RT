@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 17:43:31 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/20 15:35:15 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:28:00 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,13 @@ void	intersects_from_positive_surface(
 {
 	*intersection = find_closest_intersection(&ray->xs);
 	if (intersection->t != INFINITY && intersection->object->negative == TRUE)
+	{
 		*intersection = find_negative_object_intersect(
 				ray,
 				intersection->i,
 				scene);
+		intersection->t = ray->hit.hit_dist;
+	}
 }
 
 int	is_shadowed(

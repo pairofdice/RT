@@ -66,43 +66,48 @@ void	get_settings(t_xml_node *scene, t_main *main)
 	t_xml_node	*node;
 
 	node = xml_node_tag(&scene->children, "settings");
-	main->settings.edge_detection_presission = 0.02;
-	main->settings.orig_ant_al = 6;
+	main->settings.edge_detection_presission = EDGE_DETECTION_PRECISION;
+	main->settings.orig_ant_al = DEFAULT_ANTIALIAS;
+	main->scene.cam.max_reflections = DEFAULT_MAX_REFLECTIONS;
 	if (node != NULL)
 	{
 		str = xml_node_attr_value(scene, "stereoscopy");
-		if (str != NULL && !ft_strcmp(str, "TRUE"))
+		if (str != NULL && !ft_strcmp(str, "true"))
 			main->sdl.stereocopy = TRUE;
 		str = xml_node_attr_value(node, "edge_detection_precision");
 		if (str != NULL)
 			main->settings.edge_detection_presission = ft_atof(str);
 		str = xml_node_attr_value(node, "ant_al");
 		if (str != NULL)
-			main->settings.orig_ant_al = ft_atof(str);
+			main->settings.orig_ant_al = int_clamp(ft_atoi(str), 1, 6);
+		str = xml_node_attr_value(node, "max_reflections");
+		if (str != NULL)
+			main->scene.cam.max_reflections = int_clamp(ft_atoi(str), 1, 20);
 	}
 }
 
 int	read_xml(t_xml_doc *doc, t_main *main)
 {
 	t_xml_node		*scene;
-	t_xml_nodelist	*camera;
-	t_xml_nodelist	*objects;
-	t_xml_nodelist	*lights;
+	t_xml_nodelist	*nodelist;
 
+	nodelist = NULL;
 	scene = xml_node_tag(&doc->head->children, "scene");
 	if (scene)
 	{
 		get_settings(scene, main);
-		camera = xml_node_children(scene, "camera");
-		if (!prepare_camera(camera, &main->scene.cam))
-			return (free_lists_fail(&camera, &objects, &lights, main));
-		objects = xml_node_children(scene, "object");
-		if (!prepare_objects(objects, &main->scene.objects))
-			return (free_lists_fail(&camera, &objects, &lights, main));
-		lights = xml_node_children(scene, "light");
-		if (!prepare_lights(lights, &main->scene.lights))
-			return (free_lists_fail(&camera, &objects, &lights, main));
-		return (free_lists(&camera, &objects, &lights));
+		nodelist = xml_node_children(scene, "camera");
+		if (!prepare_camera(nodelist, &main->scene.cam))
+			return (free_lists_fail(&nodelist, main));
+		free_lists(&nodelist);
+		nodelist = xml_node_children(scene, "object");
+		if (!prepare_objects(nodelist, &main->scene.objects))
+			return (free_lists_fail(&nodelist, main));
+		free_lists(&nodelist);
+		nodelist = xml_node_children(scene, "light");
+		if (!prepare_lights(nodelist, &main->scene.lights))
+			return (free_lists_fail(&nodelist, main));
+		return (free_lists(&nodelist));
 	}
 	return (return_error("ERROR: No scene in file"));
 }

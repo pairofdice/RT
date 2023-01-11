@@ -33,6 +33,9 @@
 # define WIN_H 350
 # define MAX_DISTANCE 9999
 # define EPSILON 0.00006103515625
+# define DEFAULT_ANTIALIAS 4
+# define EDGE_DETECTION_PRECISION 0.02
+# define DEFAULT_MAX_REFLECTIONS 4
 
 enum
 {
@@ -79,6 +82,7 @@ typedef struct s_cam
 	t_matrix		coi_transform;
 	double			plane_h;
 	double			plane_w;
+	int				max_reflections;
 	t_motion_blur	motion;
 	t_motion_blur	coi_motion;
 }					t_cam;
@@ -195,7 +199,6 @@ void				img_pixel_put(t_frame_buffer *fb, unsigned int x, \
 					unsigned int y, t_color color);
 
 int					scene_new(t_scene *scene);
-int					default_scene(t_scene *scene);
 void				scene_intersect(t_scene *scene, t_ray *ray);
 
 t_color				pattern_at(t_hit_record hit, t_point hit_loc, \

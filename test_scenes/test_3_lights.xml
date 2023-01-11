@@ -1,0 +1,27 @@
+<scene>
+<camera>
+	<pos> 0.0 0.0 -10.0 </pos>
+	<coi> 0.0 0.0 30.0 </coi>
+</camera>
+<light type="point">
+	<pos> 0.0 20.0 -10.0 </pos>
+	<color> 1.0 0.0 0.0 </color>
+</light>
+<light type="point">
+	<pos> 20.0 0.0 -10.0 </pos>
+	<color> 0.0 1.0 0.0 </color>
+</light>
+<light type="point">
+	<pos> -20.0 0.0 -10.0 </pos>
+	<color> 0.0 0.0 1.0 </color>
+</light>
+<object type="sphere">
+		<loc> 0.2 0.0 10.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false"> 
+			<color> 1.0 1.0 1.0 </color>
+			<surface ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0"/>
+		</material>
+		<scale> 4.0 4.0 4.0 </scale>
+	</object>
+</scene>
