@@ -1,2 +1,0 @@
-#define SDL_REVISION "git@github.com:JaroJuntunen/RT.git@0c6ac38518242dfae8f8e67cba6f5c84cf90227e 38474fc76e221b5df3a1f93a2805b21d32abae9b"
-#define SDL_REVISION_NUMBER 0

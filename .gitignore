@@ -24,3 +24,4 @@ libsdl2/sdl2.pc
 libsdl2/include/SDL_revision.h
 tags
 *._
+src/unit_tests._2

@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/12 16:08:58 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:07:33 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,17 @@ typedef struct s_light
 	t_vector		direction;
 	t_color			intensity;
 	int				type;
-	t_point			pos;
+/* 	t_point			pos; */
 }					t_light;
+
+typedef struct s_light_params
+{
+	t_vector		to_light;
+	double			distance;
+	t_vector		direction;
+
+}					t_light_params;
+
 
 typedef struct s_negative
 {

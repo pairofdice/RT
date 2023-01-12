@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:12:38 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/11 13:11:53 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:36:34 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,20 @@ static void	lighting_get_diffuse_and_specular(
 	}
 }
 
+static t_vector	to_light(t_light *light, t_hit_record *hit)
+{
+	t_vector	result;
+
+	if (light->type == POINT)
+	{
+		result = tuple_unit(tuple_sub(light->location, hit->hit_loc));
+	}
+	else
+		result = tuple_unit(tuple_sub(light->location, point_new(0.0, 0.0,
+						0.0)));
+	return (result);
+}
+
 t_color	lighting(t_light *light, t_hit_record *hit, t_color *phong)
 {
 	t_lighting	lighting;
@@ -54,7 +68,7 @@ t_color	lighting(t_light *light, t_hit_record *hit, t_color *phong)
 	lighting.result.s_xyzw.w = 1;
 	lighting.effective_color = color_multiply(hit->object->material.color,
 			light->intensity);
-	lighting.to_light_v = tuple_unit(tuple_sub(light->location, hit->hit_loc));
+	lighting.to_light_v = to_light(light, hit);
 	lighting.ambient = tuple_scalar_mult(lighting.effective_color, mat.ambient);
 	lighting.light_dot_normal = vector_dot(lighting.to_light_v, hit->normal);
 	lighting_get_diffuse_and_specular(&lighting, &mat, hit, light);
