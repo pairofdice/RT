@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   precompute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:04:17 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/20 15:58:44 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:12:35 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void	fuck_it_up(t_tuple *normal, t_point hit_point, t_perlin *perlin, int disturb)
+{
+	double		perlin_amount;
+	t_point		point_perlin ;
+
+	if (disturb)
+	{
+		point_perlin = point_new(hit_point.s_xyzw.x, hit_point.s_xyzw.y, hit_point.s_xyzw.z);
+		perlin_amount = perlin_noice(point_perlin, perlin);
+		perlin_amount -= 0.5;
+		normal->s_xyzw.x += perlin_amount * 0.15;
+		normal->s_xyzw.y += perlin_amount * 0.15;
+		normal->s_xyzw.z += perlin_amount * 0.15;
+		*normal = tuple_unit(*normal);
+	}
+}
 
 static int	store_correct_hit(t_ray *ray, t_scene *scene, t_hit_record	*hit,
 							t_intersection *closest_t)
@@ -30,6 +47,7 @@ static int	store_correct_hit(t_ray *ray, t_scene *scene, t_hit_record	*hit,
 		hit->object = closest_t->object;
 		hit->hit_loc = ray_position(*ray, hit->hit_dist);
 		hit->normal = normal_at(hit->object, hit->hit_loc);
+		fuck_it_up(&hit->normal, hit->hit_loc, &scene->perlin, hit->normal_disturbance);
 		hit->to_eye = tuple_neg(ray->dir);
 	}
 	return (0);
@@ -56,5 +74,6 @@ int	precompute(t_ray *ray, t_scene *scene)
 			tuple_scalar_mult(hit.normal, EPSILON));
 	hit.reflect_v = vector_reflect(ray->dir, hit.normal);
 	ray->hit = hit;
+	ray->hit.normal_disturbance = 0; // TODO: Parsing
 	return (0);
 }
