@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_resize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:03:27 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/14 19:48:27 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:06:07 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ int	vec_resize(t_vec *src, size_t target_size)
 	resized.len = src->len;
 	vec_free(src);
 	*src = resized;
-	
 	return (1);
 }
