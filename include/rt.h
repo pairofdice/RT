@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/03 13:11:31 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:49:33 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # include "motion.h"
 # include <stdio.h>
 
-# define WIN_W 500
-# define WIN_H 350
+# define WIN_W 750
+# define WIN_H 500
 # define MAX_DISTANCE 9999
 # define EPSILON 0.00006103515625
 # define DEFAULT_ANTIALIAS 4
@@ -218,5 +218,13 @@ t_intersection		find_negative_object_intersect(t_ray *ray, int neg_obj_id, \
 					t_scene *scene);
 int					precompute(t_ray *ray, t_scene *scene);
 t_color				shade_hit(t_scene *scene, t_ray *ray);
+void				intersects_from_positive_surface(
+						t_scene *scene,
+						t_intersection *intersection,
+						t_ray *ray);
+t_intersection		find_shadow_true_negatives(
+						t_ray ray,
+						double dist,
+						t_scene *scene);
 
 #endif

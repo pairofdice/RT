@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+         #
+#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 15:53:52 by jjuntune          #+#    #+#              #
-#    Updated: 2023/01/03 12:36:43 by jjuntune         ###   ########.fr        #
+#    Updated: 2023/01/12 19:24:30 by jsaarine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), main.c \
 								discriminant.c\
 								intersection_record.c\
 								intersection_new.c\
+								intersection_utils.c\
 								set_transform.c\
 								object_new.c\
 								normal_at.c\
