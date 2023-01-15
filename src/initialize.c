@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:43:10 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/11 17:59:53 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:17:37 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void	initialize_ray(t_ray *ray, double x, double y, t_cam *cam)
 	ray->dir = tuple_unit(ray->dir);
 	*ray = ray_transform(ray, &cam->transform);
 	vec_new(&ray->xs.vec, 4, sizeof(t_intersection));
-	ray->remaining = 5;
+	ray->remaining = cam->max_reflections;
 }

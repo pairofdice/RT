@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 17:43:31 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/12 19:34:43 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:25:07 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ static void	set_light_params(
 	}
 }
 
+static int	not_in_spot(t_light *light, t_hit_record *hit)
+{
+	double		dot;
+	t_vector	to_light;
+
+	if (light->type != SPOT)
+		return (0);
+	to_light = tuple_sub(light->location, hit->hit_loc);
+	to_light = tuple_neg(tuple_unit(to_light));
+	dot = vector_dot(light->direction, to_light);
+	if (dot < 0.8)
+		return (1);
+	return (0);
+}
+
 int	is_shadowed(
 	t_scene *scene,
 	t_light *light,
@@ -44,6 +59,8 @@ int	is_shadowed(
 	t_ray			ray;
 
 	set_light_params(&lt_prms, light, point);
+	if (not_in_spot(light, hit))
+		return (1);
 	ray = ray_new(*point, lt_prms.direction);
 	scene_intersect(scene, &ray);
 	if (ray.xs.vec.len > 0)

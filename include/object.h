@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/12 20:01:40 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:14:04 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ enum
 	CONE,
 	SUN,
 	POINT,
+	SPOT,
 };
 
 // For ambient, diffuse, and specular, the typical values are between 0 and 1. 
@@ -53,6 +54,7 @@ typedef struct s_material
 	double		shininess;
 	double		reflective;
 	t_pattern	pattern;
+	int			normal_disturbance;
 }	t_material;
 
 typedef struct s_object

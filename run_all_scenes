@@ -1,5 +1,0 @@
-#!/usr/bin/env bash 
-
-while read line; do
-	./RT test_scenes/$line
-done < <(ls test_scenes/)

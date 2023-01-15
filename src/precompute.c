@@ -6,13 +6,13 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:04:17 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/12 19:37:54 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:14:05 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	distrub_normal(
+static void	disturb_normal(
 	t_tuple *normal,
 	t_point hit_point,
 	t_perlin *perlin,
@@ -52,7 +52,7 @@ static int	store_correct_hit(t_ray *ray, t_scene *scene, t_hit_record *hit,
 		hit->object = closest_t->object;
 		hit->hit_loc = ray_position(*ray, hit->hit_dist);
 		hit->normal = normal_at(hit->object, hit->hit_loc);
-		distrub_normal(&hit->normal, hit->hit_loc, &scene->perlin,
+		disturb_normal(&hit->normal, hit->hit_loc, &scene->perlin,
 			hit->normal_disturbance);
 		hit->to_eye = tuple_neg(ray->dir);
 	}
@@ -80,6 +80,6 @@ int	precompute(t_ray *ray, t_scene *scene)
 			tuple_scalar_mult(hit.normal, EPSILON));
 	hit.reflect_v = vector_reflect(ray->dir, hit.normal);
 	ray->hit = hit;
-	ray->hit.normal_disturbance = 0; // TODO: Parsing
+	ray->hit.normal_disturbance = closest_t.object->material.normal_disturbance;
 	return (0);
 }
