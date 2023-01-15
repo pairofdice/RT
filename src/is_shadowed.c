@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 17:43:31 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/13 17:45:45 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:25:07 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	not_in_spot(t_light *light, t_hit_record *hit)
 		return (0);
 	to_light = tuple_sub(light->location, hit->hit_loc);
 	to_light = tuple_neg(tuple_unit(to_light));
-	dot = vector_dot(vector_new(0.0, -1.0, 0.0), to_light);
+	dot = vector_dot(light->direction, to_light);
 	if (dot < 0.8)
 		return (1);
 	return (0);
