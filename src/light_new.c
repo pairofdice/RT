@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:54:58 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/12 12:53:59 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:10:23 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,19 @@ t_light	sun_light_new(t_point direction, t_color intensity)
 	light.type = SUN;
 	light.intensity = intensity;
 	light.direction = direction;
+	return (light);
+}
+
+t_light	spotlight_light_new(
+			t_point direction,
+			t_point location,
+			t_color intensity)
+{
+	t_light	light;
+
+	light.type = POINT;
+	light.direction = tuple_unit(direction);
+	light.intensity = intensity;
+	light.location = location;
 	return (light);
 }
