@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   precompute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:04:17 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/15 15:14:05 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/16 14:23:56 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	disturb_normal(
 		point_perlin = point_new(hit_point.s_xyzw.x, hit_point.s_xyzw.y,
 				hit_point.s_xyzw.z);
 		perlin_amount = perlin_noice(point_perlin, perlin);
-		perlin_amount -= 0.5;
+		perlin_amount *= 0.5;
 		normal->s_xyzw.x += perlin_amount * 0.15;
 		normal->s_xyzw.y += perlin_amount * 0.15;
 		normal->s_xyzw.z += perlin_amount * 0.15;

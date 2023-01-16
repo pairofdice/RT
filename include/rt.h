@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/12 19:49:33 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:55:36 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # include "motion.h"
 # include <stdio.h>
 
-# define WIN_W 750
-# define WIN_H 500
+# define WIN_W 1000
+# define WIN_H 750
 # define MAX_DISTANCE 9999
 # define EPSILON 0.00006103515625
 # define DEFAULT_ANTIALIAS 4
