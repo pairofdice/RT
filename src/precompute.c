@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   precompute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:04:17 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/16 14:23:56 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:06:13 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	store_correct_hit(t_ray *ray, t_scene *scene, t_hit_record *hit,
 		hit->hit_loc = ray_position(*ray, hit->hit_dist);
 		hit->normal = normal_at(hit->object, hit->hit_loc);
 		disturb_normal(&hit->normal, hit->hit_loc, &scene->perlin,
-			hit->normal_disturbance);
+			ray->hit.normal_disturbance);
 		hit->to_eye = tuple_neg(ray->dir);
 	}
 	return (0);
@@ -64,6 +64,7 @@ int	precompute(t_ray *ray, t_scene *scene)
 	t_hit_record	hit;
 	t_intersection	closest_t;
 
+	ray->hit.normal_disturbance = closest_t.object->material.normal_disturbance;
 	closest_t = find_closest_intersection(&ray->xs);
 	if (closest_t.t == INFINITY)
 		return (1);
@@ -80,6 +81,5 @@ int	precompute(t_ray *ray, t_scene *scene)
 			tuple_scalar_mult(hit.normal, EPSILON));
 	hit.reflect_v = vector_reflect(ray->dir, hit.normal);
 	ray->hit = hit;
-	ray->hit.normal_disturbance = closest_t.object->material.normal_disturbance;
 	return (0);
 }
