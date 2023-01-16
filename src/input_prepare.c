@@ -98,6 +98,8 @@ int	prepare_lights(t_xml_nodelist *list, t_vec *lights)
 		value = xml_node_attr_value(node, "type");
 		if (!ft_strcmp(value, "sun"))
 			light.type = SUN;
+		else if (!ft_strcmp(value, "spot"))
+			light.type = SPOT;
 		else
 			light.type = POINT;
 		get_light(node, &light);
