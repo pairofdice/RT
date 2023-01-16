@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:32:00 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/20 15:35:37 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:11:56 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ t_material	material_new(void)
 	m.reflective = 0.0;
 	m.pattern.pattern_id = NONE;
 	m.pattern.pattern_perlin = FALSE;
+	m.normal_disturbance = 0.0;
 	return (m);
 }
