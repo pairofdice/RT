@@ -2,7 +2,7 @@
 	<settings edge_detection_precision="0.02" ant_al="6"/>
 	<camera>
 		<pos> 0.0 0.0 -30.0 </pos>
-		<coi> 0.0 0.0 15.0 </coi>
+		<coi> 0.0 -3.0 15.0 </coi>
 	</camera>
 	<light type="point">
 		<pos> 16.0 9.0 8.0 </pos>
@@ -16,15 +16,19 @@
 		<pos> -16.0 9.0 8.0 </pos>
 		<color> 0.45 0.15 0.25 </color>
 	</light>
+	<light type="point">
+		<pos> 0.0 0.0 -30.0 </pos>
+		<color> 0.2 0.2 0.2 </color>
+	</light>
 
 	<object type="sphere">
 		<loc> 0.0 0.0 10.0 </loc>
 		<rot> 0.0 0.0 0.0 </rot>
 		<material > 
-			<color> 1.0 0.0 0.0 </color>
-			<surface ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0.3"/>
+			<color> 1.0 0.3 0.37 </color>
+			<surface normal_disturbance="1" ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0.3"/>
 		</material>
-		<scale> 3.0 3.0 3.0 </scale>
+		<scale> 7.0 7.0 7.0 </scale>
 	</object>
 
 	<object type="plane">
@@ -32,7 +36,7 @@
 		<rot> 0.0 0.0 0.0 </rot>
 		<material>
 			<color> 1.0 1.0 1.0 </color>
-			<surface ambient="0.1" diffuse="0.9" specular="0.1" shininess="200" reflective="0.0"/>
+			<surface normal_disturbance="1" ambient="0.0" diffuse="0.4" specular="0.1" shininess="200" reflective="1.0"/>
 		</material>
 		<scale> 1.0 1.0 1.0 </scale>
 	</object>

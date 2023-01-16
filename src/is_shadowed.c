@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 17:43:31 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/15 19:25:07 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:36:31 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	set_light_params(
 	t_light *light,
 	t_point *point)
 {
-	if (light->type == POINT)
+	if (light->type == POINT || light->type == SPOT)
 	{
 		params->to_light = tuple_sub(light->location, *point);
 		params->distance = tuple_mag(params->to_light);

@@ -1,5 +1,5 @@
 <scene stereoscopy="FALSE">
-	<settings edge_detection_precision="0.02" ant_al="6"/>
+	<settings edge_detection_precision="0.02" ant_al="3"/>
 	<camera>
 		<pos> 10.0 0.0 -10.0 </pos>
 		<coi> 0.0 0.0 15.0 </coi>
@@ -16,7 +16,7 @@
 			<surface ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0"/>
 		</material>
 		<scale> 4.0 4.0 4.0 </scale>
-		<motion speed="1"> 10 0 0 </motion>
+		<motion speed="4"> 10 0 0 </motion>
 	</object>
 	<object type="plane">
 		<loc> 2.0 -5.0 20.0 </loc>

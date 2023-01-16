@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:12:38 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/12 19:36:34 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:37:26 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_vector	to_light(t_light *light, t_hit_record *hit)
 {
 	t_vector	result;
 
-	if (light->type == POINT)
+	if (light->type == POINT || light->type == SPOT)
 	{
 		result = tuple_unit(tuple_sub(light->location, hit->hit_loc));
 	}
