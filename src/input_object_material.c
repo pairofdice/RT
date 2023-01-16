@@ -31,6 +31,11 @@ void	get_surface(t_xml_node *surface, t_material *mat)
 	attr_value = xml_node_attr_value(surface, "reflective");
 	if (attr_value)
 		mat->reflective = ft_atof(attr_value);
+	attr_value = xml_node_attr_value(surface, "normal_disturbance");
+	if (attr_value)
+	{
+		mat->normal_disturbance = ft_atoi(attr_value);
+	}
 }
 
 int	get_material_details(t_xml_node *node, t_material *mat)

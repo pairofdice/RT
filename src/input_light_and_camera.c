@@ -42,6 +42,11 @@ int	get_light(t_xml_node *node, t_light *light)
 		return (FALSE);
 	}
 	get_tuple(&light->intensity, temp->data);
+	temp = xml_node_tag(&node->children, "dir");
+	if (temp != NULL)
+	{
+		get_tuple(&light->direction, temp->data);
+	}
 	light->intensity = color_new_2(light->intensity);
 	light->location = point_new_2(light->location);
 	return (TRUE);
