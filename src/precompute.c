@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   precompute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 19:04:17 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/16 15:16:35 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:33:24 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,8 @@ int	precompute(t_ray *ray, t_scene *scene)
 			tuple_scalar_mult(hit.normal, EPSILON));
 	hit.reflect_v = vector_reflect(ray->dir, hit.normal);
 	ray->hit = hit;
+	ray->hit.surf3_coord = ray_position(ray_transform(ray, \
+			&ray->hit.object->inverse_transform), ray->hit.hit_dist);
+	ray->hit.surf2_coord = get_surface_coordinate(&ray->hit);
 	return (0);
 }

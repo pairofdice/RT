@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 13:38:00 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/02 16:22:50 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/18 12:29:11 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	get_correct_fb(t_sdl *sdl, int *filter_type)
 {
-	if (sdl->event.key.keysym.sym == SDLK_DOWN && *filter_type > 0)
+	if (sdl->event.key.keysym.sym == SDLK_DOWN && *filter_type > STEREOSCOPY)
 		*filter_type -= 1;
 	else if (sdl->event.key.keysym.sym == SDLK_DOWN)
 		*filter_type = EDGE;
-	else if (sdl->event.key.keysym.sym == SDLK_UP && *filter_type < 6)
+	else if (sdl->event.key.keysym.sym == SDLK_UP && *filter_type < EDGE)
 		*filter_type += 1;
 	else if (sdl->event.key.keysym.sym == SDLK_UP)
 		*filter_type = STEREOSCOPY;

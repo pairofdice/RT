@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pattern_striped.c                                  :+:      :+:    :+:   */
+/*   ft_floor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 15:55:12 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/18 13:07:33 by jjuntune         ###   ########.fr       */
+/*   Created: 2023/01/18 13:06:06 by jjuntune          #+#    #+#             */
+/*   Updated: 2023/01/18 13:06:22 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/rt.h"
+#include "libc.h"
 
-int	pattern_striped(double coordinate_in)
+int	ft_floor(double num)
 {
-	double	coordinate;
-	double	floor_coordinate;
+	float	neg;
 
-	coordinate = coordinate_in;
-	floor_coordinate = (int)ft_floor(coordinate);
-	if (nearly_equal((coordinate - floor_coordinate), 0.0) == 1
-		|| nearly_equal((coordinate - floor_coordinate), 1.0) == 1)
-		coordinate += 0.01;
-	if ((((int)ft_floor(coordinate)) % 2) == 0)
-		return (1);
-	return (0);
+	neg = 1;
+	if (num == 0)
+		return (0.0);
+	if (num < 0)
+	{
+		neg = -1;
+		num *= -1;
+		if (num > 0)
+			num += 1.0;
+	}
+	num = (int)num;
+	return (num * neg);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/15 15:14:04 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:24:01 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ typedef struct s_hit_record
 	size_t			neg_hit_id;
 	int				is_shadowed;
 	int				normal_disturbance;
+	t_tuple			surf3_coord;
+	t_tuple			surf2_coord;
 }					t_hit_record;
 
 typedef struct s_ray
@@ -199,4 +201,5 @@ void				get_negative_intersects(t_ray *ray, size_t neg_obj_id, \
 size_t				move_negative(t_ray *ray, size_t neg_obj_id, t_negative *n);
 int					first_positive_object(t_ray *ray, \
 					t_intersection *closest_t, t_negative *n);
+t_tuple				get_surface_coordinate(t_hit_record *hit);
 #endif
