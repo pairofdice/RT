@@ -20,6 +20,8 @@ t_object	object_new(int shape_type)
 	new_object.loc = point_new(0.0, 0.0, 0.0);
 	new_object.up = point_new(0.0, 1.0, 0.0);
 	new_object.rot = point_new(0.0, 0.0, 0.0);
+	new_object.slice_pos = point_new(INFINITY, INFINITY, INFINITY);
+	new_object.slice_neg = point_new(-INFINITY, -INFINITY, -INFINITY);
 	new_object.scale = point_new(1.0, 1.0, 1.0);
 	new_object.negative = FALSE;
 	new_object.transform = matrix_new_identity(4);

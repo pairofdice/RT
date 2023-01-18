@@ -42,6 +42,10 @@ int	get_details(t_xml_node *node, t_object *obj)
 		get_tuple(&obj->loc, node->data);
 	else if (!ft_strcmp(node->tag, "up"))
 		get_tuple(&obj->up, node->data);
+	else if (!ft_strcmp(node->tag, "slice_pos"))
+		get_tuple(&obj->slice_pos, node->data);
+	else if (!ft_strcmp(node->tag, "slice_neg"))
+		get_tuple(&obj->slice_neg, node->data);
 	else if (!ft_strcmp(node->tag, "rot"))
 		get_rotation(node, obj);
 	else if (!ft_strcmp(node->tag, "scale"))
