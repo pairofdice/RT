@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:26:33 by mmakinen          #+#    #+#             */
-/*   Updated: 2023/01/18 19:47:49 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:02:01 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	get_object(t_xml_node *node, t_object *obj)
 		index++;
 	}
 	obj->negative = FALSE;
-	//image_load("whiteflower.bmp", &obj->texture);
-	image_load("texture.bmp", &obj->texture);
+	//image_load("textures/whiteflower.bmp", &obj->texture);
+	image_load("textures/texture.bmp", &obj->texture);
 	value = xml_node_attr_value(node, "negative");
 	if (value != NULL && !ft_strcmp(value, "true"))
 		obj->negative = TRUE;

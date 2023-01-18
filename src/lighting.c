@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:12:38 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/18 19:49:35 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:03:01 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static t_color	get_texture(t_hit_record *hit)
 	int		t_x;
 	int		t_y;
 
-	if (hit->object->texture.loaded == FALSE || (hit->object->type != PLANE && hit->object->type != SPHERE))
+	if (hit->object->texture.loaded == FALSE)
 		return (hit->object->material.color);
 	t_x = ((int)(hit->object->texture.h * hit->surf2_coord.s_xyzw.x)) %hit->object->texture.h;
 	t_y = ((int)(hit->object->texture.w * hit->surf2_coord.s_xyzw.y)) %hit->object->texture.w;
