@@ -37,13 +37,13 @@
 # define EDGE_DETECTION_PRECISION 0.02
 # define DEFAULT_MAX_REFLECTIONS 4
 
-# define	STEREOSCOPY 1
-# define	NORMAL 2
-# define	BLACK_AND_WHITE 3
-# define	SEPIA 4
-# define	CARTOON 5
-# define	B_W_CARTOON 6
-# define	EDGE 7
+# define STEREOSCOPY 1
+# define NORMAL 2
+# define BLACK_AND_WHITE 3
+# define SEPIA 4
+# define CARTOON 5
+# define B_W_CARTOON 6
+# define EDGE 7
 
 typedef struct s_frame_buffer
 {
@@ -223,5 +223,8 @@ t_intersection		find_shadow_true_negatives(
 						t_ray ray,
 						double dist,
 						t_scene *scene);
+int				slice(t_ray *ray_save_hits, double t[2], t_object *obj, t_ray *ray);
+t_tuple			tuple_unit2(t_tuple u);
+
 
 #endif

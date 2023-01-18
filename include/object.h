@@ -76,6 +76,8 @@ typedef struct s_object
 	t_tuple			color;
 	t_material		material;
 	t_motion_blur	motion;
+	t_vector		slice_vector;
+	int				slice_toggle;
 }					t_object;
 
 typedef struct s_abc
