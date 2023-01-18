@@ -26,6 +26,8 @@ double	get_double(char *str)
 	negative = 1.0f;
 	num = 0.0;
 	len = 0;
+	while (ft_isspace(*str) && *str)
+		str++;
 	if (*str == '-')
 	{
 		negative = -1.0f;
