@@ -63,6 +63,8 @@ typedef struct s_object
 	t_point			coi;
 	t_vector		up;
 	t_vector		rot;
+	t_vector		slice_pos;
+	t_vector		slice_neg;
 	t_tuple			scale;
 	double			size;
 	double			brightness;
