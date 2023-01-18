@@ -16,15 +16,10 @@
 # include "object.h"
 # include "matrix.h"
 
-enum
-{
-	NONE,
-	STRIPED,
-	GRID,
-};
+# define NONE 0
+# define STRIPED 1
+# define GRID 2
 
-/*	pattern_id = enum above
-	pattern_perlin = TRUE or FALSE */
 typedef struct s_pattern
 {
 	t_matrix	pattern_transfor;
