@@ -222,8 +222,8 @@ t_intersection		find_shadow_true_negatives(
 						t_ray ray,
 						double dist,
 						t_scene *scene);
-int				slice(t_ray *ray_save_hits, double t[2], t_object *obj, t_ray *ray);
-t_tuple			tuple_unit2(t_tuple u);
-
+int					slice(t_ray *ray_save_hits, double t[2], t_object *obj, \
+						t_ray *ray);
+t_tuple				tuple_unit2(t_tuple u);
 
 #endif
