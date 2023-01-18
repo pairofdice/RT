@@ -27,7 +27,6 @@
 # include "perlin_noice.h"
 # include "patterns.h"
 # include "motion.h"
-# include <stdio.h>
 
 # define WIN_W 1000
 # define WIN_H 750
