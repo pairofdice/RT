@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   input_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakinen <mmakinen@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:26:33 by mmakinen          #+#    #+#             */
-/*   Updated: 2022/12/13 13:35:44 by mmakinen         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:47:49 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/input.h"
+#include "../include/rt.h"
 
 static inline void	populate_types(char (*types)[9])
 {
@@ -40,6 +41,8 @@ int	get_object(t_xml_node *node, t_object *obj)
 		index++;
 	}
 	obj->negative = FALSE;
+	//image_load("whiteflower.bmp", &obj->texture);
+	image_load("texture.bmp", &obj->texture);
 	value = xml_node_attr_value(node, "negative");
 	if (value != NULL && !ft_strcmp(value, "true"))
 		obj->negative = TRUE;

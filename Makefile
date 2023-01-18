@@ -6,7 +6,7 @@
 #    By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 15:53:52 by jjuntune          #+#    #+#              #
-#    Updated: 2023/01/18 13:24:33 by jjuntune         ###   ########.fr        #
+#    Updated: 2023/01/18 16:05:19 by jjuntune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,7 +122,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), main.c \
 								color_at.c\
 								create_frame.c\
 								parser.c\
-								get_surface.c)
+								get_surface.c\
+								load_texture.c)
 
 OBJCT_FILES = $(subst $(SRC_DIR), $(BUILD_DIR), $(SRC_FILES:.c=.o))
 

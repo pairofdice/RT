@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/18 13:24:01 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:15:15 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define OBJECT_H
 
 # include "../libft/libft.h"
+# include "../build/libsdl2/include/SDL2/SDL.h"
 # include "matrix.h"
 # include "tuple.h"
 # include "vector.h"
@@ -57,6 +58,21 @@ typedef struct s_material
 	int			normal_disturbance;
 }	t_material;
 
+typedef struct s_image
+{
+	SDL_Surface		*surface;
+	SDL_PixelFormat	*format;
+	uint32_t		*pixels;
+	uint8_t			bpp;
+	uint32_t		w;
+	uint32_t		h;
+	uint32_t		size;
+	int				pitch;
+	int				incorrect_bpp;
+	int				loaded;
+	uint32_t		linesize;
+}					t_image;
+
 typedef struct s_object
 {
 	t_point			loc;
@@ -75,6 +91,8 @@ typedef struct s_object
 	t_matrix		inverse_transform;
 	t_tuple			color;
 	t_material		material;
+	t_image			texture;
+	int				texture_on;
 	t_motion_blur	motion;
 }					t_object;
 
