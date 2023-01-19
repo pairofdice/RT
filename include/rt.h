@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/18 16:33:28 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:32:46 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include "perlin_noice.h"
 # include "patterns.h"
 # include "motion.h"
-# include <stdio.h>
 
 # define WIN_W 1000
 # define WIN_H 750
@@ -36,13 +35,13 @@
 # define EDGE_DETECTION_PRECISION 0.02
 # define DEFAULT_MAX_REFLECTIONS 4
 
-# define	STEREOSCOPY 1
-# define	NORMAL 2
-# define	BLACK_AND_WHITE 3
-# define	SEPIA 4
-# define	CARTOON 5
-# define	B_W_CARTOON 6
-# define	EDGE 7
+# define STEREOSCOPY 1
+# define NORMAL 2
+# define BLACK_AND_WHITE 3
+# define SEPIA 4
+# define CARTOON 5
+# define B_W_CARTOON 6
+# define EDGE 7
 
 typedef struct s_frame_buffer
 {
@@ -224,6 +223,9 @@ t_intersection		find_shadow_true_negatives(
 						t_ray ray,
 						double dist,
 						t_scene *scene);
+int					slice(t_ray *ray_save_hits, double t[2], t_object *obj, \
+						t_ray *ray);
+t_tuple				tuple_unit2(t_tuple u);
 int	image_load(const char *file, t_image *image);
 
 #endif

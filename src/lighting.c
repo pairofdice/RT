@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:12:38 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/18 20:03:01 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:41:13 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_color	texture_int_to_color(unsigned int rgba)
 {
 	t_color	color;
 
-	color.s_rgb.b = (rgba ) % 256;
+	color.s_rgb.b = (rgba) % 256;
 	color.s_rgb.g = (rgba >> 8) % 256;
 	color.s_rgb.r = (rgba >> 16) % 256;
 	color.s_xyzw.w = 0;
@@ -70,15 +70,17 @@ t_color	texture_int_to_color(unsigned int rgba)
 
 static t_color	get_texture(t_hit_record *hit)
 {
-	t_color color;
+	t_color	color;
 	int		i_color;
 	int		t_x;
 	int		t_y;
 
 	if (hit->object->texture.loaded == FALSE)
 		return (hit->object->material.color);
-	t_x = ((int)(hit->object->texture.h * hit->surf2_coord.s_xyzw.x)) %hit->object->texture.h;
-	t_y = ((int)(hit->object->texture.w * hit->surf2_coord.s_xyzw.y)) %hit->object->texture.w;
+	t_x = ((int)(hit->object->texture.h * hit->surf2_coord.s_xyzw.x))
+		%hit->object->texture.h;
+	t_y = ((int)(hit->object->texture.w * hit->surf2_coord.s_xyzw.y))
+		%hit->object->texture.w;
 	i_color = hit->object->texture.pixels[(t_y * hit->object->texture.w) + t_x];
 	color = texture_int_to_color(i_color);
 	color = tuple_scalar_div(color, 255);

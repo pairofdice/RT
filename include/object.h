@@ -94,6 +94,8 @@ typedef struct s_object
 	t_image			texture;
 	int				texture_on;
 	t_motion_blur	motion;
+	t_vector		slice_vector;
+	int				slice_toggle;
 }					t_object;
 
 typedef struct s_abc
