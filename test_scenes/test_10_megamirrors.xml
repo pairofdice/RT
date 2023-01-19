@@ -9,11 +9,11 @@
 		<color> 0.75 0.4 0.2</color>
 	</light>
 	<light type="point">
-		<pos> 16.0 9.0 8.0 </pos>
+		<pos> 8.0 9.0 8.0 </pos>
 		<color> 0.2 0.4 0.75</color>
 	</light>
 	<light type="point">
-		<pos> -16.0 9.0 8.0 </pos>
+		<pos> -8.0 9.0 8.0 </pos>
 		<color> 0.2 0.4 0.75 </color>
 	</light>
 	<object type="sphere">

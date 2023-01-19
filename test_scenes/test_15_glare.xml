@@ -1,0 +1,38 @@
+<scene stereoscopy="FALSE">
+	<settings edge_detection_precision="0.02" ant_al="6"/>
+	<camera>
+		<pos> 0.0 0.0 -10.0 </pos>
+		<coi> 0.0 0.0 10.0 </coi>
+	</camera>
+
+	<light type="point">
+		<pos> 2.0 0.0 15.0 </pos>
+		<color> 0.4 0.7 1.1</color>
+	</light>
+
+	<light type="point">
+		<pos> -1.0 0.0 5.0 </pos>
+		<color> 0.6 0.2 0.3 </color>
+	</light>
+
+
+	<object type="sphere">
+		<loc> 0.0 0.0 10.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material > 
+			<color> 1.0 1.0 1.0 </color>
+			<surface ambient="0.02" diffuse="0.9" specular="1" shininess="200" reflective="0"/>
+		</material>
+		<scale> 2.5 2.5 2.5 </scale>
+	</object>
+
+	<object type="plane">
+		<loc> 0.0 -1.5 0.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material>
+			<color> 1.0 1.0 1.0 </color>
+			<surface normal_disturbance="1" ambient="0.0" diffuse="0.4" specular="0.1" shininess="200" reflective="1.0"/>
+		</material>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+</scene>
