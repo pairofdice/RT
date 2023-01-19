@@ -38,7 +38,7 @@ void	get_surface(t_xml_node *surface, t_material *mat)
 	}
 }
 
-int	get_material_details(t_xml_node *node, t_material *mat)
+int	get_material_details(t_xml_node *node, t_material *mat, t_object *obj)
 {
 	int			index;
 	t_tuple		col;
@@ -55,12 +55,14 @@ int	get_material_details(t_xml_node *node, t_material *mat)
 		}
 		else if (!ft_strcmp(temp->tag, "surface"))
 			get_surface(temp, mat);
+		else if (!ft_strcmp(temp->tag, "texture"))
+			image_load(temp->data, &obj->texture);
 		index++;
 	}
 	return (TRUE);
 }
 
-int	get_material(t_xml_node *node, t_material *mat)
+int	get_material(t_xml_node *node, t_material *mat, t_object *obj)
 {
 	t_xml_attr	*attr;
 	int			index;
@@ -80,6 +82,6 @@ int	get_material(t_xml_node *node, t_material *mat)
 			mat->pattern.pattern_perlin = TRUE;
 		index++;
 	}
-	get_material_details(node, mat);
+	get_material_details(node, mat, obj);
 	return (TRUE);
 }
