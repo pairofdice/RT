@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 12:22:17 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/11/06 14:18:16 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:08:35 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ int		ft_atoi_base(const char *str, int base);
 double	ft_atof(char *line_arg_r);
 int		ft_isspace(int c);
 void	*ft_calloc(size_t count, size_t size);
-
+int		ft_floor(double num);
 #endif

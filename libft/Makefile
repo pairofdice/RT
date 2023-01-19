@@ -6,7 +6,7 @@
 #    By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 13:01:51 by jjuntune          #+#    #+#              #
-#    Updated: 2023/01/03 12:48:48 by jjuntune         ###   ########.fr        #
+#    Updated: 2023/01/18 13:06:47 by jjuntune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CFILES += ft_strmove.c values_abs.c get_next_line.c ft_atoi_base.c
 CFILES += atof.c
 CFILES += vec_append.c vec_free.c vec_from.c vec_get.c vec_new.c
 CFILES += vec_push.c vec_resize.c
-CFILES += ft_calloc.c ft_isspace.c
+CFILES += ft_calloc.c ft_isspace.c ft_floor.c
 
 OFILES = ft_putchar.o ft_putendl.o ft_putnbr.o ft_putstr.o ft_strchr.o
 OFILES += ft_strcmp.o ft_strcpy.o ft_strdup.o ft_strlen.o ft_strncpy.o
@@ -46,7 +46,7 @@ OFILES += ft_strmove.o values_abs.o get_next_line.o ft_atoi_base.o
 OFILES += atof.o
 OFILES += vec_append.o vec_free.o vec_from.o vec_get.o vec_new.o
 OFILES += vec_push.o vec_resize.o
-OFILES += ft_calloc.o ft_isspace.o
+OFILES += ft_calloc.o ft_isspace.o ft_floor.o
 
 all: $(NAME) 
 

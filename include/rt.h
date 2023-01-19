@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:01:57 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/16 13:55:36 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:32:46 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include "vector.h"
 # include <fcntl.h>
 # include <math.h>
-# include "../build/libsdl2/include/SDL2/SDL.h"
 # include "vector.h"
 # include "object.h"
 # include "multi_thread.h"
@@ -63,6 +62,8 @@ typedef struct s_sdl
 	t_frame_buffer	frame_buffer;
 	int				stereocopy;
 }					t_sdl;
+
+
 
 typedef struct s_cam
 {
@@ -225,5 +226,6 @@ t_intersection		find_shadow_true_negatives(
 int					slice(t_ray *ray_save_hits, double t[2], t_object *obj, \
 						t_ray *ray);
 t_tuple				tuple_unit2(t_tuple u);
+int	image_load(const char *file, t_image *image);
 
 #endif

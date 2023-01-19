@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   input_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakinen <mmakinen@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 13:26:33 by mmakinen          #+#    #+#             */
-/*   Updated: 2022/12/13 13:35:44 by mmakinen         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:25:48 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/input.h"
+#include "../include/rt.h"
 
 static inline void	populate_types(char (*types)[9])
 {

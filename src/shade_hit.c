@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:22:13 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/11 13:15:09 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:11:44 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 				&ray->hit);
 		temp_color = lighting(&light, &ray->hit, &phong);
 		if (ray->hit.object->material.pattern.pattern_id != NONE)
-			temp_color = pattern_at(ray->hit, ray_position(ray_transform(ray, \
-			&ray->hit.object->inverse_transform), ray->hit.hit_dist), \
+			temp_color = pattern_at(ray->hit, ray->hit.surf3_coord, \
 			temp_color, scene->perlin);
 		result = tuple_add(result, temp_color);
 	}

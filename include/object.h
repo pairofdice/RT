@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/15 15:14:04 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:15:15 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define OBJECT_H
 
 # include "../libft/libft.h"
+# include "../build/libsdl2/include/SDL2/SDL.h"
 # include "matrix.h"
 # include "tuple.h"
 # include "vector.h"
@@ -57,6 +58,21 @@ typedef struct s_material
 	int			normal_disturbance;
 }	t_material;
 
+typedef struct s_image
+{
+	SDL_Surface		*surface;
+	SDL_PixelFormat	*format;
+	uint32_t		*pixels;
+	uint8_t			bpp;
+	uint32_t		w;
+	uint32_t		h;
+	uint32_t		size;
+	int				pitch;
+	int				incorrect_bpp;
+	int				loaded;
+	uint32_t		linesize;
+}					t_image;
+
 typedef struct s_object
 {
 	t_point			loc;
@@ -75,6 +91,8 @@ typedef struct s_object
 	t_matrix		inverse_transform;
 	t_tuple			color;
 	t_material		material;
+	t_image			texture;
+	int				texture_on;
 	t_motion_blur	motion;
 	t_vector		slice_vector;
 	int				slice_toggle;
@@ -116,6 +134,8 @@ typedef struct s_hit_record
 	size_t			neg_hit_id;
 	int				is_shadowed;
 	int				normal_disturbance;
+	t_tuple			surf3_coord;
+	t_tuple			surf2_coord;
 }					t_hit_record;
 
 typedef struct s_ray
@@ -201,4 +221,5 @@ void				get_negative_intersects(t_ray *ray, size_t neg_obj_id, \
 size_t				move_negative(t_ray *ray, size_t neg_obj_id, t_negative *n);
 int					first_positive_object(t_ray *ray, \
 					t_intersection *closest_t, t_negative *n);
+t_tuple				get_surface_coordinate(t_hit_record *hit);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:43:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:06:11 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:07:49 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ double	calculate_return(t_tuple p, t_perlin *perlin)
 
 double	perlin_noice(t_tuple point, t_perlin *perlin)
 {
-	perlin->x_i = (int)floor(point.s_xyzw.x) & 255;
-	perlin->y_i = (int)floor(point.s_xyzw.y) & 255;
-	perlin->z_i = (int)floor(point.s_xyzw.z) & 255;
-	point.s_xyzw.x -= floor(point.s_xyzw.x);
-	point.s_xyzw.y -= floor(point.s_xyzw.y);
-	point.s_xyzw.z -= floor(point.s_xyzw.z);
+	perlin->x_i = (int)ft_floor(point.s_xyzw.x) & 255;
+	perlin->y_i = (int)ft_floor(point.s_xyzw.y) & 255;
+	perlin->z_i = (int)ft_floor(point.s_xyzw.z) & 255;
+	point.s_xyzw.x -= ft_floor(point.s_xyzw.x);
+	point.s_xyzw.y -= ft_floor(point.s_xyzw.y);
+	point.s_xyzw.z -= ft_floor(point.s_xyzw.z);
 	perlin->u = fade(point.s_xyzw.x);
 	perlin->v = fade(point.s_xyzw.y);
 	perlin->w = fade(point.s_xyzw.z);
