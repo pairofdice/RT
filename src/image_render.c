@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:56:58 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/19 14:16:05 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:28:40 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,6 @@ static void	aa_help(t_anti_aliasing *aa, t_main *main, int pixel_x)
 	aa->color = tuple_add(aa->color, color_at(&main->scene, &main->ray));
 	vec_free(&main->ray.xs.vec);
 	aa->sub_pixel++;
-}
-
-static void set_blocked_lights(t_main *main)
-{
-	t_light	light;
-	t_ray	ray;
-	size_t	i;
-
-	i = 0;
-	while (i < main->scene.lights.len)
-	{
-		light = *(t_light *) vec_get(&main->scene.lights, i);
-		ray = ray_new_no_malloc(main->scene.cam.pos, light.direction);
-		light.blocked = is_shadowed(&main->scene, &light, &main->scene.cam.pos, &main->ray.hit);
-		i++;
-	}
-	
 }
 
 /*
@@ -68,6 +51,7 @@ int	anti_aliasing(t_main *main, int pixel_x, int pixel_y, int ant_a)
 		aa.j++;
 	}
 	aa.color = tuple_scalar_div(aa.color, aa.sub_pixel);
+	aa.color = tuple_add(aa.color, glare(&main->ray, &main->scene.lights));
 	return (color_to_int(aa.color));
 }
 

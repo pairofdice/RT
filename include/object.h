@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/18 16:15:15 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:02:15 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # define SUN 4
 # define POINT 5
 # define SPOT 6
-
 
 // For ambient, diffuse, and specular, the typical values are between 0 and 1. 
 // For shininess, values between 10 (very large highlight) 
@@ -159,6 +158,7 @@ typedef struct s_light
 	t_vector		direction;
 	t_color			intensity;
 	int				type;
+	int				blocked;
 }					t_light;
 
 typedef struct s_light_params
