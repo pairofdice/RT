@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tuple_mag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:44:03 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/11/06 16:48:21 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:49:22 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tuple.h"
-#include <math.h>
+#include "rt.h"
 
 double	tuple_mag(t_tuple u)
 {

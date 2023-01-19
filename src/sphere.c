@@ -3,17 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:41:16 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/18 15:22:57 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:48:06 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.h"
-#include "object.h"
-#include "tuple.h"
-#include <math.h>
 #include "../include/rt.h"
 
 int	intersect_sphere(t_ray *inc_ray, t_object *obj)

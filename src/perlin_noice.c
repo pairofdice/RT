@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:43:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/18 13:07:49 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:50:02 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	load_perlin_data(t_perlin *perlin)
 	i = 0;
 	perlin->is_data_writen = TRUE;
 	fd = open("include/perlindata.txt", O_RDONLY);
-	if (perlin->is_data_writen != FALSE && fd < 0)
-		perlin->is_data_writen = FALSE;
 	if (get_next_line(fd, &line) < 0)
+	{
 		perlin->is_data_writen = FALSE;
+		return ;
+	}
 	close(fd);
 	values = ft_strsplit(line, ' ');
 	if (values[0] == NULL)
@@ -79,6 +80,8 @@ double	calculate_return(t_tuple p, t_perlin *perlin)
 
 double	perlin_noice(t_tuple point, t_perlin *perlin)
 {
+	if (perlin->is_data_writen == FALSE)
+		return (0.0);
 	perlin->x_i = (int)ft_floor(point.s_xyzw.x) & 255;
 	perlin->y_i = (int)ft_floor(point.s_xyzw.y) & 255;
 	perlin->z_i = (int)ft_floor(point.s_xyzw.z) & 255;

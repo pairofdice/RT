@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+         #
+#    By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 15:53:52 by jjuntune          #+#    #+#              #
-#    Updated: 2023/01/19 14:19:02 by jsaarine         ###   ########.fr        #
+#    Updated: 2023/01/19 16:32:26 by jjuntune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), main.c \
 								create_screen_shot_name.c\
 								perlin_noice.c\
 								perlin_noice_maths.c\
-								tuple_print.c\
 								tuple_new.c\
 								tuple_add.c\
 								tuple_neg.c\
@@ -77,7 +76,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), main.c \
 								matrix_cofactor.c\
 								matrix_minor.c\
 								matrix_submatrix.c\
-								matrix_print.c\
 								matrix_inverse.c\
 								matrix_translate.c\
 								matrix_scale.c\

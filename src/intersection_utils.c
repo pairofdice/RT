@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   intersection_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 17:43:31 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/12 19:33:59 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:34:37 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/object.h"
 #include "../include/rt.h"
 
 static t_intersection	get_first_intersect(t_ray *ray, t_negative *n)

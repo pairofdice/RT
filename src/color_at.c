@@ -6,12 +6,11 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 19:49:39 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/18 12:40:29 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:32:00 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "../include/object.h"
 
 t_color	color_at(t_scene *scene, t_ray *ray)
 {

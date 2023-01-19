@@ -6,12 +6,11 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:44:03 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/11/15 17:41:05 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:47:15 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object.h"
-#include "tuple.h"
+#include "rt.h"
 
 static int	new_intersections(t_vec *intersections)
 {

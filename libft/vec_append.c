@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vec_append.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:03:52 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/02/13 21:36:30 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:27:40 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 /*
 	appends vector src to dst
 */

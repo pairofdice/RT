@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 14:37:35 by jsaarine          #+#    #+#             */
-/*   Updated: 2022/12/14 17:53:43 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:29:29 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef t_tuple	t_point;
 typedef t_tuple	t_color;
 
 t_vector		tuple_new(double x, double y, double z, double w);
-void			tuple_print(t_tuple t);
 int				nearly_equal(double a, double b);
 t_tuple			tuple_add(t_tuple u, t_tuple v);
 t_tuple			tuple_sub(t_tuple u, t_tuple v);
