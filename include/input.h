@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:33:14 by mmakinen          #+#    #+#             */
-/*   Updated: 2023/01/19 15:25:18 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:04:20 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ int			get_camera(t_xml_node *node, t_cam *cam);
 /* Get obj information */
 int			get_object(t_xml_node *node, t_object *obj);
 int			get_material(t_xml_node *node, t_material *mat, t_object *obj);
-int			get_material_details(
-				t_xml_node *node,
-				t_material *mat,
-				t_object *obj);
+int			get_material_details(t_xml_node *node,
+				t_material *mat, t_object *obj);
 void		get_surface(t_xml_node *surface, t_material *mat);
 int			get_motion(t_xml_node *node, t_motion_blur *motion);
 int			get_rotation(t_xml_node *node, t_object *obj);
