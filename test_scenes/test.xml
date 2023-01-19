@@ -1,7 +1,7 @@
 <scene>
 	<settings edge_detection_precision="0.01" ant_al="6"/>
 	<camera>
-		<pos> 10.0 60.0 -60.0 </pos>
+		<pos> 0.0 0.0 -20.0 </pos>
 		<coi> 0.0 0.0 15.0 </coi>
 	</camera>
 	<light type="point">
@@ -19,18 +19,17 @@
 		<material> 
 			<color> 1 1 1 </color>
 		</material>
-		<scale> 1.0 1.0 1.0 </scale>
+		<scale> 10.0 10.0 10.0 </scale>
 	</object>
 
 	<object type="sphere">
-		<loc> -5.0 0.0 0.0 </loc>
+		<loc> 0.0 0.0 -10.0 </loc>
 		<rot> 0.0 0.0 0.0 </rot>
 		<material> 
 			<color> 1.0 0.3 0.1 </color>
+			<texture>textures/texture.bmp</texture>
 		</material>
-		<slice_pos> 5 1 0 </slice_pos>
-		<slice_neg> -5 -1 0 </slice_neg>
-		<scale> 100.0 6.0 6.0 </scale>
+		<scale> 5 5 5 </scale>
 	</object>
 
 	<object type="cone">
@@ -73,6 +72,7 @@
 		<rot> 90.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false">
 			<color> 0.0 1 0.2 </color>
+			<texture>textures/texture.bmp</texture>
 		</material>
 		<disc> 20 </disc>
 		<slice_pos> 1 0 0 </slice_pos>
