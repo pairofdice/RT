@@ -24,6 +24,5 @@ int	intersect_plane(t_ray *inc_ray, t_object *obj)
 	t = ((-ray.orig.s_xyzw.y) / ray.dir.s_xyzw.y);
 	if (t < 0)
 		return (0);
-	slice(inc_ray, (double [2]){t, 0.0}, obj, &ray);
-	return (1);
+	return (slice(inc_ray, (double [2]){t, 0.0}, obj, &ray));
 }

@@ -29,3 +29,9 @@ int	free_lists(t_xml_nodelist **nodelist)
 	}
 	return (TRUE);
 }
+
+int	return_error(const char *str)
+{
+	ft_putendl_fd(str, 2);
+	return (FALSE);
+}
