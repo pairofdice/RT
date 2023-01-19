@@ -65,7 +65,7 @@ int	get_details(t_xml_node *node, t_object *obj)
 	else if (!ft_strcmp(node->tag, "scale"))
 		get_tuple(&obj->scale, node->data);
 	if (!ft_strcmp(node->tag, "material"))
-		get_material(node, &obj->material);
+		get_material(node, &obj->material, obj);
 	if (!ft_strcmp(node->tag, "motion"))
 		get_motion(node, &obj->motion);
 	return (TRUE);
