@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:56:58 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/05 12:43:34 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:28:40 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	anti_aliasing(t_main *main, int pixel_x, int pixel_y, int ant_a)
 		aa.j++;
 	}
 	aa.color = tuple_scalar_div(aa.color, aa.sub_pixel);
+	aa.color = tuple_add(aa.color, glare(&main->ray, &main->scene.lights));
 	return (color_to_int(aa.color));
 }
 

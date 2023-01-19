@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/11 11:19:04 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:21:50 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	main(int ac, char **av)
 		return (1);
 	if (initialize_window(&main) == 0)
 		return (1);
+	set_blocked_lights(&main);
 	create_frame(&main);
 	rt_loop_and_exit(&main.sdl, &main);
 	SDL_Quit();
