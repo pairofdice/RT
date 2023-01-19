@@ -30,16 +30,14 @@
 #  define FALSE 0
 # endif
 
-enum
-{
-	SPHERE,
-	CYLINDER,
-	PLANE,
-	CONE,
-	SUN,
-	POINT,
-	SPOT,
-};
+# define SPHERE 0
+# define CYLINDER 1
+# define PLANE 2
+# define CONE 3
+# define SUN 4
+# define POINT 5
+# define SPOT 6
+
 
 // For ambient, diffuse, and specular, the typical values are between 0 and 1. 
 // For shininess, values between 10 (very large highlight) 
@@ -96,6 +94,7 @@ typedef struct s_object
 	t_motion_blur	motion;
 	t_vector		slice_vector;
 	int				slice_toggle;
+	int				disc_toggle;
 }					t_object;
 
 typedef struct s_abc

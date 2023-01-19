@@ -52,6 +52,5 @@ int	intersect_cone(t_ray *inc_ray, t_object *obj)
 		return (0);
 	t[0] = (-(abcd.b) - sqrt(abcd.d)) / (2 * abcd.a);
 	t[1] = (-(abcd.b) + sqrt(abcd.d)) / (2 * abcd.a);
-	slice(inc_ray, t, obj, &ray);
-	return (1);
+	return (slice(inc_ray, t, obj, &ray));
 }

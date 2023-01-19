@@ -36,26 +36,10 @@ int	get_rotation(t_xml_node *node, t_object *obj)
 	return (TRUE);
 }
 
-void	get_slice(t_object *obj, char *data, int mode)
+void	get_disc(char *data, t_object *obj)
 {
-	int	index;
-
-	index = 0;
-	get_tuple(&obj->slice_pos, data);
-	obj->slice_pos = tuple_unit(obj->slice_pos);
-	obj->slice_toggle = 1;
-	while (mode == 1 && index < 4)
-	{
-		if (obj->slice_pos.a[index] < 0)
-			obj->slice_pos.a[index] = 0;
-		index++;
-	}
-	while (mode == 0 && index < 4)
-	{
-		if (obj->slice_neg.a[index] > 0)
-			obj->slice_neg.a[index] = 0;
-		index++;
-	}
+	obj->size = get_double(data);
+	obj->disc_toggle = 1;
 }
 
 int	get_details(t_xml_node *node, t_object *obj)
@@ -74,6 +58,8 @@ int	get_details(t_xml_node *node, t_object *obj)
 		get_tuple(&obj->slice_neg, node->data);
 		obj->slice_toggle = 1;
 	}
+	else if (!ft_strcmp(node->tag, "disc"))
+		get_disc(node->data, obj);
 	else if (!ft_strcmp(node->tag, "rot"))
 		get_rotation(node, obj);
 	else if (!ft_strcmp(node->tag, "scale"))

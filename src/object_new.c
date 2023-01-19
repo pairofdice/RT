@@ -24,6 +24,9 @@ t_object	object_new(int shape_type)
 	new_object.slice_neg = point_new(0.0, 0.0, 0.0);
 	new_object.scale = point_new(1.0, 1.0, 1.0);
 	new_object.negative = FALSE;
+	new_object.slice_toggle = FALSE;
+	new_object.disc_toggle = FALSE;
+	new_object.size = INFINITY;
 	new_object.transform = matrix_new_identity(4);
 	new_object.id = id;
 	id++;

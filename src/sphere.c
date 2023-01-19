@@ -24,7 +24,7 @@ int	intersect_sphere(t_ray *inc_ray, t_object *obj)
 
 	ray = ray_new_no_malloc(inc_ray->orig, inc_ray->dir);
 	ray = ray_transform(inc_ray, &obj->inverse_transform);
-	ray.orig.s_xyzw.w -= 1.0;
+	ray.orig.s_xyzw.w = 0.0;
 	abcd.a = vector_dot(ray.dir, ray.dir);
 	abcd.b = 2 * vector_dot(ray.dir, ray.orig);
 	abcd.c = vector_dot(ray.orig, ray.orig) - 1;

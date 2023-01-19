@@ -12,10 +12,24 @@
 
 #include "../include/input.h"
 
-int	return_error(const char *str)
+void	scale_slice(t_object *obj)
 {
-	ft_putendl_fd(str, 2);
-	return (FALSE);
+	int	index;
+
+	index = 0;
+	if (obj->slice_toggle == 1)
+	{
+		while (index < 4)
+		{
+			if (obj->slice_pos.a[index] < 0)
+				obj->slice_pos.a[index] = 0;
+			if (obj->slice_neg.a[index] > 0)
+				obj->slice_neg.a[index] = 0;
+			obj->slice_pos.a[index] /= obj->scale.a[index];
+			obj->slice_neg.a[index] /= obj->scale.a[index];
+			index++;
+		}
+	}
 }
 
 int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
@@ -29,7 +43,7 @@ int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
 		return (return_error("ERROR: no objects in input"));
 	while (index < list->size)
 	{
-		if (!get_object(xml_nodelist_at(list, index), &obj))
+		if (!get_object(xml_nodelist_at(list, index++), &obj))
 			return (FALSE);
 		obj.transform = matrix_translate_2(obj.loc);
 		rotate = matrix_rotate_x(obj.rot.a[0]);
@@ -41,7 +55,7 @@ int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
 		rotate = matrix_scale(obj.scale.a[0], obj.scale.a[1], obj.scale.a[2]);
 		obj.transform = matrix_multiply(&obj.transform, &rotate);
 		obj.inverse_transform = matrix_inverse(&obj.transform);
-		obj.id = index++;
+		scale_slice(&obj);
 		vec_push(objects, &obj);
 	}
 	return (TRUE);

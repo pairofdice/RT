@@ -1,7 +1,7 @@
-<scene stereoscopy="TRUE">
+<scene>
 	<settings edge_detection_precision="0.01" ant_al="6"/>
 	<camera>
-		<pos> 10.0 0.0 -10.0 </pos>
+		<pos> 10.0 60.0 -60.0 </pos>
 		<coi> 0.0 0.0 15.0 </coi>
 	</camera>
 	<light type="point">
@@ -9,32 +9,85 @@
 		<color> 1.0 1.0 1.0 </color>
 	</light>
 	<light type="point">
-		<pos> 50.0 2.5 -20.0 </pos>
+		<pos> 40.0 2.5 -20.0 </pos>
 		<color> 1.0 1.0 1.0 </color>
 	</light>
+
 	<object type="sphere">
-		<loc> 0.2 0.0 10.0 </loc>
+		<loc> 50.0 2.5 -20.0  </loc>
 		<rot> 0.0 0.0 0.0 </rot>
-		<material pattern="none" perlin="fasle"> 
-			<color> 1.0 0.3 0.1 </color>
-			<surface ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0"/>
+		<material> 
+			<color> 1 1 1 </color>
 		</material>
-		<scale> 6.0 6.0 6.0 </scale>
+		<scale> 1.0 1.0 1.0 </scale>
 	</object>
+
+	<object type="sphere">
+		<loc> -5.0 0.0 0.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material> 
+			<color> 1.0 0.3 0.1 </color>
+		</material>
+		<slice_pos> 5 1 0 </slice_pos>
+		<slice_neg> -5 -1 0 </slice_neg>
+		<scale> 100.0 6.0 6.0 </scale>
+	</object>
+
 	<object type="cone">
-		<loc> 5.0 2.0 10.0 </loc>
+		<loc> -25.0 2.0 0.0 </loc>
 		<rot> 0.0 0.0 30 </rot>
 		<material pattern="none" perlin="false">
 			<color> 1.0 0.5 0.0 </color>
 		</material>
-		<scale> 0.5 1.0 1.0 </scale>
+		<slice_pos> 1 10 0 </slice_pos>
+		<slice_neg> -1 -10 0 </slice_neg>
+		<scale> 1 1.0 1.0 </scale>
 	</object>
+
 	<object type="plane">
-		<loc> 2.0 2.0 200.0 </loc>
+		<loc> 0.0 0.0 0.0 </loc>
 		<rot> 90.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false">
 			<color> 0.0 0.2 1.0 </color>
 		</material>
+		<disc> 2 </disc>
+		<slice_pos> 1 0 0 </slice_pos>
+		<slice_neg> -1 0 0 </slice_neg>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+
+	<object type="plane">
+		<loc> 0.0 0.0 0.0 </loc>
+		<rot> 90.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false">
+			<color> 0.0 0.2 1.0 </color>
+		</material>
+		<disc> 2 </disc>
+		<slice_pos> 1 0 0 </slice_pos>
+		<slice_neg> -10 0 0 </slice_neg>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+
+	<object type="plane">
+		<loc> 0.0 -15.0 1.0 </loc>
+		<rot> 90.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false">
+			<color> 0.0 1 0.2 </color>
+		</material>
+		<disc> 20 </disc>
+		<slice_pos> 1 0 0 </slice_pos>
+		<slice_neg> -10 0 0 </slice_neg>
+		<scale> 1.0 1.0 1.0 </scale>
+	</object>
+
+	<object type="cylinder">
+		<loc> 10.0 0.0 0.0 </loc>
+		<rot> 0.0 0.0 0.0 </rot>
+		<material pattern="none" perlin="false">
+			<color> 1.0 0.2 0.5 </color>
+		</material>
+		<slice_pos> 0 0 0 </slice_pos>
+		<slice_neg> 0 0 0 </slice_neg>
 		<scale> 1.0 1.0 1.0 </scale>
 	</object>
 </scene>
