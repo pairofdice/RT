@@ -67,8 +67,7 @@ t_color	lighting(t_light *light, t_hit_record *hit, t_color *phong, \
 	mat = hit->object->material;
 	lighting.result = color_new(0, 0, 0);
 	lighting.result.s_xyzw.w = 1;
-	lighting.effective_color = color_multiply(color,
-			light->intensity);
+	lighting.effective_color = color_multiply(color, light->intensity);
 	lighting.to_light_v = to_light(light, hit);
 	lighting.light_dot_normal = vector_dot(lighting.to_light_v, hit->normal);
 	lighting_get_diffuse_and_specular(&lighting, &mat, hit, light);
