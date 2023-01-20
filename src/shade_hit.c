@@ -55,7 +55,7 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 	phong = color_new(0, 0, 0);
 	color = get_texture(&ray->hit);
 	if (ray->hit.object->material.pattern.pattern_id != NONE)
-		color = pattern_at(ray->hit, ray->hit.surf3_coord, \
+		color = pattern_at(ray->hit, ray->hit.hit_loc, \
 		color, scene->perlin);
 	while (i < scene->lights.len)
 	{
