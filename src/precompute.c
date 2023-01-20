@@ -80,8 +80,7 @@ int	precompute(t_ray *ray, t_scene *scene)
 			tuple_scalar_mult(hit.normal, EPSILON));
 	hit.reflect_v = vector_reflect(ray->dir, hit.normal);
 	ray->hit = hit;
-	ray->hit.surf3_coord = ray_position(ray_transform(ray, \
-			&ray->hit.object->inverse_transform), ray->hit.hit_dist);
+	ray->hit.surf3_coord = closest_t.local;
 	ray->hit.surf2_coord = get_surface_coordinate(&ray->hit);
 	return (0);
 }

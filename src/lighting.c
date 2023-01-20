@@ -77,10 +77,8 @@ static t_color	get_texture(t_hit_record *hit)
 
 	if (hit->object->texture.loaded == FALSE)
 		return (hit->object->material.color);
-	t_x = ((int)(hit->object->texture.h * hit->surf2_coord.s_xyzw.x))
-		%hit->object->texture.h;
-	t_y = ((int)(hit->object->texture.w * hit->surf2_coord.s_xyzw.y))
-		%hit->object->texture.w;
+	t_x = ((int)(hit->object->texture.h * hit->surf2_coord.s_xyzw.x));
+	t_y = ((int)(hit->object->texture.w * hit->surf2_coord.s_xyzw.y));
 	i_color = hit->object->texture.pixels[(t_y * hit->object->texture.w) + t_x];
 	color = texture_int_to_color(i_color);
 	color = tuple_scalar_div(color, 255);

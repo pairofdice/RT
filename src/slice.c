@@ -12,14 +12,14 @@
 
 #include "../include/rt.h"
 
-static t_vector	get_local_hit(t_ray *ray, double time)
+t_vector	get_local_hit(t_ray *ray, double time)
 {
 	t_vector	hit;
 
 	hit = vector_new(
-			ray->orig.s_xyzw.x + time * ray->dir.s_xyzw.x,
-			ray->orig.s_xyzw.y + time * ray->dir.s_xyzw.y,
-			ray->orig.s_xyzw.z + time * ray->dir.s_xyzw.z);
+			ray->orig.s_xyzw.x + ray->dir.s_xyzw.x * time,
+			ray->orig.s_xyzw.y + ray->dir.s_xyzw.y * time,
+			ray->orig.s_xyzw.z + ray->dir.s_xyzw.z * time);
 	return (hit);
 }
 
@@ -58,19 +58,20 @@ int	slice(t_ray *ray_save_hits, double t[2], t_object *obj, t_ray *ray)
 	t_vector	local_hit;
 
 	local_hit = get_local_hit(ray, t[0]);
+	obj->local = local_hit;
 	if ((in_disc(local_hit, obj)) && (in_bounds(local_hit, obj->slice_pos, \
 	obj->slice_neg, obj)))
 	{
-		intersection_record(ray_save_hits, t[0], obj);
+		intersection_record(ray_save_hits, t[0], obj, local_hit);
 		if (obj->type != PLANE)
-			intersection_record(ray_save_hits, t[1], obj);
+			intersection_record(ray_save_hits, t[1], obj, local_hit);
 		return (TRUE);
 	}
 	local_hit = get_local_hit(ray, t[1]);
 	if (obj->type != PLANE && in_bounds(local_hit, obj->slice_pos, \
 	obj->slice_neg, obj))
 	{
-		intersection_record(ray_save_hits, t[1], obj);
+		intersection_record(ray_save_hits, t[1], obj, local_hit);
 		return (TRUE);
 	}
 	return (FALSE);
