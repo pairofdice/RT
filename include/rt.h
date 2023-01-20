@@ -188,7 +188,7 @@ t_light				point_light_new(t_point position, t_color intensity);
 t_light				sun_light_new(t_point direction, t_color intensity);
 t_material			material_new(void);
 
-t_color				lighting(t_light *light, t_hit_record *hit, t_color *phong);
+t_color				lighting(t_light *light, t_hit_record *hit, t_color *phong, t_color color);
 
 void				img_pixel_put(t_frame_buffer *fb, unsigned int x, \
 					unsigned int y, t_color color);
