@@ -30,15 +30,13 @@ static t_color	get_texture(t_hit_record *hit)
 	int		t_x;
 	int		t_y;
 
-	if (hit->object->texture.loaded == FALSE || hit->neg_hit == 1)
+	if (hit->object->texture.loaded == FALSE)
 		return (hit->object->material.color);
 	t_x = ((int)(hit->object->texture.w * hit->surf2_coord.s_xyzw.x));
 	t_y = ((int)(hit->object->texture.h * hit->surf2_coord.s_xyzw.y));
 	i_color = hit->object->texture.pixels[(t_y * hit->object->texture.w) + t_x];
 	color = texture_int_to_color(i_color);
 	color = tuple_scalar_div(color, 255);
-	hit->object->material.ambient_color = tuple_scalar_mult(color, \
-	hit->object->material.ambient);
 	return (color);
 }
 
@@ -64,7 +62,7 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 				&ray->hit);
 		result = tuple_add(result, lighting(&light, &ray->hit, &phong, color));
 	}
-	result = tuple_add(result, ray->hit.object->material.ambient_color);
+	result = tuple_add(result, tuple_scalar_mult(color, ray->hit.object->material.ambient));
 	if (ray->hit.object->material.reflective > 0)
 		result = tuple_add(tuple_scalar_mult(result, 1 - \
 		ray->hit.object->material.reflective), reflected_color(scene, ray));
