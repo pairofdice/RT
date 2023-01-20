@@ -47,6 +47,7 @@ int	check_next_obj(t_ray *ray, t_intersection *closest_t, t_scene *scene)
 		ray->hit.hit_dist = closest_t->t;
 		if (ray->hit.hit_dist != INFINITY)
 		{
+			ray->hit.surf3_coord = closest_t->local;
 			ray->hit.hit_loc = ray_position(*ray, ray->hit.hit_dist);
 			ray->hit.object = closest_t->object;
 			ray->hit.normal = normal_at(closest_t->object, ray->hit.hit_loc);
@@ -86,7 +87,7 @@ t_intersection	find_negative_object_intersect(t_ray *ray, int neg_obj_id,
 	ray->hit.neg_hit_id = neg_obj_id;
 	if (first_positive_object(ray, &closest_t, &neg_hits) == 1)
 	{
-		ray->hit.neg_hit = 1;
+		ray->hit.neg_hit = TRUE;
 		ray->hit.neg_hit_id = neg_obj_id;
 		ray->hit.hit_dist = neg_hits.t[1];
 		ray->hit.object = closest_t.object;
