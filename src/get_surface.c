@@ -29,6 +29,10 @@ static t_tuple	get_planar(t_tuple obj_space)
 
 	map = point_new((fmod(obj_space.s_xyzw.x, 1.0)),
 			((fmod(obj_space.s_xyzw.z, 1.0))), 0.0);
+	if (map.s_xyzw.x < 0)
+		map.s_xyzw.x += 1.0;
+	if (map.s_xyzw.y < 0)
+		map.s_xyzw.y += 1.0;
 	return (map);
 }
 
