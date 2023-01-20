@@ -1,8 +1,8 @@
 <scene>
 	<settings edge_detection_precision="0.01" ant_al="6"/>
 	<camera>
-		<pos> 0.0 0.0 -20.0 </pos>
-		<coi> 0.0 0.0 15.0 </coi>
+		<pos> 0.0 0.0 -5.0 </pos>
+		<coi> 0.0 0.0 0.0 </coi>
 	</camera>
 	<light type="point">
 		<pos> 0.0 2.5 -100.0 </pos>
@@ -23,13 +23,13 @@
 	</object>
 
 	<object type="sphere">
-		<loc> 0.0 0.0 -10.0 </loc>
+		<loc> 0.0 0.0 0.0 </loc>
 		<rot> 0.0 0.0 0.0 </rot>
 		<material> 
 			<color> 1.0 0.3 0.1 </color>
-			<texture>textures/texture.bmp</texture>
+			<texture>textures/whiteflower.bmp</texture>
 		</material>
-		<scale> 5 5 5 </scale>
+		<scale> 2 2 2 </scale>
 	</object>
 
 	<object type="cone">
@@ -44,7 +44,7 @@
 	</object>
 
 	<object type="plane">
-		<loc> 0.0 0.0 0.0 </loc>
+		<loc> 100.0 0.0 0.0 </loc>
 		<rot> 90.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false">
 			<color> 0.0 0.2 1.0 </color>
@@ -56,7 +56,7 @@
 	</object>
 
 	<object type="plane">
-		<loc> 0.0 0.0 0.0 </loc>
+		<loc> -6100.0 0.0 0.0 </loc>
 		<rot> 90.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false">
 			<color> 0.0 0.2 1.0 </color>
@@ -68,11 +68,11 @@
 	</object>
 
 	<object type="plane">
-		<loc> 0.0 -15.0 1.0 </loc>
+		<loc> 0.0 0.0 0.0 </loc>
 		<rot> 90.0 0.0 0.0 </rot>
 		<material pattern="none" perlin="false">
 			<color> 0.0 1 0.2 </color>
-			<texture>textures/texture.bmp</texture>
+			<texture>textures/whiteflower.bmp</texture>
 		</material>
 		<disc> 20 </disc>
 		<slice_pos> 1 0 0 </slice_pos>

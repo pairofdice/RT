@@ -12,10 +12,11 @@
 
 #include "object.h"
 
-void	intersection_record(t_ray *ray, double intersect, t_object *s)
+void	intersection_record(t_ray *ray, double intersect, t_object *s, \
+t_tuple local)
 {
 	t_intersection	xs;
 
-	xs = intersection_new(intersect, s);
+	xs = intersection_new(intersect, s, local);
 	vec_push(&ray->xs.vec, &xs);
 }

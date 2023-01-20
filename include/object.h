@@ -29,7 +29,7 @@
 # ifndef FALSE
 #  define FALSE 0
 # endif
-
+# define TWOPI 6.28318530718
 # define SPHERE 0
 # define CYLINDER 1
 # define PLANE 2
@@ -94,6 +94,7 @@ typedef struct s_object
 	t_vector		slice_vector;
 	int				slice_toggle;
 	int				disc_toggle;
+	t_tuple			local;
 }					t_object;
 
 typedef struct s_abc
@@ -134,6 +135,7 @@ typedef struct s_hit_record
 	int				normal_disturbance;
 	t_tuple			surf3_coord;
 	t_tuple			surf2_coord;
+	
 }					t_hit_record;
 
 typedef struct s_ray
@@ -149,6 +151,7 @@ typedef struct s_intersection
 {
 	double			t;
 	size_t			i;
+	t_tuple			local;
 	t_object		*object;
 }					t_intersection;
 
@@ -202,14 +205,14 @@ t_point				ray_position(t_ray ray, double t);
 int					phere_intersect(t_ray *ray, t_object *s);
 t_ray				ray_transform(t_ray *source, t_matrix *transform);
 void				intersection_record(t_ray *ray, double time, \
-					t_object *s);
+					t_object *s, t_tuple local);
 void				intersection_record_test(t_ray *ray, double t1, \
 					double t2, t_object *s);
 int					intersect_sphere(t_ray *inc_ray, t_object *s);
 int					intersect_plane(t_ray *inc_ray, t_object *s);
 int					intersect_cylinder(t_ray *inc_ray, t_object *s);
 int					intersect_cone(t_ray *inc_ray, t_object *s);
-t_intersection		intersection_new(double time, t_object *o);
+t_intersection		intersection_new(double time, t_object *o, t_tuple local);
 t_intersection		find_closest_intersection(t_intersections *xs);
 void				set_transform(t_object *obj, t_matrix *transform);
 t_vector			normal_at(t_object *obj, t_point point);
@@ -221,4 +224,6 @@ size_t				move_negative(t_ray *ray, size_t neg_obj_id, t_negative *n);
 int					first_positive_object(t_ray *ray, \
 					t_intersection *closest_t, t_negative *n);
 t_tuple				get_surface_coordinate(t_hit_record *hit);
+t_vector			get_local_hit(t_ray *ray, double time);
+
 #endif

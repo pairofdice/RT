@@ -12,11 +12,13 @@
 
 #include "object.h"
 
-t_intersection	intersection_new(double time, t_object *o)
+t_intersection	intersection_new(double time, t_object *o, t_tuple local)
 {
 	t_intersection	xs;
 
 	xs.t = time;
 	xs.object = o;
+	xs.i = o->id;
+	xs.local = local;
 	return (xs);
 }
