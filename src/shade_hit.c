@@ -37,13 +37,14 @@ static t_color	get_texture(t_hit_record *hit)
 	i_color = hit->object->texture.pixels[(t_y * hit->object->texture.w) + t_x];
 	color = texture_int_to_color(i_color);
 	color = tuple_scalar_div(color, 255);
+	hit->object->material.ambient_color = tuple_scalar_mult(color, \
+	hit->object->material.ambient);
 	return (color);
 }
 
 t_color	shade_hit(t_scene *scene, t_ray *ray)
 {
 	t_color		result;
-	t_color		temp_color;
 	t_color		phong;
 	t_color		color;
 	t_light		light;
@@ -53,20 +54,19 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 	result = color_new(0, 0, 0);
 	phong = color_new(0, 0, 0);
 	color = get_texture(&ray->hit);
+	if (ray->hit.object->material.pattern.pattern_id != NONE)
+		color = pattern_at(ray->hit, ray->hit.surf3_coord, \
+		color, scene->perlin);
 	while (i < scene->lights.len)
 	{
 		light = *(t_light *)vec_get(&scene->lights, i++);
 		ray->hit.is_shadowed = is_shadowed(scene, &light, &ray->hit.over_point, \
 				&ray->hit);
-		temp_color = lighting(&light, &ray->hit, &phong, color);
-		if (ray->hit.object->material.pattern.pattern_id != NONE)
-			temp_color = pattern_at(ray->hit, ray->hit.surf3_coord, \
-			temp_color, scene->perlin);
-		result = tuple_add(result, temp_color);
+		result = tuple_add(result, lighting(&light, &ray->hit, &phong, color));
 	}
+	result = tuple_add(result, ray->hit.object->material.ambient_color);
 	if (ray->hit.object->material.reflective > 0)
 		result = tuple_add(tuple_scalar_mult(result, 1 - \
 		ray->hit.object->material.reflective), reflected_color(scene, ray));
-	result = tuple_add(result, tuple_scalar_mult(color, ray->hit.object->material.ambient));
 	return (tuple_add(result, phong));
 }

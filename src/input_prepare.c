@@ -12,7 +12,7 @@
 
 #include "../include/input.h"
 
-void	scale_slice(t_object *obj)
+static void	finalize(t_object *obj)
 {
 	int	index;
 
@@ -30,6 +30,8 @@ void	scale_slice(t_object *obj)
 			index++;
 		}
 	}
+	obj->material.ambient_color = tuple_scalar_mult(obj->material.color, \
+	obj->material.ambient);
 }
 
 int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
@@ -55,7 +57,7 @@ int	prepare_objects(t_xml_nodelist *list, t_vec *objects)
 		rotate = matrix_scale(obj.scale.a[0], obj.scale.a[1], obj.scale.a[2]);
 		obj.transform = matrix_multiply(&obj.transform, &rotate);
 		obj.inverse_transform = matrix_inverse(&obj.transform);
-		scale_slice(&obj);
+		finalize(&obj);
 		vec_push(objects, &obj);
 	}
 	return (TRUE);
