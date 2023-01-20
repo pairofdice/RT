@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:56:24 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/19 15:02:15 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:55:03 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_hit_record
 	size_t			neg_hit_id;
 	int				is_shadowed;
 	int				normal_disturbance;
+	t_tuple			local;
 	t_tuple			surf3_coord;
 	t_tuple			surf2_coord;
 }					t_hit_record;

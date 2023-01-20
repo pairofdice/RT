@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:13:33 by jjuntune          #+#    #+#             */
-/*   Updated: 2022/12/20 15:37:47 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:24:29 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	check_next_obj(t_ray *ray, t_intersection *closest_t, t_scene *scene)
 		ray->hit.hit_dist = closest_t->t;
 		if (ray->hit.hit_dist != INFINITY)
 		{
+			ray->hit.neg_hit = FALSE;
 			ray->hit.surf3_coord = closest_t->local;
 			ray->hit.hit_loc = ray_position(*ray, ray->hit.hit_dist);
 			ray->hit.object = closest_t->object;
