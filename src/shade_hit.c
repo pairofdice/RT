@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:22:13 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/20 16:23:48 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:41:24 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ t_color	shade_hit(t_scene *scene, t_ray *ray)
 	phong = color_new(0, 0, 0);
 	color = get_texture(&ray->hit);
 	if (ray->hit.object->material.pattern.pattern_id != NONE)
-		color = pattern_at(ray->hit, ray->hit.hit_loc, \
-		color, scene->perlin);
+		color = pattern_at(ray->hit, ray->hit.hit_loc, color, scene->perlin);
 	while (i < scene->lights.len)
 	{
 		light = *(t_light *)vec_get(&scene->lights, i++);
-		ray->hit.is_shadowed = is_shadowed(scene, &light, &ray->hit.over_point, \
+		ray->hit.is_shadowed = is_shadowed(scene, &light, &ray->hit.over_point,
 				&ray->hit);
 		result = tuple_add(result, lighting(&light, &ray->hit, &phong, color));
 	}
-	result = tuple_add(result, tuple_scalar_mult(color, ray->hit.object->material.ambient));
+	result = tuple_add(result, tuple_scalar_mult(color,
+				ray->hit.object->material.ambient));
 	if (ray->hit.object->material.reflective > 0)
 		result = tuple_add(tuple_scalar_mult(result, 1 - \
 		ray->hit.object->material.reflective), reflected_color(scene, ray));
