@@ -6,11 +6,11 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 13:06:06 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/18 13:06:22 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:57:49 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libc.h"
+#include "libft.h"
 
 int	ft_floor(double num)
 {
