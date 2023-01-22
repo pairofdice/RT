@@ -5,6 +5,16 @@
 		<coi> 0.0 0.0 15.0 </coi>
 	</camera>
 	<light type="spot">
+		<pos> -1.0 15.0 15.0 </pos>
+		<dir> 1.0 0.0 0.0 </dir>
+		<color> 0.45 0.25 0.15</color>
+	</light>
+	<light type="spot">
+		<pos> 1.0 15.0 15.0 </pos>
+		<dir> -1.0 0.0 0.0 </dir>
+		<color> 0.45 0.25 0.15</color>
+	</light>
+	<light type="spot">
 		<pos> 0.0 9.0 12.0 </pos>
 		<dir> 0.0 -1.0 0.0 </dir>
 		<color> 0.45 0.25 0.15</color>

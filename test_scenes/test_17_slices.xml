@@ -5,23 +5,23 @@
 		<coi> 0.0 -3.0 15.0 </coi>
 	</camera>
 	<light type="point">
-		<pos> 16.0 9.0 8.0 </pos>
-		<color> 0.15 0.25 0.45</color>
+		<pos> 16.0 6.0 8.0 </pos>
+		<color> 0.15 0.25 1.3</color>
 	</light>
 	<light type="point">
-		<pos> 0.0 15.0 12.0 </pos>
-		<color> 0.25 0.45 0.15</color>
+		<pos> 0.0 6.0 12.0 </pos>
+		<color> 0.25 1.3 0.15</color>
 	</light>
 	<light type="point">
-		<pos> -16.0 9.0 8.0 </pos>
-		<color> 0.45 0.15 0.25 </color>
+		<pos> -16.0 6.0 8.0 </pos>
+		<color> 1.30 0.15 0.25 </color>
 	</light>
-	<light type="point">
+<!-- 	<light type="point">
 		<pos> 0.0 10.0 -30.0 </pos>
 		<color> 0.2 0.2 0.2 </color>
-	</light>
+	</light> -->
 	<light type="point">
-		<pos> 15.0 -9.5 10.0 </pos>
+		<pos> 15.0 -3.5 10.0 </pos>
 		<color> 0.6 0.2 0.2 </color>
 	</light>
 
@@ -55,7 +55,7 @@
 		<rot> 0.0 30.0 0.0 </rot>
 		<material > 
 			<color> 0.3 0.37 1.0 </color>
-			<surface normal_disturbance="1" ambient="0.2" diffuse="0.9" specular="1" shininess="200" reflective="0.3"/>
+			<surface normal_disturbance="1" ambient="0.2" diffuse="0.9" specular="0.1" shininess="200" reflective="0.0"/>
 		</material>
 		<slice_pos> 0 3 0 </slice_pos>
 		<slice_neg> 0 0 -1 </slice_neg>
@@ -66,7 +66,7 @@
 		<loc> 0.0 -10.0 0.0 </loc>
 		<rot> 0.0 0.0 0.0 </rot>
 		<material>
-			<color> 1.0 1.0 1.0 </color>
+			<color> 0.1 0.1 0.1 </color>
 			<surface normal_disturbance="1" ambient="0.0" diffuse="0.4" specular="0.1" shininess="200" reflective="1.0"/>
 		</material>
 		<scale> 1.0 1.0 1.0 </scale>

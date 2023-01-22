@@ -10,7 +10,7 @@
 	</light>
 
 	<light type="point">
-		<pos> 40.0 2.5 -20.0 </pos>
+		<pos> 40.1 2.55 -25.0 </pos>
 		<color> 1.0 1.0 1.0 </color>
 	</light>
 

@@ -11,11 +11,13 @@
 	</light>
 
 	<light type="point">
-		<pos> -1.0 0.0 5.0 </pos>
-		<color> 0.6 0.2 0.3 </color>
+		<pos> -1.7 0.0 5.0 </pos>
+		<color> 0.6 0.1 0.2 </color>
 	</light>
-
-
+	<light type="point">
+		<pos> -2.8 0.0 5.0 </pos>
+		<color> 0.3 0.2 0.6 </color>
+	</light>
 	<object type="sphere">
 		<loc> 0.0 0.0 10.0 </loc>
 		<rot> 0.0 0.0 0.0 </rot>
@@ -31,7 +33,7 @@
 		<rot> 0.0 0.0 0.0 </rot>
 		<material>
 			<color> 1.0 1.0 1.0 </color>
-			<surface normal_disturbance="1" ambient="0.0" diffuse="0.4" specular="0.1" shininess="200" reflective="1.0"/>
+			<surface normal_disturbance="1" ambient="0.0" diffuse="0.4" specular="0.1" shininess="200" reflective="0.0"/>
 		</material>
 		<scale> 1.0 1.0 1.0 </scale>
 	</object>
