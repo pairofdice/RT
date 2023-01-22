@@ -1,5 +1,5 @@
 <scene stereoscopy="FALSE">
-	<settings edge_detection_precision="0.02" ant_al="6"/>
+	<settings edge_detection_precision="0.02" ant_al="4"/>
 	<camera>
 		<pos> 0.0 0.0 -30.0 </pos>
 		<coi> 0.0 0.0 15.0 </coi>
@@ -9,11 +9,11 @@
 		<color> 0.75 0.4 0.2</color>
 	</light>
 	<light type="point">
-		<pos> 8.0 9.0 8.0 </pos>
+		<pos> 16.0 9.0 8.0 </pos>
 		<color> 0.2 0.4 0.75</color>
 	</light>
 	<light type="point">
-		<pos> -8.0 9.0 8.0 </pos>
+		<pos> -16.0 9.0 8.0 </pos>
 		<color> 0.2 0.4 0.75 </color>
 	</light>
 	<object type="sphere">
