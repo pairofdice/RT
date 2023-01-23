@@ -94,6 +94,7 @@ typedef struct s_scene
 	t_vec			objects;
 	t_perlin		perlin;
 	t_cam			cam;
+	int				glare_toggle;
 }					t_scene;
 
 typedef struct s_settings
