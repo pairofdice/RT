@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 20:03:31 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/19 16:28:15 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:49:48 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	vec_push(t_vec *vec, void *elem)
 {
-	if (!vec || !elem)
+	if (!vec || !elem || !vec->memory)
 		return (-1);
 	if ((vec->len * vec->elem_size) == vec->alloc_size)
 		if (vec_resize(vec, vec->len * 2) == -1)

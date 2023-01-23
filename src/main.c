@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/22 14:52:47 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:45:27 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ void	draw_filter(t_sdl *sdl, int *filter_type)
 	}
 }
 
+static void	free_obj_textures(t_vec	*obj_in)
+{
+	t_object	*obj;
+	size_t		i;
+
+	i = 0;
+	while (i < obj_in->len)
+	{
+		obj = (t_object *) vec_get(obj_in, i);
+		if (obj->texture.loaded == TRUE)
+			SDL_FreeSurface(obj->texture.surface);
+		i++;
+	}
+}
+
 static void	free_all(t_main *main)
 {
 	SDL_DestroyTexture(main->sdl.texture);
@@ -44,6 +59,7 @@ static void	free_all(t_main *main)
 	free(main->sdl.frame_buffer.filter);
 	free(main->sdl.frame_buffer.mask);
 	free(main->sdl.frame_buffer.motion_calc);
+	free_obj_textures(&main->scene.objects);
 	vec_free(&main->scene.objects);
 	vec_free(&main->scene.lights);
 	free(main->sdl.frame_buffer.stereocopy);
