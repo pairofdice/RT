@@ -51,7 +51,8 @@ int	anti_aliasing(t_main *main, int pixel_x, int pixel_y, int ant_a)
 		aa.j++;
 	}
 	aa.color = tuple_scalar_div(aa.color, aa.sub_pixel);
-	aa.color = tuple_add(aa.color, glare(&main->ray, &main->scene.lights));
+	if (main->scene.glare_toggle == TRUE)
+		aa.color = tuple_add(aa.color, glare(&main->ray, &main->scene.lights));
 	return (color_to_int(aa.color));
 }
 

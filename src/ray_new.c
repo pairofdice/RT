@@ -23,6 +23,7 @@ t_ray	ray_new(t_point origin, t_vector dir)
 
 	result.orig = origin;
 	result.dir = dir;
+	result.hit.neg_hit = FALSE;
 	new_intersections(&result.xs.vec);
 	return (result);
 }

@@ -71,6 +71,7 @@ void	get_settings(t_xml_node *scene, t_main *main)
 	main->settings.edge_detection_presission = EDGE_DETECTION_PRECISION;
 	main->settings.orig_ant_al = DEFAULT_ANTIALIAS;
 	main->scene.cam.max_reflections = DEFAULT_MAX_REFLECTIONS;
+	main->scene.glare_toggle = FALSE;
 	if (node != NULL)
 	{
 		str = xml_node_attr_value(scene, "stereoscopy");
@@ -85,6 +86,9 @@ void	get_settings(t_xml_node *scene, t_main *main)
 		str = xml_node_attr_value(node, "max_reflections");
 		if (str != NULL)
 			main->scene.cam.max_reflections = int_clamp(ft_atoi(str), 1, 20);
+		str = xml_node_attr_value(node, "glare");
+		if (str != NULL && !ft_strcmp(str, "true"))
+			main->scene.glare_toggle = TRUE;
 	}
 }
 
