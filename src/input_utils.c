@@ -97,10 +97,9 @@ int	read_xml(t_xml_doc *doc, t_main *main)
 
 	nodelist = NULL;
 	scene = xml_node_tag(&doc->head->children, "scene");
-	main->scene.cam.max_reflections = DEFAULT_MAX_REFLECTIONS;
-	main->scene.glare_toggle = FALSE;
 	if (scene)
 	{
+		scene_new(&main->scene);
 		get_settings(scene, main);
 		nodelist = xml_node_children(scene, "camera");
 		if (!prepare_camera(nodelist, &main->scene.cam))
