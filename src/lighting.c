@@ -6,12 +6,11 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:12:38 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/19 13:41:13 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:28:43 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
-#include <stdio.h>
 
 static void	lighting_get_diffuse_and_specular(
 	t_lighting *lighting,
