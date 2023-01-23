@@ -19,8 +19,6 @@ int	read_file(t_main *main, char *file)
 	doc.version = NULL;
 	doc.encoding = NULL;
 	main->sdl.stereocopy = FALSE;
-	scene_new(&main->scene);
-	load_perlin_data(&main->scene.perlin);
 	if (!xml_doc_load(&doc, file))
 	{
 		ft_putendl_fd("ERROR: Couldn't read file!", 2);

@@ -18,5 +18,8 @@ int	scene_new(t_scene *scene)
 		return (1);
 	if (!vec_new(&scene->objects, 6, sizeof(t_object)))
 		return (1);
+	scene->cam.max_reflections = DEFAULT_MAX_REFLECTIONS;
+	scene->glare_toggle = FALSE;
+	load_perlin_data(&scene->perlin);
 	return (0);
 }
