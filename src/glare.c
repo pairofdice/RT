@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 13:41:59 by jsaarine          #+#    #+#             */
-/*   Updated: 2023/01/19 17:46:31 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/22 15:07:36 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,28 @@ void	set_blocked_lights(t_main *main)
 
 t_color	glare(t_ray *ray, t_vec *lights)
 {
+	t_color	result_glare;
 	t_color	glare;
 	t_light	light;
 	size_t	i;
 	double	dot;
-	double	dotdotdot;
 
-	glare = color_new(0, 0, 0);
+	result_glare = color_new(0, 0, 0);
 	i = 0;
 	while (i < lights->len)
 	{
+		glare = color_new(0, 0, 0);
 		light = *(t_light *)vec_get(lights, i);
 		dot = vector_dot(tuple_unit(tuple_neg(tuple_sub(ray->orig,
 							light.location))), tuple_unit(ray->dir));
 		if (dot > 0.995 && light.blocked == 0)
 		{
-			dotdotdot = pow(dot, 2024);
-			glare = tuple_add(glare, color_new(light.intensity.s_rgb.r
-						* dotdotdot, light.intensity.s_rgb.g * dotdotdot,
-						light.intensity.s_rgb.b * dotdotdot));
+			dot = pow(dot, 2024);
+			glare = tuple_add(glare, tuple_scalar_mult(light.intensity, dot));
 			glare = tuple_scalar_mult(glare, 4);
+			result_glare = tuple_add(glare, result_glare);
 		}
 		i++;
 	}
-	return (glare);
+	return (result_glare);
 }

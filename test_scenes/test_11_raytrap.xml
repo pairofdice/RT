@@ -8,7 +8,7 @@
 		<pos> 0.0 0.0 0.0 </pos>
 		<color> 1.0 1.0 1.0 </color>
 	</light>
-
+<!-- 
 	<object type="sphere">
 		<loc> -1.0 -1.0 0.0 </loc>
 		<rot> 0.0 0.0 90.0 </rot>
@@ -17,7 +17,7 @@
 			<surface ambient="0.0" diffuse="0.5" specular="1.0" shininess="200" reflective="0.95"/>
 		</material>
 		<scale> 0.3 0.3 0.3 </scale>
-	</object>
+	</object> -->
 	<object type="plane">
 		<loc> 0.0 0.0 1.0 </loc>
 		<rot> 90.0 0.0 0.0 </rot>

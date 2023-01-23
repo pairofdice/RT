@@ -6,7 +6,7 @@
 /*   By: jsaarine <jsaarine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:55:52 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/19 14:21:50 by jsaarine         ###   ########.fr       */
+/*   Updated: 2023/01/22 14:52:47 by jsaarine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	main(int ac, char **av)
 		return (1);
 	if (initialize_window(&main) == 0)
 		return (1);
-	set_blocked_lights(&main);
 	create_frame(&main);
 	rt_loop_and_exit(&main.sdl, &main);
 	SDL_Quit();
