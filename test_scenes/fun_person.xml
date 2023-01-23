@@ -1,4 +1,4 @@
-<scene stereoscopy="FALSE">
+<scene>
 	<settings edge_detection_precision="0.01" ant_al="6"/>
 	<camera>
 		<pos> 0.0 0.0 -15.0 </pos>
