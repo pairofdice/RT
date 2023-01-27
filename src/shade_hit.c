@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:22:13 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/20 16:41:24 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:20:50 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static t_color	get_texture(t_hit_record *hit)
 
 	if (hit->neg_hit == TRUE || hit->object->texture.loaded == FALSE)
 		return (hit->object->material.color);
-	t_x = ((int)(hit->object->texture.w * hit->surf2_coord.s_xyzw.x));
-	t_y = ((int)(hit->object->texture.h * hit->surf2_coord.s_xyzw.y));
+	t_x = ((int)(hit->object->texture.w * hit->surf2_coord.s_xyzw.x)) % hit->object->texture.w;
+	t_y = ((int)(hit->object->texture.h * hit->surf2_coord.s_xyzw.y)) % hit->object->texture.h;
 	i_color = hit->object->texture.pixels[(t_y * hit->object->texture.w) + t_x];
 	color = texture_int_to_color(i_color);
 	color = tuple_scalar_div(color, 255);

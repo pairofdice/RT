@@ -6,7 +6,7 @@
 /*   By: jjuntune <jjuntune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:56:08 by jjuntune          #+#    #+#             */
-/*   Updated: 2023/01/20 15:43:36 by jjuntune         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:14:21 by jjuntune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ static t_tuple	get_cylinderic(t_tuple obj_space)
 	map.s_xyzw.x = 1 - atan2(obj_space.s_xyzw.x, obj_space.s_xyzw.z) \
 	/ TWOPI + 0.5;
 	map.s_xyzw.y = obj_space.s_xyzw.y * 0.5 - ft_floor(obj_space.s_xyzw.y);
+	if (map.s_xyzw.x < 0)
+		map.s_xyzw.x += 1.0;
+	if (map.s_xyzw.y < 0)
+		map.s_xyzw.y += 1.0;
 	return (map);
 }
 
