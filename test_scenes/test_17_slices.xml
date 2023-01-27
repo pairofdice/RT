@@ -1,5 +1,5 @@
-<scene stereoscopy="FALSE">
-	<settings edge_detection_precision="0.02" ant_al="6"/>
+<scene>
+	<settings edge_detection_precision="0.02" ant_al="6" glare="true"/>
 	<camera>
 		<pos> 0.0 0.0 -30.0 </pos>
 		<coi> 0.0 -3.0 15.0 </coi>
