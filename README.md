@@ -16,8 +16,8 @@ I implemented the matrix functions and the core shading & lighting logic, normal
 - Object scaling in various ways
 - Reflections
 - XML parser for scene files
-- spotlights, sunglight, pointlight
-- glare
+- Spotlights, sunlight, pointlight
+- Glare
 
 Proud of this scene in particular that I created.  
 Normal disturbance with perlin noise, reflections, scaling
