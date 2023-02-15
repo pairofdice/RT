@@ -1,5 +1,5 @@
 # RT
-The final project where I Worked in a team of three.  
+The final project where I worked in a team of three.  
 I implemented the matrix functions and the core shading & lighting logic. I also used unit testing heavily.
 
 ![Screen Shot 2023-01-19 at 3 14jpg](https://user-images.githubusercontent.com/1247587/219040412-0a992d63-4819-40d8-a94e-e2da7fbce33b.jpg)
