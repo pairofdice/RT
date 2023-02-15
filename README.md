@@ -16,6 +16,7 @@ I implemented the matrix functions and the core shading & lighting logic. I also
 - XML parser for scene files
 - spotlights, sunglight, pointlight
 - glare
+- Anaglyph 3D
 
 Proud of this scene in particular that I created.
 ![Image 2023-01-24 at 21 56 19](https://user-images.githubusercontent.com/1247587/215171465-b0fa6c50-207c-4c81-9159-ce86206b2757.jpeg)
